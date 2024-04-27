@@ -1,0 +1,2 @@
+En la app filtro intent tenemos una App candidata a RECIBIR un texto desde otra
+En la app intentImplicito tenemos una App que abre un navegador, envia un mail y abre un Map

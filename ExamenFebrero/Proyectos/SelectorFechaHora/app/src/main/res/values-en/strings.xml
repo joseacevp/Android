@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="nombre">nombre</string>
+    <string name="fecha_nacimiento">Fecha Nacimiento</string>
+    <string name="hora">Hora</string>
+</resources>

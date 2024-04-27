@@ -1,0 +1,32 @@
+{
+  "multimedia_list": [
+    {
+      "nombre": "Alexander Nakarada",
+      "descripcion": "The Return",
+      "tipo": "0",
+      "image": "foto_the_return.png",
+      "uri": "alexander_nakaradathe_return.mp3"
+    },
+    {
+      "nombre": "Taylor Swift",
+      "descripcion": "Cruel Summer",
+      "tipo": "1",
+      "image": "foto_cruel_summer.png",
+      "uri": "teylor.mkv"
+    },
+    {
+      "nombre": "Boris Brejcha",
+      "descripcion": "Tomorrowland Belgium 2018",
+      "tipo": "2",
+      "image": "boris.png",
+      "uri": "https://youtu.be/pCFNnAjp-Wg?si=koOdaykQwdX42Rc8"
+    },
+    {
+      "nombre": "Musica Streaming",
+      "descripcion": "Pangaea Summer Rain",
+      "tipo": "2",
+      "image": "musicstreaming.png",
+      "uri": "https://dn720303.ca.archive.org/0/items/pangaea-2097/01%20Summer%20Rain.mp3"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_configurar"
+            android:icon="@drawable/iconoherramienta"
+            android:title="@string/menu_configurar" />
+        <item
+            android:id="@+id/nav_entrenar"
+            android:icon="@drawable/iconoentrenar"
+            android:title="@string/menu_entrenar" />
+        <item
+            android:id="@+id/nav_estadisticas"
+            android:icon="@drawable/iconoestadisticas"
+            android:title="@string/menu_estadisticas"/>
+        <item
+            android:id="@+id/enviarEstadisticasFragment"
+            android:icon="@drawable/iconoenviar"
+            android:title="@string/menu_enviar"/>
+    </group>
+</menu>

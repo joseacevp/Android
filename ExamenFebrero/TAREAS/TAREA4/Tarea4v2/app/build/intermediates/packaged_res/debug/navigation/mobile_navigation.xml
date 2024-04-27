@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_configurar">
+
+    <fragment
+        android:id="@+id/nav_entrenar"
+        android:name="com.example.tarea4v2.ui.EntrenarFragment"
+        android:label="@string/menu_entrenar"
+        tools:layout="@layout/fragment_entrenar" />
+
+    <fragment
+        android:id="@+id/nav_configurar"
+        android:name="com.example.tarea4v2.ui.ConfigurarFragment"
+        android:label="@string/menu_configurar"
+        tools:layout="@layout/fragment_comfigurar" >
+        <action
+            android:id="@+id/action_nav_configurar_to_avatarFragment"
+            app:destination="@id/avatarFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_estadisticas"
+        android:name="com.example.tarea4v2.ui.EstadisticasFragment"
+        android:label="@string/menu_estadisticas"
+        tools:layout="@layout/fragment_estadisticas" />
+    <fragment
+        android:id="@+id/avatarFragment"
+        android:name="com.example.tarea4v2.AvatarFragment"
+        android:label="Avatares"
+        tools:layout="@layout/fragment_avatar" >
+        <action
+            android:id="@+id/action_avatarFragment_to_nav_configurar"
+            app:destination="@id/nav_configurar" />
+    </fragment>
+    <fragment
+        android:id="@+id/enviarEstadisticasFragment"
+        android:name="com.example.tarea4v2.EnviarEstadisticasFragment"
+        android:label="Contactos"
+        tools:layout="@layout/fragment_enviar_estadisticas" />
+</navigation>

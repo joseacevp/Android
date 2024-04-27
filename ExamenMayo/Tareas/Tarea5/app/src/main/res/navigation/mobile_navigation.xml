@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_equipo">
+
+    <fragment
+        android:id="@+id/nav_convocados"
+        android:name="com.example.tarea5.appprincipal.ui.convocados.Convocados"
+        android:label="@string/menu_convocados"
+        tools:layout="@layout/fragment_convocados" />
+
+    <fragment
+        android:id="@+id/nav_equipo"
+        android:name="com.example.tarea5.appprincipal.ui.equipo.EquipoFragment"
+        android:label="@string/menu_equipo"
+        tools:layout="@layout/fragment_equipo" />
+
+    <fragment
+        android:id="@+id/nav_borrar_convocados"
+        android:name="com.example.tarea5.appprincipal.ui.borrar.BorrarConvocados"
+        android:label="@string/menu_borrar_convocados"
+        tools:layout="@layout/fragment_borrar_convocados" />
+    <fragment
+        android:id="@+id/nav_seleccionar_fecha"
+        android:name="com.example.tarea5.appprincipal.ui.fechas.FechaFragment"
+        android:label="@string/menu_seleccionar_fecha"
+        tools:layout="@layout/fragment_fecha" />
+    <fragment
+        android:id="@+id/nav_historico"
+        android:name="com.example.tarea5.appprincipal.ui.historico.HistoricoFragment"
+        android:label="@string/menu_historico"
+        tools:layout="@layout/fragment_historico" />
+
+</navigation>

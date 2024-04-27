@@ -1,0 +1,422 @@
+[
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable_ic_menu_gallery.xml.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable\\ic_menu_gallery.xml"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable_ic_menu_camera.xml.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable\\ic_menu_camera.xml"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable_iconoherramienta.png.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable\\iconoherramienta.png"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_ironuno.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\ironuno.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable_iconoestadisticas.png.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable\\iconoestadisticas.png"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-debug-46:\\mipmap-hdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-debug-46:\\mipmap-xxxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\layout_activity_login.xml.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_huldcinco.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\huldcinco.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-debug-46:\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\layout_fragment_comfigurar.xml.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\layout\\fragment_comfigurar.xml"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\mipmap-xxhdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-debug-46:\\mipmap-xxhdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_batmancinco.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\batmancinco.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\layout_intem_list_contactos.xml.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\layout\\intem_list_contactos.xml"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_ironsiete.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\ironsiete.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-debug-46:\\mipmap-xhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\menu_activity_main_drawer.xml.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\menu\\activity_main_drawer.xml"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-debug-46:\\mipmap-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_ironocho.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\ironocho.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\layout_activity_registro.xml.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\layout\\activity_registro.xml"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\layout_activity_inicio.xml.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\layout\\activity_inicio.xml"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_irondos.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\irondos.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_capicuatro.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\capicuatro.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_batmantres.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\batmantres.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_capisiete.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\capisiete.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_batmannueve.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\batmannueve.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_huldocho.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\huldocho.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_batmanuno.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\batmanuno.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_batmancuatro.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\batmancuatro.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\layout_fragment_entrenar.xml.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\layout\\fragment_entrenar.xml"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\navigation_mobile_navigation.xml.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\navigation\\mobile_navigation.xml"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_hulduno.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\hulduno.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable_iconoentrenar.png.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable\\iconoentrenar.png"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\mipmap-xxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable_iconoenviar.png.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable\\iconoenviar.png"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_huldtres.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\huldtres.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\mipmap-hdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-debug-46:\\mipmap-hdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\layout_fragment_enviar_estadisticas.xml.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\layout\\fragment_enviar_estadisticas.xml"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable_fondo_estadisticas.png.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable\\fondo_estadisticas.png"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-debug-46:\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_irontres.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\irontres.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_capiseis.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\capiseis.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\mipmap-mdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-debug-46:\\mipmap-xxxhdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\layout_app_bar_main.xml.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\layout\\app_bar_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-debug-46:\\mipmap-mdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_capitres.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\capitres.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_capicinco.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\capicinco.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\mipmap-xhdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-debug-46:\\mipmap-xhdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable_fondo_herramientas.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable\\fondo_herramientas.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_capiocho.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\capiocho.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\mipmap-xxxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_ironcinco.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\ironcinco.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\layout_fragment_estadisticas.xml.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\layout\\fragment_estadisticas.xml"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_huldsiete.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\huldsiete.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_capiuno.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\capiuno.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_ironcuatro.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\ironcuatro.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\mipmap-hdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\xml\\backup_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable_fondo.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable\\fondo.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-debug-46:\\mipmap-xxxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\layout_nav_header_main.xml.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\layout\\nav_header_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_ironnueve.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\ironnueve.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-debug-46:\\mipmap-xxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_batmandos.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\batmandos.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_capidos.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\capidos.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_batmanocho.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\batmanocho.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\mipmap-mdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-debug-46:\\mipmap-mdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable_ic_menu_slideshow.xml.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable\\ic_menu_slideshow.xml"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable_side_nav_bar.xml.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable\\side_nav_bar.xml"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_capi.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\capi.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_iron.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\iron.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable_profesora.png.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable\\profesora.png"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\layout_intem_list_personajes.xml.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\layout\\intem_list_personajes.xml"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\mipmap-hdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\xml\\data_extraction_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\mipmap-xhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_huldcuatro.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\huldcuatro.jpg"
+    },
+    {
+        "merged": "com.example.tarea4v2.app-merged_res-45:/layout_fragment_entrenar.xml.flat",
+        "source": "com.example.tarea4v2.app-main-47:/layout/fragment_entrenar.xml"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_batmanseis.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\batmanseis.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\mipmap-xxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable_cavezarafondo.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable\\cavezarafondo.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\mipmap-mdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable_login.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable\\login.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_batmansiete.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\batmansiete.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\layout_content_main.xml.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\layout\\content_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_ironseis.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\ironseis.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable_fondo_jugar.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable\\fondo_jugar.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_huld.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\huld.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\menu_main.xml.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\menu\\main.xml"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\layout_nav_header_main2.xml.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\layout\\nav_header_main2.xml"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\mipmap-xhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_huldseis.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\huldseis.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_hulddos.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\hulddos.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_huldnueve.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\huldnueve.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_capinueve.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\capinueve.jpg"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-debug-46:\\mipmap-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\layout_fragment_avatar.xml.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\layout\\fragment_avatar.xml"
+    },
+    {
+        "merged": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-merged_res-45:\\drawable-v24_batman.jpg.flat",
+        "source": "C:\\Users\\josea\\.gradle\\daemon\\7.4\\com.example.tarea4v2.app-main-47:\\drawable-v24\\batman.jpg"
+    }
+]
