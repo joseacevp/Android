@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sudoku</string>
+    <string name="info">
+        All row, column and box (9 spaces each) must be completed with the numbers
+          from 1 to 9, without repeating any number within the row, column or square.</string>
+    <string name="Facil">Easy</string>
+    <string name="Normal">Normal</string>
+    <string name="Dificil">Hard</string>
+    <string name="volver">Return</string>
+    <string name="titulo_dificultad">Difficulty Level</string>
+    <string name="titulo_como">¿How to Play??</string>
+    <string name="ganaste">Congratulation</string>
+    <string name="perdiste">Try Again. The number of correct numbers is: </string>
+
+
+</resources>
