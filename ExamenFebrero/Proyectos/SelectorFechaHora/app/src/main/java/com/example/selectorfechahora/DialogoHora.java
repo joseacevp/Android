@@ -1,6 +1,5 @@
 package com.example.selectorfechahora;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
@@ -11,7 +10,7 @@ import android.widget.TimePicker;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class DialogoHora extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
+public class DialogoHora extends DialogFragment implements TimePickerDialog.OnTimeSetListener{
 
     OnHoraSeleccionada h;
 

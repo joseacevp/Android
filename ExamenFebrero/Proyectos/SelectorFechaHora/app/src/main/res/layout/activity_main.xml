@@ -14,7 +14,7 @@
         android:layout_marginTop="32dp"
         android:ems="10"
         android:enabled="true"
-        android:hint="@string/nombre"
+        android:hint="Nombre"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,7 +27,7 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:enabled="false"
-        android:hint="@string/fecha_nacimiento"
+        android:hint="Fecha Nacimiento"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTexPersonName" />
@@ -40,7 +40,7 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:enabled="false"
-        android:hint="@string/hora"
+        android:hint="Hora"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextFechaNacimiento" />
@@ -50,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:text="@string/fecha"
+        android:text="Fecha"
         app:layout_constraintStart_toEndOf="@+id/editTextFechaNacimiento"
         app:layout_constraintTop_toTopOf="@+id/editTextFechaNacimiento" />
 
@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:text="@string/hora"
+        android:text="Hora"
         app:layout_constraintStart_toEndOf="@+id/editTextHora"
         app:layout_constraintTop_toBottomOf="@+id/boton_fecha" />
 </android.support.constraint.ConstraintLayout>

@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-<!--    Para poder acceder a la información de la red a través del ConnectivityManager, necesitas que tu App disponga de-->
-<!--    permisos para acceder a la red y comprobar su estado. Para poder hacer esto, tienes que agregar los permisos-->
-<!--    pertinentes al fichero de manifiesto (justo encima de la etiqueta Application):-->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-<!--  fin permisos-->
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -30,7 +26,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <service android:name=".WirelessTester"/>
     </application>
 
 </manifest>

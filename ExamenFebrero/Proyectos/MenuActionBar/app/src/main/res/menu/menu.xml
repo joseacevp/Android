@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:icon="@android:drawable/sym_action_chat"
+        android:title="Primero"
+        android:id="@+id/primero"/>
+    <item
+        android:icon="?attr/homeAsUpIndicator"
+        android:title="Segundo"
+        android:id="@+id/segundo"/>
+    <item
+        android:icon="@android:drawable/ic_delete"
+        android:title="Tercero"
+        android:id="@+id/tercero"/>
+</menu>

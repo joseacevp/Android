@@ -1,56 +1,56 @@
 package com.example.selectorfechahora;
 
-import android.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.example.selectorfechahora.databinding.ActivityMainBinding;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.zip.Inflater;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener,DialogoFecha.OnFechaSeleccionada,DialogoHora.OnHoraSeleccionada {
+public class MainActivity extends AppCompatActivity implements DialogoFecha.OnFechaSeleccionada, DialogoHora.OnHoraSeleccionada {
+    ActivityMainBinding binding;
     DialogoFecha fecha = new DialogoFecha();
     DialogoHora hora = new DialogoHora();
-    Button bfecha,bhora;
-    EditText textFecha,textHora,textNombre;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
-        bfecha = findViewById(R.id.boton_fecha);
-        bfecha.setOnClickListener(this);
-
-        bhora = findViewById(R.id.boton_hora);
-        bhora.setOnClickListener(this);
-
-        textFecha = findViewById(R.id.editTextFechaNacimiento);
-        textHora = findViewById(R.id.editTextHora);
-        textNombre = findViewById(R.id.editTexPersonName);
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.boton_fecha:
-                fecha.show(getFragmentManager(),"fecha");
-                break;
-            case R.id.boton_hora:
-                hora.show(getFragmentManager(),"hora");
-                break;
-        }
+        binding.botonFecha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fecha.show(getFragmentManager(), "fecha");
+            }
+        });
+        binding.botonHora.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                hora.show(getFragmentManager(), "hora");
+            }
+        });
     }
 
     @Override
     public void onResultadoFecha(GregorianCalendar fecha) {
-        textFecha.setText(fecha.get(Calendar.DAY_OF_MONTH)+"/"+fecha.get(Calendar.MONTH)+"/"+fecha.get(Calendar.YEAR));
+//     Hay que indicar todos los datos implementados en la clase dia mes y año
+        binding.editTextFechaNacimiento.setText(fecha.get(Calendar.DAY_OF_MONTH) + "/" + fecha.get(Calendar.MONTH)
+                + "/" + fecha.get(Calendar.YEAR));
     }
 
     @Override
     public void onResultadoHora(GregorianCalendar hora) {
-        textHora.setText(hora.get(Calendar.HOUR)+":"+ hora.get(Calendar.MINUTE));
+        //     Hay que indicar todos los datos implementados en la clase hora y minutos
+        binding.editTextHora.setText(hora.get(Calendar.HOUR) + " : " + Calendar.MINUTE);
     }
 }

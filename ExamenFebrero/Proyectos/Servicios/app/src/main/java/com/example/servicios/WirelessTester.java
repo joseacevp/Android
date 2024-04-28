@@ -8,6 +8,7 @@ import android.net.NetworkInfo;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.widget.Toast;
 
 public class WirelessTester extends Service {
     final String tag = "Demo Servicio";
@@ -112,7 +113,7 @@ de estado en la conexión por wifi, se reporta a través del Log.
                 //Mirar si el dispositivo está conectado por WIFI
                 if (info.isConnected()) {
                     Log.i(tag,"conexion WIFI ON");
-                    return true;//hay conexión
+                      return true;//hay conexión
                 }
             }
         }
