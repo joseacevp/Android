@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">FechaHora</string>
+    <string name="editNombre">Nombre</string>
+    <string name="editFecha">Fecha</string>
+    <string name="editHora">Hora</string>
+    <string name="botonFecha">Seleccionar Fecha</string>
+    <string name="botonHora">Seleccionar Hora</string>
+    <string name="titulo">Selector de Fecha y Hora</string>
+</resources>

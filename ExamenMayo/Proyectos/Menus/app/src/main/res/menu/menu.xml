@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/ajustes"
+        android:title="Ajustes">
+        <menu>
+            <item
+                android:id="@+id/confFactura"
+                android:title="Configuración de la Factura" />
+            <item
+                android:id="@+id/confPedido"
+                android:title="Configuración del Pedido" />
+    </menu>
+    </item>
+    <item
+        android:id="@+id/clientes"
+        android:title="Clientes">
+        <menu>
+            <item
+                android:id="@+id/nueCliente"
+                android:title="Nuevo Cliente" />
+            <item
+                android:id="@+id/busCliente"
+                android:title="Buscar Cliente" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/facturas"
+        android:title="Facturas">
+        <menu>
+            <item
+                android:id="@+id/nueFactura"
+                android:title="Nueva Factura" />
+            <item
+                android:id="@+id/busFactura"
+                android:title="Buscar Factura" />
+        </menu>
+    </item>
+</menu>

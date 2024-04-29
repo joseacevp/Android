@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">DesplazarseEntreActivity</string>
+    <string name="parrafo">Presione Regresar para volver a la Actividad principal.\nPresiona siguiente para ir a la Actividad siguiente.
+    </string>
+    <string name="parrafo2">En esta actividad termina la Practica ralizada con la navegación entre Actividades con el uso de Intent.\nPresione Regresar para volver a la Actividad principal.
+    </string>
+</resources>

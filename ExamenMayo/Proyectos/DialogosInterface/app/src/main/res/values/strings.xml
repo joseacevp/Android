@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">DialogInterface</string>
+    <string name="mensage">mensaje del dialogo</string>
+    <string name="titulo_mensaje">Titulo del Mesaje emergente</string>
+    <string name="mensage_2">ventana emergente con selecciones</string>
+    <string name="titulo_mensaje_2">Selecciona una Opción</string>
+    <string name="mensage_3">Lista de opciones seleccionables</string>
+    <string name="titulo_mensaje_3">Lista</string>
+</resources>

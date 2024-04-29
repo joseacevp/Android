@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="lannesters">
+        <item name="primero" type="string">Primero</item>
+        <item name="segundo" type="string">Segundo</item>
+        <item name="tercero" type="string">Tercero</item>
+    </string-array>
+</resources>

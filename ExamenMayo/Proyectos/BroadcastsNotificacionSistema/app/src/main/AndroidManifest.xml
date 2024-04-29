@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"></uses-permission>
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"></uses-permission>
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.BroadcastsNotificacionSistema"
+        tools:targetApi="31">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <!--        2º: Registrar la subclase en el fichero de manifiesto de nuestra App como candidata a
+               recibir ciertas notificaciones. Se especificará, mediante la etiqueta XML <receiver> un filtro de
+               intent con la acción que se espera recibir, por ejemplo:android.intent.action.BOOT_COMPLETED.
+               Recuerda que registrar un componente en el fichero de manifiesto implica crearlo de manera estática,
+               es decir, se creará automáticamente un objeto de la clase Receptor nada más iniciar la App.
+               Además, hay que solicitar los permisos necesarios. Por ejemplo, para poder recibir SMSs, nuestro
+               fichero de manifiesto tiene esta pinta:     -->
+        <receiver android:name=".Receptor" android:exported="true">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>
