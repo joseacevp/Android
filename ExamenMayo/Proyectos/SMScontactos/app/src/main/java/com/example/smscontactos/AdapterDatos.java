@@ -23,20 +23,22 @@ public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDa
 
     public class ViewHolderDatos extends RecyclerView.ViewHolder {
         //3. referencia de los componentes de la lista de datos
-        TextView dato;
+        TextView nombre,telefono;
         public final View view;
 
         public ViewHolderDatos(@NonNull View itemView) {
             super(itemView);
             //4. instancia a la referencia de los datos de la lista de datos
-            dato = itemView.findViewById(R.id.texto_nombre);
+            nombre = itemView.findViewById(R.id.texto_nombre);
+            telefono = itemView.findViewById(R.id.texto_telefono);
             view = itemView;
         }
 
     //8. asigna los datos del intem que toca de la lista y lo asigna
     //al componente del xml listaItem
         public void setAsignarDatos(String s) {
-            dato.setText(s);
+            nombre.setText(s);
+            telefono.setText(s);
         }
     }
 
@@ -70,7 +72,7 @@ public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDa
         viewHolderDatos.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.reenviarDatos(viewHolderDatos.dato);
+                MainActivity.reenviarDatos(viewHolderDatos.nombre);
             }
         });
     }

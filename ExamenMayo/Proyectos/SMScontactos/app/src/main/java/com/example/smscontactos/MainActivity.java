@@ -6,7 +6,9 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -22,7 +24,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
-    ArrayList<String> listaDatos;
+    ArrayList<String> listaDatos, listaResultados;
 
     private boolean tengo_permisos = false;
     private final int PETICION_PERMISOS = 1;
@@ -45,8 +47,27 @@ public class MainActivity extends AppCompatActivity {
                     PETICION_PERMISOS);
         } else tengo_permisos = true;
 
+        listaDatos = llenarContactos();
 
-       listaDatos = buscarContacto(binding.editextBuscar.getText().toString());
+        binding.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String contacto = "";
+                listaResultados = buscarContacto(binding.editextBuscar.getText().toString());
+
+                for (int i = 0; i < listaResultados.size(); i++) {
+
+                    contacto += listaResultados.get(i);
+                }
+                if (listaResultados.size()!=0){
+                    Toast.makeText(MainActivity.this, "Encontro :" + contacto, Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(MainActivity.this, "Contacto no encontrado", Toast.LENGTH_SHORT).show();
+                }
+              
+            }
+        });
+
 
         binding.reciclerContactos.setLayoutManager(new LinearLayoutManager(this
                 , LinearLayoutManager.VERTICAL, false));
@@ -56,16 +77,48 @@ public class MainActivity extends AppCompatActivity {
         binding.reciclerContactos.setAdapter(adapter);
     }
 
-    public static void reenviarDatos(TextView dato) {
+    @SuppressLint("Range")
+    private ArrayList<String> llenarContactos() {
+        String proyeccion[] = {
+                ContactsContract.Contacts._ID,
+                ContactsContract.Contacts.DISPLAY_NAME,
+                ContactsContract.Contacts.HAS_PHONE_NUMBER,
+                ContactsContract.Contacts.PHOTO_ID
+        };
+
+        ArrayList<String> lista_contactos_recycle = new ArrayList<>();
+        ContentResolver contentResolver = getContentResolver();
+        Cursor cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI,
+                proyeccion, null, null, null);
+        // Con el cursor, recorrer la lista de contactos extraída, agregando los elementos a un ArrayList
+        if (cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                // Obtener el nombre del contacto
+                String name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+                // Si tiene teléfono lo agregamos a la lista de contactos
+                if (Integer.parseInt(cursor.getString(
+                        cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
+                    lista_contactos_recycle.add(name);
+                }
+            } // FIN while
+        } // FIN if
+
+        cursor.close();
+        return lista_contactos_recycle;
     }
+
+    public static void reenviarDatos(TextView dato) {
+        Toast.makeText(dato.getContext(), dato.getText() + " Seleccionado ", Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode==PETICION_PERMISOS)
-            if(grantResults[0]==PackageManager.PERMISSION_GRANTED)
-                tengo_permisos=true;
+        if (requestCode == PETICION_PERMISOS)
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                tengo_permisos = true;
             else
-                tengo_permisos=false;
+                tengo_permisos = false;
     }
 
     @SuppressLint("Range")
@@ -76,17 +129,14 @@ public class MainActivity extends AppCompatActivity {
                 ContactsContract.Contacts.HAS_PHONE_NUMBER,
                 ContactsContract.Contacts.PHOTO_ID
         };
-//        String filtro = ContactsContract.Contacts.DISPLAY_NAME + " like ?";
+        String filtro = ContactsContract.Contacts.DISPLAY_NAME + " like ?";
 //        String args_filtro[] = {"%" + contacto + "%"};
+        String args_filtro[] = {contacto };
 
         ArrayList<String> lista_contactos = new ArrayList<>();
         ContentResolver contentResolver = getContentResolver();
-//        Cursor cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI,
-//                proyeccion, filtro, args_filtro, null);
-  Cursor cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI,
-                proyeccion, null, null, null);
-
-
+        Cursor cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI,
+                proyeccion, filtro, args_filtro, null);
 
         // Con el cursor, recorrer la lista de contactos extraída, agregando los elementos a un ArrayList
         if (cursor.getCount() > 0) {
