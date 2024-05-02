@@ -13,13 +13,14 @@ import java.util.List;
 
 public class AdaptadorRecyclerMultipl extends RecyclerView.Adapter<AdaptadorRecyclerMultipl.AdaptadorViewHolder> {
     private List<Objeto> objetoList;
-
+    private MainActivity objetoSelecionado;
     public List<Objeto> getObjetoList() {
         return objetoList;
     }
 
-    public AdaptadorRecyclerMultipl(List<Objeto> listaObjetos) {
+    public AdaptadorRecyclerMultipl(List<Objeto> listaObjetos,MainActivity mainActivity) {
         this.objetoList = listaObjetos;
+        this.objetoSelecionado = mainActivity;
 
     }
 
@@ -61,7 +62,7 @@ public class AdaptadorRecyclerMultipl extends RecyclerView.Adapter<AdaptadorRecy
         TextView etiNombre, etialbum;
 //        ImageView foto, favorito;
         CardView cardObjeto;
-        View view;
+
 
         public AdaptadorViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -78,7 +79,7 @@ public class AdaptadorRecyclerMultipl extends RecyclerView.Adapter<AdaptadorRecy
             cardObjeto.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    objetoSelecionado.actualizarCampos(etiNombre.getText().toString(),etialbum.getText().toString());
                 }
             });
 //            foto.setImageResource(objeto.getFoto());

@@ -62,6 +62,11 @@ public class MainActivity extends AppCompatActivity {
         binding.editArtista.setText("");
     }
 
+    public void actualizarCampos(String nombre,String album) {
+        binding.editAlbum.setText(album);
+        binding.editArtista.setText(nombre);
+    }
+
     private void borrar() {
         try {
             db.execSQL("DELETE FROM MisDiscos WHERE Grupo = '" +
@@ -118,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void construirRecycleView() {
         binding.recyclerLista.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        adaptadorRecyclerMultipl = new AdaptadorRecyclerMultipl(listaObjetos);
+        adaptadorRecyclerMultipl = new AdaptadorRecyclerMultipl(listaObjetos,this);
         binding.recyclerLista.setAdapter(adaptadorRecyclerMultipl);
 
     }
