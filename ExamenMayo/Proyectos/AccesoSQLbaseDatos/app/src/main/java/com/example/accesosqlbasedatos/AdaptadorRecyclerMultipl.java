@@ -75,6 +75,12 @@ public class AdaptadorRecyclerMultipl extends RecyclerView.Adapter<AdaptadorRecy
         void bindAdaptador(final Objeto objeto) {
             etiNombre.setText(objeto.getNombreArtista());
             etialbum.setText(objeto.getTituloAlbum());
+            cardObjeto.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
 //            foto.setImageResource(objeto.getFoto());
 //            if (objeto.isSelected) {
 //                favorito.setImageResource(R.drawable.imagen_estrella);
