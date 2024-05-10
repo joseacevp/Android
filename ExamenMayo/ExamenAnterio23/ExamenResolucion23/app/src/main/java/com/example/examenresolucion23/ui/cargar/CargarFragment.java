@@ -42,7 +42,7 @@ public class CargarFragment extends Fragment {
         binding.recyclerContactosReales.setLayoutManager(new LinearLayoutManager(getContext()
                 , LinearLayoutManager.VERTICAL, false));
         //15. enviamos la lista con los datos al adaptador
-        AdapterDatos adapter = new AdapterDatos(listaDatos,getContext());
+        AdapterDatos adapter = new AdapterDatos(listaDatos, getContext());
         //16. indicamos al recycleView que
         binding.recyclerContactosReales.setAdapter(adapter);
         return root;
@@ -62,20 +62,24 @@ public class CargarFragment extends Fragment {
                 ContactsContract.Contacts.HAS_PHONE_NUMBER,
                 ContactsContract.Contacts.PHOTO_ID
         };
-
+        //lista de contactos reales del telefono
         ArrayList<ContactoReal> lista_contactos_recycle = new ArrayList<>();
+        //contenedor de resultados consulta a servicios de movil
         ContentResolver contentResolver = getActivity().getContentResolver();
+        //cursor para optener los datos basicos de contacto real
         Cursor cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI,
                 proyeccion, null, null, null);
         // Con el cursor, recorrer la lista de contactos extraída, agregando los elementos a un ArrayList
         if (cursor.getCount() > 0) {
             while (cursor.moveToNext()) {
                 // Obtener el nombre del contacto
-                
                 String name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-                String telefono = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));
+                //Obtener el id del contacto
                 String contactoId = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
-                String  fechaNacimiento = null;
+
+                //fecha de nacimiento
+                String fechaNacimiento = null;
+                //cursor para obtener los detalles del contacto con la fecha de nacimiento o cumpleaños
                 Cursor detalleCursor = contentResolver.query(
                         ContactsContract.Data.CONTENT_URI,
                         new String[]{ContactsContract.CommonDataKinds.Event.START_DATE},
@@ -86,18 +90,40 @@ public class CargarFragment extends Fragment {
                         new String[]{contactoId, ContactsContract.CommonDataKinds.Event.CONTENT_ITEM_TYPE},
                         null
                 );
-
+                //si el cursor encuentra detalles con la fecha de nacimiento
                 if (detalleCursor != null && detalleCursor.moveToFirst()) {
-                     fechaNacimiento = detalleCursor.getString(detalleCursor.getColumnIndex(ContactsContract.CommonDataKinds.Event.DATA));
+                    fechaNacimiento = detalleCursor.getString(detalleCursor.getColumnIndex(ContactsContract.CommonDataKinds.Event.DATA));
                     detalleCursor.close();
-                } String fotoId = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.PHOTO_ID));
+                }
+
+                //foto de perfil
+                String fotoId = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.PHOTO_ID));
                 Uri fotoUri = null;
                 if (fotoId != null) {
                     fotoUri = ContentUris.withAppendedId(ContactsContract.Data.CONTENT_URI, Long.parseLong(fotoId));
                 }
 
+                //numero de telefono
+                String telefono = null;
+                String hasPhoneNumber = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));
+                // Verificar si el contacto tiene número de teléfono si es así hasPhoneNumber devuelve 1
+                if (Integer.parseInt(hasPhoneNumber) > 0) {
+                    Cursor phoneCursor = contentResolver.query(
+                            ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                            null,
+                            ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?",
+                            new String[]{contactoId},
+                            null
+                    );
+
+                    // Obtener el primer número de teléfono (puedes iterar si hay varios)
+                    if (phoneCursor != null && phoneCursor.moveToFirst()) {
+                        telefono = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                        phoneCursor.close();
+                    }
+                }
                 // Crear objeto Contacto y agregarlo a la lista
-                ContactoReal contacto = new ContactoReal(name, fechaNacimiento, telefono, fotoUri);
+                ContactoReal contacto = new ContactoReal(name, telefono, fechaNacimiento, fotoUri);
                 lista_contactos_recycle.add(contacto);
                 // Si tiene teléfono lo agregamos a la lista de contactos
 
