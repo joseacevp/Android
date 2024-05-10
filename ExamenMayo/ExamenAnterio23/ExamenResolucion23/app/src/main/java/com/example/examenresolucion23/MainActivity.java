@@ -41,9 +41,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        solicitarPermisos();
+    }
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+    private void solicitarPermisos() {
         // Solicitud de permisos
         if (checkSelfPermission("android.permission.READ_CONTACTS") != PackageManager.PERMISSION_GRANTED
                 || checkSelfPermission("android.permission.WRITE_CONTACTS") != PackageManager.PERMISSION_GRANTED
@@ -54,12 +55,44 @@ public class MainActivity extends AppCompatActivity {
                             "android.permission.READ_CONTACTS",
                             "android.permission.SEND_SMS"},
                     PETICION_PERMISOS);
-        } else tengo_permisos = true;
-        if (tengo_permisos) {
-            Toast.makeText(this, "tengo permisos", Toast.LENGTH_SHORT).show();
+        } else{
+            tengo_permisos = true;
         }
         // Fin Solicitud de permisos
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                || super.onSupportNavigateUp();
+    }
+
+    //gestiona la respuesta de la peticion de permisos
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PETICION_PERMISOS)//si tenemos permisos carga la app
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                tengo_permisos = true;
+                Toast.makeText(this, "tengo permisos", Toast.LENGTH_SHORT).show();
+                cargarApp();
+            } else {
+                tengo_permisos = false;
+                Toast.makeText(this, "Sin permisos", Toast.LENGTH_SHORT).show();
+                solicitarPermisos();
+            }
+    }
+    private void cargarApp() {
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMain.toolbar);
         binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
@@ -81,29 +114,5 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == PETICION_PERMISOS)
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                tengo_permisos = true;
-            else
-                tengo_permisos = false;
     }
 }
