@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,6 +33,7 @@ public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDa
             fecha = itemView.findViewById(R.id.texto_fecha);
             telefono = itemView.findViewById(R.id.texto_telefono);
             fotoContacto = itemView.findViewById(R.id.fotoContactoReal);
+
         }
 
         public void setAsignarDatos(ContactoReal contacto) {
@@ -41,8 +43,14 @@ public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDa
             if (contacto.getFotoUri() != null) {
                 fotoContacto.setImageURI(contacto.getFotoUri());
             } else {
-                fotoContacto.setImageResource(R.drawable.ic_menu_gallery);
+                fotoContacto.setImageResource(android.R.drawable.ic_menu_camera);
             }
+            fotoContacto.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context, "Selecciono: "+contacto.getNombre(), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 
