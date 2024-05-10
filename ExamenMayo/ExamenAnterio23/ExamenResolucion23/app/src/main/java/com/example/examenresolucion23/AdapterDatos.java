@@ -1,8 +1,10 @@
 package com.example.examenresolucion23;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,69 +14,54 @@ import java.util.ArrayList;
 
 public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDatos> {
 
-    //1. lista de datos con los datos de los intem
-    ArrayList<String> listDatos;
+    private ArrayList<ContactoReal> listaContactos;
+    private Context context;
 
-    //2. construptor de la lista de datos llega lista de datos y se
-    //asignan al elemento listDatos
-    public AdapterDatos(ArrayList<String> listDatos) {
-        this.listDatos = listDatos;
+    public AdapterDatos(ArrayList<ContactoReal> listaContactos, Context context) {
+        this.listaContactos = listaContactos;
+        this.context = context;
     }
 
     public class ViewHolderDatos extends RecyclerView.ViewHolder {
-        //3. referencia de los componentes de la lista de datos
-        TextView nombre,telefono;
-        public final View view;
+        TextView nombre, fecha, telefono;
+        ImageView fotoContacto;
 
         public ViewHolderDatos(@NonNull View itemView) {
             super(itemView);
-            //4. instancia a la referencia de los datos de la lista de datos
             nombre = itemView.findViewById(R.id.texto_nombre);
+            fecha = itemView.findViewById(R.id.texto_fecha);
             telefono = itemView.findViewById(R.id.texto_telefono);
-            view = itemView;
+            fotoContacto = itemView.findViewById(R.id.fotoContactoReal);
         }
 
-    //8. asigna los datos del intem que toca de la lista y lo asigna
-    //al componente del xml listaItem
-        public void setAsignarDatos(String s) {
-            nombre.setText(s);
-            telefono.setText(s);
+        public void setAsignarDatos(ContactoReal contacto) {
+            nombre.setText(contacto.getNombre());
+            fecha.setText("Fecha de Nacimiento: " + contacto.getFecha());
+            telefono.setText("Teléfono: " + contacto.getTelefono());
+            if (contacto.getFotoUri() != null) {
+                fotoContacto.setImageURI(contacto.getFotoUri());
+            } else {
+                fotoContacto.setImageResource(R.drawable.ic_menu_gallery);
+            }
         }
     }
 
-    /*
-    enlaza este adaptador con el xml de los items
-     */
     @NonNull
     @Override
-    public ViewHolderDatos onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-
-        //5. infla la vista con la referencia del xml lista intem que contien la plantilla
-        //de los datos que reflejaran los componentes del recycleView
-        View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.linea_contacto, null, false);
+    public ViewHolderDatos onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.linea_contacto, parent, false);
         return new ViewHolderDatos(view);
     }
 
-    //6.retorna el tamaño de la lista de datos recibida en el construptor
     @Override
-    public int getItemCount() {
-        return listDatos.size();
+    public void onBindViewHolder(@NonNull ViewHolderDatos holder, int position) {
+        holder.setAsignarDatos(listaContactos.get(position));
     }
 
-    //7. establece la comunicación entre el adaptador y la clase viewHolderDatos
     @Override
-    public void onBindViewHolder(@NonNull ViewHolderDatos viewHolderDatos, int i) {
-        //llamamos al metodo asignardatos pasando el dato del intem que
-        //toca de la lista
-        viewHolderDatos.setAsignarDatos(listDatos.get(i));
-        //metodo viewHolderDatospare gestionar el item seleccionado
-        viewHolderDatos.view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MainActivity.reenviarDatos(viewHolderDatos.nombre);
-            }
-        });
+    public int getItemCount() {
+        return listaContactos.size();
     }
 
 
