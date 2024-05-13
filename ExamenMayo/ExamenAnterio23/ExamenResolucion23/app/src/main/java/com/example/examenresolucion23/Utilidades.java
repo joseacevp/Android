@@ -3,10 +3,41 @@ package com.example.examenresolucion23;
 import java.util.Random;
 
 public class Utilidades {
+    //constantes campos tabla CONTACTOS
+    public static final String TABLA_CONTACTOS = "contactos";
+    public static final String NOMBRE = "nombre";
+    public static final String FECHA = "fecha";
+    public static final String TELEFONO = "telefono";
+    public static final String CREAR_TABLA_CONTACTOS = "CREATE TABLE "
+            + TABLA_CONTACTOS
+            + " ( "
+            + NOMBRE
+            + " TEXT,"
+            + FECHA
+            + "  TEXT,"
+            + TELEFONO
+            + "  TEXT )";
+    //constantes campos tabla CONTACTOS ALEATORIOS
+    public static final String TABLA_ALEATORIOS = "aleatorios";
+    public static final String NOMBREALE = "nombre";
+    public static final String APELLIDOS = "apellidos";
+    public static final String DNI = "dni";
+    public static final String CREAR_TABLA_ALEATORIOS = "CREATE TABLE "
+            + TABLA_ALEATORIOS
+            + " ( "
+            + NOMBREALE
+            + " TEXT,"
+            + APELLIDOS
+            + "  TEXT,"
+            + DNI
+            + "  TEXT )";
+
+
+
     /*
      * DECLARACION DEL DNI
      */
-    public String declararDni(){
+    public String declararDni() {
 
         Random aleato = new Random();//declaracion de objeto de la clase Random
         /*
@@ -14,7 +45,7 @@ public class Utilidades {
          * y sacar la letra verdadera de cada dni y asi poder compararla
          * con la letra introducida
          */
-        String caracteresDni ="TRWAGMYFPDXBNJZSQVHLCKE";
+        String caracteresDni = "TRWAGMYFPDXBNJZSQVHLCKE";
         /*
          * para la declaracion del dni primero "int dni" saca el numero aleatorio sin letra
          * despues con string letra obtenemos la letra adecuada para el numero de dni
@@ -28,39 +59,41 @@ public class Utilidades {
          */
         int dni = 1000000 + aleato.nextInt(99999999);
         int x = dni % 23;
-        String letra = (caracteresDni.charAt((dni%23))) + "";
+        String letra = (caracteresDni.charAt((dni % 23))) + "";
         String dniCompleto = dni + letra + "";
         /*
          * con este if controlo que los dni que solo tengan siete caracteres
          * sin contar la letra se les añada un cero al principio
          * dicho de otra manera controlo los que empiezan por cero
          */
-        if (dniCompleto.length() < 9){
+        if (dniCompleto.length() < 9) {
             dniCompleto = 0 + dniCompleto;
         }
 
         return dniCompleto;
     }
+
     /*
      * DECLARACION NOMBRE
      * Tenemos un array con los nombres, asignamos uno aleatoriamente a un string
      * y lo retornamos
      */
-    public String declararNombre(){
-        String [] nombres = {"Luis", "Pedro", "Ramón", "Francisco", "Ana", "Teresa", "María", "Juan", "Manuel",
-            "Jeremías", "Zacarías", "Nicolás", "Noé", "Sonia", "Mónica", "Társilo", "Isabel", "Mariana", "Amparo", "Carmen"};
-        String nombre = (nombres[(int)(Math.random()*nombres.length)]);
+    public String declararNombre() {
+        String[] nombres = {"Luis", "Pedro", "Ramón", "Francisco", "Ana", "Teresa", "María", "Juan", "Manuel",
+                "Jeremías", "Zacarías", "Nicolás", "Noé", "Sonia", "Mónica", "Társilo", "Isabel", "Mariana", "Amparo", "Carmen"};
+        String nombre = (nombres[(int) (Math.random() * nombres.length)]);
         return nombre;
     }
+
     /*
      * DECLARACION APELLIDOS
      * Tenemos un array con los nombre, asignamos uno aleatoriamente a un string
      * y lo retornamos
      */
-    public String declararApellidos(){
-        String [] apellidos = {"Duque","Izquierdo","Aroco","Ocaña","Martínez","Villanueva","Ortega","Escribano",
-            "Zoido", "Morales","Cabañas", "Roche del Oro", "Rodenas", "Carbonell", "García", "Gómez", "Moreno", "Tejero"};
-        String apellido = (apellidos[(int)(Math.random()*apellidos.length)]);
+    public String declararApellidos() {
+        String[] apellidos = {"Duque", "Izquierdo", "Aroco", "Ocaña", "Martínez", "Villanueva", "Ortega", "Escribano",
+                "Zoido", "Morales", "Cabañas", "Roche del Oro", "Rodenas", "Carbonell", "García", "Gómez", "Moreno", "Tejero"};
+        String apellido = (apellidos[(int) (Math.random() * apellidos.length)]);
         return apellido;
     }
 }

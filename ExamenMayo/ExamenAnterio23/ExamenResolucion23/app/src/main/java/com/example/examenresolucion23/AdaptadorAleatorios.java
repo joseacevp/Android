@@ -1,6 +1,7 @@
 package com.example.examenresolucion23;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,17 +57,39 @@ public class AdaptadorAleatorios extends RecyclerView.Adapter<AdaptadorAleatorio
         }
 
         public void setAsignarDatos(Contacto contacto) {
-            id.setText("id: "+contacto.getId());
-            nombre.setText("Nombre: "+contacto.getNombre());
-            apellidos.setText("Apellidos: "+contacto.getApellidos());
-            dni.setText("DNI: "+contacto.getDni());
+            id.setText("id: " + contacto.getId());
+            nombre.setText("Nombre: " + contacto.getNombre());
+            apellidos.setText("Apellidos: " + contacto.getApellidos());
+            dni.setText("DNI: " + contacto.getDni());
             fotoContacto.setImageResource(android.R.drawable.ic_menu_camera);
 
             fotoContacto.setOnClickListener(new View.OnClickListener() {
                                                 @Override
                                                 public void onClick(View v) {
-                                                    Toast.makeText(context, "Guardado: "+contacto.getNombre(), Toast.LENGTH_SHORT).show();
-                                                    
+
+                                                    Toast.makeText(context, "Guardado: " + contacto.getNombre(), Toast.LENGTH_SHORT).show();
+                                                    ConexionSqlLite conn = new ConexionSqlLite(context.getApplicationContext(),
+                                                            "BaseDatos23", null, 1);
+                                                    SQLiteDatabase db = conn.getWritableDatabase();
+                                                    try {
+                                                        String insert = "INSERT INTO " + Utilidades.TABLA_ALEATORIOS
+                                                                + " ( "
+                                                                + Utilidades.NOMBREALE + ","
+                                                                + Utilidades.APELLIDOS + ","
+                                                                + Utilidades.DNI
+                                                                + ")"
+                                                                + "VALUES ( '" + contacto.getNombre()
+                                                                + "','"
+                                                                + contacto.getApellidos() + "','"
+                                                                + contacto.getDni() + "')";
+
+                                                        db.execSQL(insert);
+                                                        db.close();
+                                                    } catch (Exception e) {
+                                                        Toast.makeText(context.getApplicationContext(), "Fallo al registrar partida.", Toast.LENGTH_SHORT).show();
+
+                                                    }
+
                                                 }
                                             }
             );
@@ -74,5 +97,7 @@ public class AdaptadorAleatorios extends RecyclerView.Adapter<AdaptadorAleatorio
 
 
     }
+
+
 }
 

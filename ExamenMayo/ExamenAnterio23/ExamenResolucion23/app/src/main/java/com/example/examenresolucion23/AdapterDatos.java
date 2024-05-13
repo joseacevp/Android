@@ -1,6 +1,7 @@
 package com.example.examenresolucion23;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +50,31 @@ public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDa
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(context, "Selecciono: "+contacto.getNombre(), Toast.LENGTH_SHORT).show();
+                    ConexionSqlLite conn = new ConexionSqlLite(context.getApplicationContext(),
+                            "BaseDatos23", null, 1);
+                    SQLiteDatabase db = conn.getWritableDatabase();
+                    //String nombre, String telefono, String fecha, Uri fotoUri
+                    try {
+                        String insert = "INSERT INTO " + Utilidades.TABLA_CONTACTOS
+                                + " ( "
+                                + Utilidades.NOMBRE + ","
+                                + Utilidades.TELEFONO + ","
+                                + Utilidades.FECHA
+                                + ")"
+                                + "VALUES ( '" + contacto.getNombre()
+                                + "','"
+                                + contacto.getTelefono() + "','"
+                                + contacto.getFecha() + "')";
+
+                        db.execSQL(insert);
+                        db.close();
+                    } catch (Exception e) {
+                        Toast.makeText(context.getApplicationContext(), "Fallo al registrar partida.", Toast.LENGTH_SHORT).show();
+
+                    }
+
                 }
+
             });
         }
     }

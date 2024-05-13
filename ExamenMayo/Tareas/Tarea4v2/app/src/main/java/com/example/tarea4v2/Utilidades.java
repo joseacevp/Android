@@ -1,10 +1,10 @@
 package com.example.tarea4v2;
 
 public class Utilidades {
-    //constantes campos tablas usuarios
-    public static final String TABLA_USUARIOS = "usuarios";
+    //constantes campos tablas usuarios String nombre, String email, Bitmap fotoPerfil)
+    public static final String TABLA_USUARIOS = "contacto";
     public static final String NOMBRE = "nombre";
-    public static final String PASSWORD = "password";
+    public static final String PASSWORD = "email";
 
     //almacena constantes repersentando los campos y las tablas de la base de datos
     //para evitar repetir los mismos parametros muchas veces
