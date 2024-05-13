@@ -6,6 +6,7 @@ public class Utilidades {
     //constantes campos tabla CONTACTOS
     public static final String TABLA_CONTACTOS = "contactos";
     public static final String NOMBRE = "nombre";
+    public static final String FOTO = "foto";
     public static final String FECHA = "fecha";
     public static final String TELEFONO = "telefono";
     public static final String CREAR_TABLA_CONTACTOS = "CREATE TABLE "
@@ -15,6 +16,8 @@ public class Utilidades {
             + " TEXT,"
             + FECHA
             + "  TEXT,"
+            + FOTO
+            + " TEXT,"
             + TELEFONO
             + "  TEXT )";
     //constantes campos tabla CONTACTOS ALEATORIOS

@@ -59,11 +59,12 @@ public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDa
                                 + " ( "
                                 + Utilidades.NOMBRE + ","
                                 + Utilidades.TELEFONO + ","
+                                + Utilidades.FOTO + ","
                                 + Utilidades.FECHA
                                 + ")"
-                                + "VALUES ( '" + contacto.getNombre()
-                                + "','"
+                                + "VALUES ( '" + contacto.getNombre()+ "','"
                                 + contacto.getTelefono() + "','"
+                                + contacto.getFotoUri() + "','"
                                 + contacto.getFecha() + "')";
 
                         db.execSQL(insert);
