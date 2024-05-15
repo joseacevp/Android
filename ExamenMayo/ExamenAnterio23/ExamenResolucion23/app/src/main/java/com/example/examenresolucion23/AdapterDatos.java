@@ -26,6 +26,7 @@ public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDa
     }
 
     public class ViewHolderDatos extends RecyclerView.ViewHolder {
+
         TextView nombre, fecha, telefono;
         ImageView fotoContacto;
 
