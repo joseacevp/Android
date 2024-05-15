@@ -17,7 +17,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.examen23.AdaptadorContactos;
 import com.example.examen23.ConexionSqlLite;
 import com.example.examen23.Contacto;
 import com.example.examen23.Utilidades;
@@ -39,15 +41,24 @@ public class ContactosFragment extends Fragment {
         View root = binding.getRoot();
 
         // optenemos la lista de contactos del telefono
-        listaContactos = llenarContactos();
-        for (int i = 0 ; i<listaContactos.size(); i++){
+        listaContactos = llenarContactos("tipoAviso");
+        for (int i = 0; i < listaContactos.size(); i++) {
             //creamos la base de datos con la lista de contactos del telefono
             crearTablaBaseDatos(listaContactos.get(i));
         }
-
+        crearRecyclerContactos();
 
 
         return root;
+    }
+
+    private void crearRecyclerContactos() {
+        binding.recyclerContactos.setLayoutManager(new LinearLayoutManager(getContext()
+                , LinearLayoutManager.VERTICAL, false));
+        //15. enviamos la lista con los datos al adaptador
+        AdaptadorContactos adapter = new AdaptadorContactos(listaContactos, getContext());
+        //16. indicamos al recycleView que
+        binding.recyclerContactos.setAdapter(adapter);
     }
 
     @Override
@@ -55,6 +66,7 @@ public class ContactosFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
     private void crearTablaBaseDatos(Contacto contacto) {
         ConexionSqlLite conn = new ConexionSqlLite(getContext(),
                 "BaseDatosMisCumples", null, 1);
@@ -75,14 +87,12 @@ public class ContactosFragment extends Fragment {
                     + Utilidades.MENSAJE + ","
                     + Utilidades.TELEFONO + ","
                     + Utilidades.FECHANACIMIENTO + ","
-                    + Utilidades.TELEFONO + ","
                     + Utilidades.NOMBRE
                     + ")"
-                    + "VALUES ( '" + contacto.getTipo()+ "','"
+                    + "VALUES ( '" + contacto.getTipo() + "','"
                     + contacto.getNotificacion() + "','"
                     + contacto.getTelefono() + "','"
                     + contacto.getFecha() + "','"
-                    + contacto.getTelefono() + "','"
                     + contacto.getNombre() + "')";
 
             db.execSQL(insert);
@@ -95,7 +105,7 @@ public class ContactosFragment extends Fragment {
     }
 
     @SuppressLint("Range")
-    private ArrayList<Contacto> llenarContactos() {
+    private ArrayList<Contacto> llenarContactos(String tipoAviso) {
         String proyeccion[] = {
                 ContactsContract.Contacts._ID,
                 ContactsContract.Contacts.DISPLAY_NAME,
@@ -104,7 +114,7 @@ public class ContactosFragment extends Fragment {
 
         };
         //lista de contactos reales del telefono
-        ArrayList<Contacto> lista_contactos= new ArrayList<>();
+        ArrayList<Contacto> lista_contactos = new ArrayList<>();
         //contenedor de resultados consulta a servicios de movil
         ContentResolver contentResolver = getContext().getContentResolver();
         //cursor para optener los datos basicos de contacto real
@@ -165,8 +175,10 @@ public class ContactosFragment extends Fragment {
 
                     // Obtener el primer número de teléfono (puedes iterar si hay varios)
                     if (phoneCursor != null && phoneCursor.moveToFirst()) {
+
                         telefono = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
                         phoneCursor.close();
+
                     }
                 }
                 // Crear objeto Contacto y agregarlo a la lista
@@ -176,6 +188,8 @@ public class ContactosFragment extends Fragment {
                 contacto.setFecha(fechaNacimiento);
                 contacto.setNombre(nombreContacto);
                 contacto.setTelefono(telefono);
+                contacto.setTipo(tipoAviso);
+
                 lista_contactos.add(contacto);
                 // Si tiene teléfono lo agregamos a la lista de contactos
 
