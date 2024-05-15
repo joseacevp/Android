@@ -5,6 +5,7 @@ import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -21,6 +22,7 @@ import com.example.examenresolucion23.AdapterDatos;
 import com.example.examenresolucion23.ContactoReal;
 import com.example.examenresolucion23.databinding.FragmentCargarBinding;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class CargarFragment extends Fragment {
@@ -97,10 +99,16 @@ public class CargarFragment extends Fragment {
                 }
 
                 //foto de perfil
+                // Obtener el id de la foto del contacto
                 String fotoId = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.PHOTO_ID));
-                Uri fotoUri = null;
+                // Inicializar la URI de la foto
+                String fotoUri = null;
+                // Verificar si el contacto tiene foto
                 if (fotoId != null) {
-                    fotoUri = ContentUris.withAppendedId(ContactsContract.Data.CONTENT_URI, Long.parseLong(fotoId));
+                    // Obtener la URI de la foto del contacto
+                    Uri fotoUriContacto = ContentUris.withAppendedId(ContactsContract.Data.CONTENT_URI, Long.parseLong(fotoId));
+                    // Convertir la URI en una cadena y almacenarla en fotoUri
+                    fotoUri = fotoUriContacto.toString();
                 }
 
                 //numero de telefono

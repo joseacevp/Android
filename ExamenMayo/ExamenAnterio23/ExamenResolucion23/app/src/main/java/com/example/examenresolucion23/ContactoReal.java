@@ -3,13 +3,13 @@ package com.example.examenresolucion23;
 import android.net.Uri;
 
 public class ContactoReal {
-    private String nombre,telefono,fecha;
-    private Uri fotoUri;
+    private String nombre, telefono, fecha, fotoUri;
+//    private Uri fotoUri;
 
     public ContactoReal() {
     }
 
-    public ContactoReal(String nombre, String telefono, String fecha, Uri fotoUri) {
+    public ContactoReal(String nombre, String telefono, String fecha, String fotoUri) {
         this.nombre = nombre;
         this.telefono = telefono;
         this.fecha = fecha;
@@ -40,11 +40,11 @@ public class ContactoReal {
         this.fecha = fecha;
     }
 
-    public Uri getFotoUri() {
+    public String getFotoUri() {
         return fotoUri;
     }
 
-    public void setFotoUri(Uri fotoUri) {
+    public void setFotoUri(String fotoUri) {
         this.fotoUri = fotoUri;
     }
 }

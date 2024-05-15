@@ -2,6 +2,7 @@ package com.example.examenresolucion23;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +43,7 @@ public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDa
             fecha.setText("Fecha de Nacimiento: " + contacto.getFecha());
             telefono.setText("Teléfono: " + contacto.getTelefono());
             if (contacto.getFotoUri() != null) {
-                fotoContacto.setImageURI(contacto.getFotoUri());
+                fotoContacto.setImageURI(Uri.parse(contacto.getFotoUri()));
             } else {
                 fotoContacto.setImageResource(android.R.drawable.ic_menu_camera);
             }

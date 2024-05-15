@@ -103,7 +103,7 @@ public class MostrarFragment extends Fragment {
         Log.i("info", "Apertura base de datos para consultar");
 
         //instancia de usuario para recibir los datos de la base de datos
-        ContactoReal contactoReal = null;
+
         //instancia de la lista de usuarios para recibir los datos de los usuarios de la base datos
         listaContactosReal = new ArrayList<ContactoReal>();
 
@@ -114,22 +114,28 @@ public class MostrarFragment extends Fragment {
 
         //recorremos el cursor para optener los datos obtenidos
         while (cursor.moveToNext()) {
-            contactoReal = new ContactoReal();
 
-            contactoReal.setNombre(cursor.getString(0));
-            contactoReal.setTelefono(cursor.getString(1));
-            contactoReal.setFecha(cursor.getString(2));
 
+//            contactoReal.setNombre(cursor.getString(0));
+//            contactoReal.setTelefono(cursor.getString(1));
+//            contactoReal.setFecha(cursor.getString(2));
+
+            String nombre = cursor.getString(cursor.getColumnIndex(Utilidades.NOMBRE));
+            String telefono = cursor.getString(cursor.getColumnIndex(Utilidades.TELEFONO));
+            String fecha = cursor.getString(cursor.getColumnIndex(Utilidades.FECHA));
+            String fotoUri = cursor.getString(cursor.getColumnIndex(Utilidades.FOTO));
 
 
             //control de datos por consola
 
-            Log.i("info", contactoReal.getNombre().toString());
-            Log.i("info", contactoReal.getTelefono().toString());
-            Log.i("info", contactoReal.getFecha().toString());
-            
+//            Log.i("info", contactoReal.getNombre().toString());
+//            Log.i("info", contactoReal.getTelefono().toString());
+//            Log.i("info", contactoReal.getFecha().toString());
+//
 
             //añadimos los usuarios a la lista de usuarios
+            ContactoReal contactoReal = new ContactoReal(nombre, telefono, fecha, fotoUri);
+
             listaContactosReal.add(contactoReal);
 
         }
