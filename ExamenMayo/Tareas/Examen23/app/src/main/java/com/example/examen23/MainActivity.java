@@ -1,7 +1,14 @@
 package com.example.examen23;
 
+import android.annotation.SuppressLint;
+import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Toast;
@@ -19,6 +26,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.examen23.databinding.ActivityMainBinding;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -32,7 +41,9 @@ public class MainActivity extends AppCompatActivity {
 
         consultarPermisos();
 
+
     }
+
 
     private void consultarPermisos() {
         // Solicitud de permisos

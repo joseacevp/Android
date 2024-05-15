@@ -1,17 +1,18 @@
 package com.example.examen23;
 
 public class Contacto {
-    private String nombre,fecha,notificacion,foto,telefono;
+    private String nombre,fecha,notificacion,foto,telefono,tipo;
 
     public Contacto() {
     }
 
-    public Contacto(String nombre, String fecha, String notificacion, String foto, String telefono) {
+    public Contacto(String nombre, String fecha, String notificacion, String foto, String telefono, String tipo) {
         this.nombre = nombre;
         this.fecha = fecha;
         this.notificacion = notificacion;
         this.foto = foto;
         this.telefono = telefono;
+        this.tipo = tipo;
     }
 
     public String getNombre() {
@@ -52,5 +53,13 @@ public class Contacto {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }
