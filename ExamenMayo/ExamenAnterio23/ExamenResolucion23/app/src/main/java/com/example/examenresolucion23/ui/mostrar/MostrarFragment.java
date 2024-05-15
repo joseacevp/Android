@@ -77,9 +77,10 @@ public class MostrarFragment extends Fragment {
         //recorremos el cursor para optener los datos obtenidos
         while (cursor.moveToNext()) {
             contacto = new Contacto();
-            contacto.setNombre(cursor.getString(0));
-            contacto.setApellidos(cursor.getString(1));
-            contacto.setDni(cursor.getString(2));
+            contacto.setId(cursor.getString(0));
+            contacto.setNombre(cursor.getString(1));
+            contacto.setApellidos(cursor.getString(2));
+            contacto.setDni(cursor.getString(3));
 
             //control de datos por consola
 
@@ -118,9 +119,7 @@ public class MostrarFragment extends Fragment {
             contactoReal.setNombre(cursor.getString(0));
             contactoReal.setTelefono(cursor.getString(1));
             contactoReal.setFecha(cursor.getString(2));
-            if (cursor.getNotificationUri()!=null){
-                contactoReal.setFotoUri(cursor.getNotificationUri());
-            }
+
 
 
             //control de datos por consola
@@ -128,6 +127,7 @@ public class MostrarFragment extends Fragment {
             Log.i("info", contactoReal.getNombre().toString());
             Log.i("info", contactoReal.getTelefono().toString());
             Log.i("info", contactoReal.getFecha().toString());
+            
 
             //añadimos los usuarios a la lista de usuarios
             listaContactosReal.add(contactoReal);

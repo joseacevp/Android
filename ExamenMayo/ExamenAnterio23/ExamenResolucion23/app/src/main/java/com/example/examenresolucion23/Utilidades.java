@@ -21,13 +21,17 @@ public class Utilidades {
             + TELEFONO
             + "  TEXT )";
     //constantes campos tabla CONTACTOS ALEATORIOS
+
     public static final String TABLA_ALEATORIOS = "aleatorios";
+    public static final String ID = "id";
     public static final String NOMBREALE = "nombre";
     public static final String APELLIDOS = "apellidos";
     public static final String DNI = "dni";
     public static final String CREAR_TABLA_ALEATORIOS = "CREATE TABLE "
             + TABLA_ALEATORIOS
             + " ( "
+            + ID
+            + " TEXT,"
             + NOMBREALE
             + " TEXT,"
             + APELLIDOS

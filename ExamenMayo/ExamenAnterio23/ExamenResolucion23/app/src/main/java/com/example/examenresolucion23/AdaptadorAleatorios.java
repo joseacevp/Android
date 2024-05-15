@@ -74,12 +74,13 @@ public class AdaptadorAleatorios extends RecyclerView.Adapter<AdaptadorAleatorio
                                                     try {
                                                         String insert = "INSERT INTO " + Utilidades.TABLA_ALEATORIOS
                                                                 + " ( "
+                                                                + Utilidades.ID + ","
                                                                 + Utilidades.NOMBREALE + ","
                                                                 + Utilidades.APELLIDOS + ","
                                                                 + Utilidades.DNI
                                                                 + ")"
-                                                                + "VALUES ( '" + contacto.getNombre()
-                                                                + "','"
+                                                                + "VALUES ( '" + contacto.getId() + "','"
+                                                                + contacto.getNombre() + "','"
                                                                 + contacto.getApellidos() + "','"
                                                                 + contacto.getDni() + "')";
 
