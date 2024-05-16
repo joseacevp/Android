@@ -5,6 +5,7 @@ import static android.app.Activity.RESULT_OK;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -16,12 +17,16 @@ import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.example.examen23.Contacto;
 import com.example.examen23.R;
 import com.example.examen23.databinding.FragmentDetallesBinding;
 import com.example.examen23.ui.contactos.ContactosViewModel;
+
+import java.util.ArrayList;
 
 public class DetallesFragment extends Fragment {
 
@@ -64,12 +69,52 @@ public class DetallesFragment extends Fragment {
             }
         });
 
+        //carga la lista de telefonos del contacto en un spinner
+        //forma de crear un adaptador para usar un ArrayList en vez de una lista de Item desde Archivo en Values
+        ArrayAdapter<CharSequence> adapter = new ArrayAdapter(getContext(),
+                android.R.layout.simple_spinner_item, obtenerTelefonos(contacto.getUri()));
+        binding.spinnerTelefonos.setAdapter(adapter);
+        binding.spinnerTelefonos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                contacto.setTelefono(parent.getItemAtPosition(position).toString());
+                contactosViewModel.setContacto(contacto);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         return root;
     }
 
-    public void abrirContactos() {
-        Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
-        startActivityForResult(intent, SELECCIONAR_CONTACTO);
+    private ArrayList<String> obtenerTelefonos(Uri contactUri) {
+        ArrayList<String> listaTelefonos= new ArrayList<>();
+        Cursor cursor = getContext().getContentResolver().query(contactUri, null, null, null, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            String contactId = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
+            cursor.close();
+
+            Cursor phoneCursor = getContext().getContentResolver().query(
+                    ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                    null,
+                    ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?",
+                    new String[]{contactId},
+                    null
+            );
+
+            if (phoneCursor != null) {
+                while (phoneCursor.moveToNext()) {
+                    String telefono = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                    // carga los telefonos en una lista
+                   listaTelefonos.add(telefono);
+                }
+                phoneCursor.close();
+            }
+        }
+        return listaTelefonos;
     }
 
     @Override
