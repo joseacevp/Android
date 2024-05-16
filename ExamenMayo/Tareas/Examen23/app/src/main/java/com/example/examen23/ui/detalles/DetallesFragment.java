@@ -57,10 +57,10 @@ public class DetallesFragment extends Fragment {
         binding.botonEditarDetalle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Uri contactUri = contacto.getData();
-//                //ver el contacto -> el intent recibe además,
-//                // el URI del contacto seleccionado
-//                startActivity(new Intent(Intent.ACTION_VIEW, contactUri));
+                Uri contactUri = contacto.getUri();
+                //ver el contacto -> el intent recibe además,
+                // el URI del contacto seleccionado
+                startActivity(new Intent(Intent.ACTION_VIEW, contactUri));
             }
         });
 

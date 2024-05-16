@@ -206,9 +206,13 @@ public class ContactosFragment extends Fragment {
                 contacto.setTelefono(telefono);
                 contacto.setTipo(tipoAviso);
 
+                //uri del contacto para poder acceder al editor de detalles del contacto de android
+                Uri uriContacto = ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, Long.parseLong(contactoId));
+                contacto.setUri(uriContacto);
+
                 lista_contactos.add(contacto);
                 // Si tiene teléfono lo agregamos a la lista de contactos
-
+//
             } // FIN while
         } // FIN if
 

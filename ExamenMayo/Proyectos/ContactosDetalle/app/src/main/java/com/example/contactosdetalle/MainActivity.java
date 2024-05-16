@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean tengo_permisos = false;
     private final int PETICION_PERMISOS = 1;
     static final int SELECCIONAR_CONTACTO = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,10 +62,13 @@ public class MainActivity extends AppCompatActivity {
                 // El usuario ha seleccionado un contacto
                 // Puedes manejar el contacto seleccionado aquí
                 Toast.makeText(this, "Contacto seleccionado", Toast.LENGTH_SHORT).show();
-                Uri contactUri = data.getData();
+
                 //ver el contacto -> el intent recibe además,
                 // el URI del contacto seleccionado
-                startActivity(new Intent(Intent.ACTION_VIEW,contactUri));
+                //lanza la aplicacion de detalles de contacto de android
+                Uri contactUri = data.getData();
+                startActivity(new Intent(Intent.ACTION_VIEW, contactUri));
+                
             } else {
                 // El usuario ha cancelado la selección
                 Toast.makeText(this, "Selección cancelada", Toast.LENGTH_SHORT).show();
