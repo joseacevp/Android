@@ -11,19 +11,21 @@ import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.examen23.AdaptadorContactos;
 import com.example.examen23.ConexionSqlLite;
 import com.example.examen23.Contacto;
+import com.example.examen23.R;
 import com.example.examen23.Utilidades;
 import com.example.examen23.databinding.FragmentContactosBinding;
+import com.example.examen23.ui.detalles.DetallesFragment;
 
 import java.util.ArrayList;
 
@@ -31,14 +33,19 @@ public class ContactosFragment extends Fragment {
 
     private FragmentContactosBinding binding;
     private ArrayList<Contacto> listaContactos;
+    private ContactosViewModel contactosViewModel; // Declarar el ViewModel aquí
+
+    DetallesFragment detallesFragment;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        GalleryViewModel galleryViewModel =
-                new ViewModelProvider(this).get(GalleryViewModel.class);
+        ContactosViewModel galleryViewModel =
+                new ViewModelProvider(this).get(ContactosViewModel.class);
 
         binding = FragmentContactosBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        // Inicializar el ViewModel
+        contactosViewModel = new ViewModelProvider(requireActivity()).get(ContactosViewModel.class);
 
         // optenemos la lista de contactos del telefono
         listaContactos = llenarContactos("tipoAviso");
@@ -47,6 +54,8 @@ public class ContactosFragment extends Fragment {
             crearTablaBaseDatos(listaContactos.get(i));
         }
         crearRecyclerContactos();
+
+
 
 
         return root;
@@ -59,6 +68,13 @@ public class ContactosFragment extends Fragment {
         AdaptadorContactos adapter = new AdaptadorContactos(listaContactos, getContext());
         //16. indicamos al recycleView que
         binding.recyclerContactos.setAdapter(adapter);
+        adapter.setOnItemClickListener(new AdaptadorContactos.OnItemClickListener() {
+            @Override
+            public void onItemClick(Contacto contacto) {
+                contactosViewModel.setContacto(contacto);
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_nav_contactos_to_detallesFragment);
+            }
+        });
     }
 
     @Override
