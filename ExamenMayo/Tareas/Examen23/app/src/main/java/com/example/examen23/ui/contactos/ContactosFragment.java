@@ -35,7 +35,6 @@ public class ContactosFragment extends Fragment {
     private ArrayList<Contacto> listaContactos;
     private ContactosViewModel contactosViewModel; // Declarar el ViewModel aquí
 
-    DetallesFragment detallesFragment;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -48,7 +47,8 @@ public class ContactosFragment extends Fragment {
         contactosViewModel = new ViewModelProvider(requireActivity()).get(ContactosViewModel.class);
 
         // optenemos la lista de contactos del telefono
-        listaContactos = llenarContactos("tipoAviso");
+        listaContactos = llenarContactos();
+
         for (int i = 0; i < listaContactos.size(); i++) {
             //creamos la base de datos con la lista de contactos del telefono
             crearTablaBaseDatos(listaContactos.get(i));
@@ -87,41 +87,40 @@ public class ContactosFragment extends Fragment {
         ConexionSqlLite conn = new ConexionSqlLite(getContext(),
                 "BaseDatosMisCumples", null, 1);
         SQLiteDatabase db = conn.getWritableDatabase();
-        //
-        //    //CREATE TABLE IF NOT EXISTS miscumples(
-        //    // ID integer,
-        //    // TipoNotif char(1),
-        //    // Mensaje VARCHAR(160),
-        //    // Telefono VARCHAR(15),
-        //    // FechaNacimiento VARCHAR(15),
-        //    // Nombre VARCHAR(128)
-        //    //);
-        try {
-            String insert = "INSERT INTO " + Utilidades.TABLA_MISCUMPLES
-                    + " ( "
-                    + Utilidades.TIPONOTIF + ","
-                    + Utilidades.MENSAJE + ","
-                    + Utilidades.TELEFONO + ","
-                    + Utilidades.FECHANACIMIENTO + ","
-                    + Utilidades.NOMBRE
-                    + ")"
-                    + "VALUES ( '" + contacto.getTipo() + "','"
-                    + contacto.getNotificacion() + "','"
-                    + contacto.getTelefono() + "','"
-                    + contacto.getFecha() + "','"
-                    + contacto.getNombre() + "')";
-
-            db.execSQL(insert);
-            db.close();
-        } catch (Exception e) {
-            Toast.makeText(getContext().getApplicationContext(), "Fallo al registrar partida.", Toast.LENGTH_SHORT).show();
-
+        // Verificar si el contacto ya existe en la base de datos
+        Cursor cursor = db.rawQuery("SELECT * FROM " + Utilidades.TABLA_MISCUMPLES +
+                        " WHERE " + Utilidades.NOMBRE + " = ? OR " + Utilidades.TELEFONO + " = ?",
+                new String[]{contacto.getNombre(), contacto.getTelefono()});
+        if (cursor.getCount() > 0) {
+            // Si el cursor tiene resultados, el contacto ya existe en la base de datos
+//            Toast.makeText(getContext(), "El contacto ya existe en la base de datos", Toast.LENGTH_SHORT).show();
+        } else {
+            // Si el cursor está vacío, el contacto no existe en la base de datos, por lo que se puede insertar
+            try {
+                String insert = "INSERT INTO " + Utilidades.TABLA_MISCUMPLES + " ( " +
+                        Utilidades.TIPONOTIF + ", " +
+                        Utilidades.MENSAJE + ", " +
+                        Utilidades.TELEFONO + ", " +
+                        Utilidades.FECHANACIMIENTO + ", " +
+                        Utilidades.NOMBRE +
+                        ") VALUES ( '" +
+                        contacto.getTipo() + "', '" +
+                        contacto.getNotificacion() + "', '" +
+                        contacto.getTelefono() + "', '" +
+                        contacto.getFecha() + "', '" +
+                        contacto.getNombre() + "')";
+                db.execSQL(insert);
+                // Cerrar el cursor
+                cursor.close();
+//                Toast.makeText(getContext(), "Contacto insertado correctamente en la base de datos", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                Toast.makeText(getContext().getApplicationContext(), "Fallo al registrar el contacto", Toast.LENGTH_SHORT).show();
+            }
         }
-
     }
 
     @SuppressLint("Range")
-    private ArrayList<Contacto> llenarContactos(String tipoAviso) {
+    private ArrayList<Contacto> llenarContactos() {
         String proyeccion[] = {
                 ContactsContract.Contacts._ID,
                 ContactsContract.Contacts.DISPLAY_NAME,
@@ -204,7 +203,7 @@ public class ContactosFragment extends Fragment {
                 contacto.setFecha(fechaNacimiento);
                 contacto.setNombre(nombreContacto);
                 contacto.setTelefono(telefono);
-                contacto.setTipo(tipoAviso);
+
 
                 //uri del contacto para poder acceder al editor de detalles del contacto de android
                 Uri uriContacto = ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, Long.parseLong(contactoId));
