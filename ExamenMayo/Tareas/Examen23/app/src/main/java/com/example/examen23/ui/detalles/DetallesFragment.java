@@ -4,8 +4,10 @@ import static android.app.Activity.RESULT_OK;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -14,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,8 +24,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import com.example.examen23.ConexionSqlLite;
 import com.example.examen23.Contacto;
-import com.example.examen23.R;
+import com.example.examen23.Utilidades;
 import com.example.examen23.databinding.FragmentDetallesBinding;
 import com.example.examen23.ui.contactos.ContactosViewModel;
 
@@ -87,7 +91,34 @@ public class DetallesFragment extends Fragment {
             }
         });
 
+        //boton grabar datos
+        binding.botonGuardarDetalle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                actualizarBD();
+            }
+        });
         return root;
+    }
+
+    private void actualizarBD() {
+        ConexionSqlLite   conexion = new ConexionSqlLite(getContext(), "BaseDatosMisCumples", null, 1);
+        SQLiteDatabase bd = conexion.getReadableDatabase();
+        Log.i("info", "Abierta base datos para actualizar");
+        String[] consultaParametros = {
+                binding.textoNombreDetalle.getText().toString()};//parametros de la consulta, pueden ser varios
+        ContentValues values = new ContentValues();
+        values.put(Utilidades.MENSAJE,binding.textMultiLineMensajeDetalle.getText().toString());
+
+        if ( binding.checkSmsDetalle.isChecked()) {
+            values.put(Utilidades.TIPONOTIF,"Enviar SMS");
+        }else {
+            values.put(Utilidades.TIPONOTIF,"Enviar Notificacion");
+        }
+             //sustituye a la consulta SQL select  nombre,telefono from usuario
+        bd.update(Utilidades.TABLA_MISCUMPLES,values,Utilidades.NOMBRE +" =?",consultaParametros);
+        Toast.makeText(getContext(),"Datos Actualizados",Toast.LENGTH_SHORT).show();
+        bd.close();
     }
 
     private ArrayList<String> obtenerTelefonos(Uri contactUri) {
@@ -135,4 +166,5 @@ public class DetallesFragment extends Fragment {
             }
         }
     }
+
 }
