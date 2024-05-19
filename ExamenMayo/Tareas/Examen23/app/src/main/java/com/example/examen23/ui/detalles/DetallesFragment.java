@@ -38,6 +38,7 @@ public class DetallesFragment extends Fragment {
     static final int SELECCIONAR_CONTACTO = 1;
     private FragmentDetallesBinding binding;
     ContactosViewModel contactosViewModel;
+    private String telefonoSeleccionado;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -81,13 +82,12 @@ public class DetallesFragment extends Fragment {
         binding.spinnerTelefonos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                contacto.setTelefono(parent.getItemAtPosition(position).toString());
-                contactosViewModel.setContacto(contacto);
+                telefonoSeleccionado = parent.getItemAtPosition(position).toString();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                telefonoSeleccionado = parent.toString();
             }
         });
 
@@ -102,27 +102,32 @@ public class DetallesFragment extends Fragment {
     }
 
     private void actualizarBD() {
-        ConexionSqlLite   conexion = new ConexionSqlLite(getContext(), "BaseDatosMisCumples", null, 1);
+        ConexionSqlLite conexion = new ConexionSqlLite(getContext(), "BaseDatosMisCumples", null, 1);
         SQLiteDatabase bd = conexion.getReadableDatabase();
         Log.i("info", "Abierta base datos para actualizar");
         String[] consultaParametros = {
                 binding.textoNombreDetalle.getText().toString()};//parametros de la consulta, pueden ser varios
         ContentValues values = new ContentValues();
-        values.put(Utilidades.MENSAJE,binding.textMultiLineMensajeDetalle.getText().toString());
+        values.put(Utilidades.MENSAJE, binding.textMultiLineMensajeDetalle.getText().toString());
 
-        if ( binding.checkSmsDetalle.isChecked()) {
-            values.put(Utilidades.TIPONOTIF,"Enviar SMS");
-        }else {
-            values.put(Utilidades.TIPONOTIF,"Enviar Notificacion");
+
+        values.put(Utilidades.TELEFONO, telefonoSeleccionado);
+        if (binding.checkSmsDetalle.isChecked()) {
+            values.put(Utilidades.TIPONOTIF, "Enviar SMS");
+        } else {
+            values.put(Utilidades.TIPONOTIF, "Enviar Notificacion");
         }
-             //sustituye a la consulta SQL select  nombre,telefono from usuario
-        bd.update(Utilidades.TABLA_MISCUMPLES,values,Utilidades.NOMBRE +" =?",consultaParametros);
-        Toast.makeText(getContext(),"Datos Actualizados",Toast.LENGTH_SHORT).show();
+        //sustituye a la consulta SQL select  nombre,telefono from usuario
+        bd.update(Utilidades.TABLA_MISCUMPLES, values, Utilidades.NOMBRE + " =?", consultaParametros);
+
+        Toast.makeText(getContext(), "Datos Actualizados", Toast.LENGTH_SHORT).show();
         bd.close();
+        conexion.close();
     }
 
     private ArrayList<String> obtenerTelefonos(Uri contactUri) {
-        ArrayList<String> listaTelefonos= new ArrayList<>();
+        ArrayList<String> listaTelefonos = new ArrayList<>();
+
         Cursor cursor = getContext().getContentResolver().query(contactUri, null, null, null, null);
         if (cursor != null && cursor.moveToFirst()) {
             String contactId = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
@@ -140,7 +145,7 @@ public class DetallesFragment extends Fragment {
                 while (phoneCursor.moveToNext()) {
                     String telefono = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
                     // carga los telefonos en una lista
-                   listaTelefonos.add(telefono);
+                    listaTelefonos.add(telefono);
                 }
                 phoneCursor.close();
             }

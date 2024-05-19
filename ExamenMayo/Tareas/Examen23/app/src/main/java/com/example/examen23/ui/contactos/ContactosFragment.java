@@ -56,8 +56,6 @@ public class ContactosFragment extends Fragment {
         crearRecyclerContactos();
 
 
-
-
         return root;
     }
 
@@ -116,6 +114,8 @@ public class ContactosFragment extends Fragment {
             } catch (Exception e) {
                 Toast.makeText(getContext().getApplicationContext(), "Fallo al registrar el contacto", Toast.LENGTH_SHORT).show();
             }
+            db.close();
+            conn.close();
         }
     }
 
