@@ -92,6 +92,8 @@ public class GalleryFragment extends Fragment {
             contacto.setTelefono(cursor.getString(3));
             contacto.setFecha(cursor.getString(4));
             contacto.setNombre(cursor.getString(5));
+            contacto.setFoto(cursor.getString(6));
+
 
 
             listaContactosBD.add(contacto);
@@ -127,13 +129,15 @@ public class GalleryFragment extends Fragment {
                             Utilidades.MENSAJE + ", " +
                             Utilidades.TELEFONO + ", " +
                             Utilidades.FECHANACIMIENTO + ", " +
-                            Utilidades.NOMBRE +
+                            Utilidades.NOMBRE + ", " +
+                            Utilidades. FOTO+
                             ") VALUES ( '" +
                             contacto.getTipo() + "', '" +
                             contacto.getNotificacion() + "', '" +
                             contacto.getTelefono() + "', '" +
                             contacto.getFecha() + "', '" +
-                            contacto.getNombre() + "')";
+                            contacto.getNombre() + "', '" +
+                            contacto.getFoto() + "')";
                     db.execSQL(insert);
                     // Cerrar el cursor
                     cursor.close();

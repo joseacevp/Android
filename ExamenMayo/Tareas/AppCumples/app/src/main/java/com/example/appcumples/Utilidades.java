@@ -17,6 +17,7 @@ public class Utilidades {
     public static final String TELEFONO = "telefono";
     public static final String FECHANACIMIENTO = "fechanacimiento";
     public static final String NOMBRE = "nombre";
+    public static final String FOTO = "foto";
 
     public static final String CREAR_TABLA_MISCUMPLES = "CREATE TABLE "
             + TABLA_MISCUMPLES
@@ -32,6 +33,8 @@ public class Utilidades {
             + FECHANACIMIENTO
             + " TEXT,"
             + NOMBRE
+            + " TEXT,"
+            + FOTO
             + "  TEXT )";
 
 }
