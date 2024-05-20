@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -19,7 +20,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.appcumples.ConexionSqlLite;
 import com.example.appcumples.Contacto;
+import com.example.appcumples.Utilidades;
 import com.example.appcumples.databinding.FragmentGalleryBinding;
 import com.example.appcumples.ui.gallery.GalleryViewModel;
 
@@ -64,13 +67,52 @@ public class GalleryFragment extends Fragment {
 
         return root;
     }
-//crea y añade los datos del los contactos del telefono en la base de datos
-    private void crearDatosBaseDatos(ArrayList<Contacto> contactos) {
-        for (int i = 0 ; i<contactos.size(); i++){
-            System.out.println(contactos.get(i).getNombre());
-        }
-    }
 
+    //crea y añade los datos del los contactos del telefono en la base de datos
+    private void crearDatosBaseDatos(ArrayList<Contacto> contactos) {
+        ConexionSqlLite conn = new ConexionSqlLite(getContext(),
+                "BaseDatosMisCumples", null, 1);
+        SQLiteDatabase db = conn.getWritableDatabase();
+
+        //recorre la lista de contactos y los inserta en la tabla de la base de datos
+        for (int i = 0; i < contactos.size(); i++) {
+            System.out.println(contactos.get(i).getNombre());
+            Contacto contacto = contactos.get(i);
+            // Verificar si el contacto ya existe en la base de datos
+            Cursor cursor = db.rawQuery("SELECT * FROM " + Utilidades.TABLA_MISCUMPLES +
+                            " WHERE " + Utilidades.NOMBRE + " = ? OR " + Utilidades.TELEFONO + " = ?",
+                    new String[]{contacto.getNombre(), contacto.getTelefono()});
+            if (cursor.getCount() > 0) {
+                // Si el cursor tiene resultados, el contacto ya existe en la base de datos
+//            Toast.makeText(getContext(), "El contacto ya existe en la base de datos", Toast.LENGTH_SHORT).show();
+            } else {
+                // Si el cursor está vacío, el contacto no existe en la base de datos, por lo que se puede insertar
+                try {
+                    String insert = "INSERT INTO " + Utilidades.TABLA_MISCUMPLES + " ( " +
+                            Utilidades.TIPONOTIF + ", " +
+                            Utilidades.MENSAJE + ", " +
+                            Utilidades.TELEFONO + ", " +
+                            Utilidades.FECHANACIMIENTO + ", " +
+                            Utilidades.NOMBRE +
+                            ") VALUES ( '" +
+                            contacto.getTipo() + "', '" +
+                            contacto.getNotificacion() + "', '" +
+                            contacto.getTelefono() + "', '" +
+                            contacto.getFecha() + "', '" +
+                            contacto.getNombre() + "')";
+                    db.execSQL(insert);
+                    // Cerrar el cursor
+                    cursor.close();
+//                Toast.makeText(getContext(), "Contacto insertado correctamente en la base de datos", Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    Toast.makeText(getContext().getApplicationContext(), "Fallo al registrar el contacto", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        }
+        db.close();
+        conn.close();
+    }
 
     @Override
     public void onDestroyView() {
@@ -78,7 +120,7 @@ public class GalleryFragment extends Fragment {
         binding = null;
     }
 
-//consulta y recupera en una lista los contactos del telefono
+    //consulta y recupera en una lista los contactos del telefono
     @SuppressLint("Range")
     private ArrayList<Contacto> llenarContactos() {
         String proyeccion[] = {

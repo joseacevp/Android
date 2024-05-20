@@ -11,8 +11,7 @@ public class Utilidades {
     // Nombre VARCHAR(128)
     //);
     public static final String TABLA_MISCUMPLES = "miscumples";
-
-
+    public static final String CAMPO_ID_CONTACTO = "id";
     public static final String TIPONOTIF = "tiponotificacion";
     public static final String MENSAJE = "mensaje";
     public static final String TELEFONO = "telefono";
@@ -22,7 +21,8 @@ public class Utilidades {
     public static final String CREAR_TABLA_MISCUMPLES = "CREATE TABLE "
             + TABLA_MISCUMPLES
             + " ( "
-
+            + CAMPO_ID_CONTACTO
+            + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + TIPONOTIF
             + " TEXT,"
             + MENSAJE
