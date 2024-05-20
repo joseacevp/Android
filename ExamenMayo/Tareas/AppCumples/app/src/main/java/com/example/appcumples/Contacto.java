@@ -4,18 +4,20 @@ import android.net.Uri;
 
 public class Contacto {
     private String nombre, fecha, notificacion, foto, telefono, tipo;
+    private Integer id;
     private Uri uri;
 
     public Contacto() {
     }
 
-    public Contacto(String nombre, String fecha, String notificacion, String foto, String telefono, String tipo, Uri uri) {
+    public Contacto(String nombre, String fecha, String notificacion, String foto, String telefono, String tipo, Integer id, Uri uri) {
         this.nombre = nombre;
         this.fecha = fecha;
         this.notificacion = notificacion;
         this.foto = foto;
         this.telefono = telefono;
         this.tipo = tipo;
+        this.id = id;
         this.uri = uri;
     }
 
@@ -65,6 +67,14 @@ public class Contacto {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Uri getUri() {

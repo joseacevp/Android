@@ -19,7 +19,10 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.appcumples.AdaptadorContactos;
 import com.example.appcumples.ConexionSqlLite;
 import com.example.appcumples.Contacto;
 import com.example.appcumples.Utilidades;
@@ -51,6 +54,7 @@ public class GalleryFragment extends Fragment {
         galleryViewModel.getListaContactosTelefono().observe(getViewLifecycleOwner(), new Observer<ArrayList<Contacto>>() {
             @Override
             public void onChanged(ArrayList<Contacto> contactos) {
+                //la lista de contactos solo funciona dentro de este onChanged
                 if (contactos != null && contactos.size() > 0) {
                     listaContactosTelefono = contactos;
                     //comprobar datos por pantalla
@@ -58,14 +62,44 @@ public class GalleryFragment extends Fragment {
 //                        System.out.println(listaContactosTelefono.get(i).getNombre());
 //                    }
                     crearDatosBaseDatos(listaContactosTelefono);
+
+//                    crearRecyclerContactos(listaContactosTelefono);
                 } else {
                     Toast.makeText(getContext(), "¡No Hay  Aun!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
-
+        crearRecyclerContactos(crecuperarListaBD());
         return root;
+    }
+
+    private ArrayList<Contacto> crecuperarListaBD() {
+        ArrayList<Contacto> listaContactosBD = new ArrayList<>();
+
+        ConexionSqlLite conn = new ConexionSqlLite(getContext(),
+                "BaseDatosMisCumples", null, 1);
+        SQLiteDatabase db = conn.getWritableDatabase();
+        Contacto contacto;
+
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + Utilidades.TABLA_MISCUMPLES, null);
+
+        while (cursor.moveToNext()) {
+            contacto = new Contacto();
+            contacto.setId(cursor.getInt(0));
+            contacto.setTipo(cursor.getString(1));
+            contacto.setNotificacion(cursor.getString(2));
+            contacto.setTelefono(cursor.getString(3));
+            contacto.setFecha(cursor.getString(4));
+            contacto.setNombre(cursor.getString(5));
+
+
+            listaContactosBD.add(contacto);
+
+        }
+        db.close();
+        conn.close();
+        return listaContactosBD;
     }
 
     //crea y añade los datos del los contactos del telefono en la base de datos
@@ -219,5 +253,21 @@ public class GalleryFragment extends Fragment {
 
         cursor.close();
         return lista_contactos;
+    }
+
+    private void crearRecyclerContactos(ArrayList<Contacto> listaContactos) {
+        binding.recyclerContactos.setLayoutManager(new LinearLayoutManager(getContext()
+                , LinearLayoutManager.VERTICAL, false));
+        //15. enviamos la lista con los datos al adaptador
+        AdaptadorContactos adapter = new AdaptadorContactos(listaContactos, getContext());
+        //16. indicamos al recycleView que
+        binding.recyclerContactos.setAdapter(adapter);
+        adapter.setOnItemClickListener(new AdaptadorContactos.OnItemClickListener() {
+            @Override
+            public void onItemClick(Contacto contacto) {
+//                contactosViewModel.setContacto(contacto);
+//                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_nav_contactos_to_detallesFragment);
+            }
+        });
     }
 }
