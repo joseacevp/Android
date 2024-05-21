@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,7 +24,8 @@ public class AdaptadorRecyclerMultipl extends RecyclerView.Adapter<AdaptadorRecy
     public List<Jugador> getListaJugadores() {
         return listaJugadores;
     }
-    private GalleryViewModel galleryViewModel;
+
+
 
     public AdaptadorRecyclerMultipl(List<Jugador> listaJugadores) {
         this.listaJugadores = listaJugadores;
@@ -71,6 +73,7 @@ public class AdaptadorRecyclerMultipl extends RecyclerView.Adapter<AdaptadorRecy
     }
 
     class AdaptadorViewHolder extends RecyclerView.ViewHolder {
+
         TextView etiNombre, etiPosicion;
         ImageView foto, favorito;
         CardView cardjudador;
@@ -109,7 +112,7 @@ public class AdaptadorRecyclerMultipl extends RecyclerView.Adapter<AdaptadorRecy
             cardjudador.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                   
+
                     if (onItemClickListener != null) {
                         onItemClickListener.onItemClick(jugador);
                     }

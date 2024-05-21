@@ -101,21 +101,4 @@ public class GalleryFragment extends Fragment {
         galleryViewModel.setJugadoresSeleccionados(adaptadorRecyclerMultipl.getListaJugadores());
     }
 
-//    private void grabarListaSeleccionados() {
-//        //envia la lista de jugadores seleccionados al cambiar de fragmento.
-//        judadoresSeleccionados = adaptadorRecyclerMultipl.getListaJugadoresSeleccionados();
-//        convocadosViewModel = new ViewModelProvider(requireActivity()).get(ConvocadosViewModel.class);
-//        convocadosViewModel.setListaConvocados((ArrayList<Jugador>) judadoresSeleccionados);
-//        //para visualizar datos
-//        StringBuilder nombresSeleccionados = new StringBuilder();
-//        for (int i = 0; i < judadoresSeleccionados.size(); i++) {
-//            if (i == 0) {
-//                nombresSeleccionados.append(judadoresSeleccionados.get(i).getNombre());
-//
-//            } else {
-//                nombresSeleccionados.append("\n").append(judadoresSeleccionados.get(i).getNombre());
-//            }
-//        }
-////        Toast.makeText(getContext(), "Jugadores Seleccionados:\n" + nombresSeleccionados.toString(), Toast.LENGTH_SHORT).show();
-//    }
 }
