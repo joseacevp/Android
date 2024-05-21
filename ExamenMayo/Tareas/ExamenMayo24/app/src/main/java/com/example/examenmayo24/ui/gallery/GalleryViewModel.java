@@ -4,16 +4,18 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import java.util.List;
+
 public class GalleryViewModel extends ViewModel {
 
-    private final MutableLiveData<String> mText;
+    private MutableLiveData<List<Jugador>> jugadoresSeleccionados = new MutableLiveData<>();
 
-    public GalleryViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is gallery fragment");
+
+    public LiveData<List<Jugador>> getJugadoresSeleccionados() {
+        return jugadoresSeleccionados;
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public void setJugadoresSeleccionados(List<Jugador> jugadores) {
+        jugadoresSeleccionados.setValue(jugadores);
     }
 }
