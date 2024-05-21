@@ -20,4 +20,5 @@ public class GalleryViewModel extends ViewModel {
     public LiveData<ArrayList<Contacto>> getListaContactosTelefono() {
         return listaContactosTelefono;
     }
+
 }

@@ -25,9 +25,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.appcumples.AdaptadorContactos;
 import com.example.appcumples.ConexionSqlLite;
 import com.example.appcumples.Contacto;
+import com.example.appcumples.R;
 import com.example.appcumples.Utilidades;
 import com.example.appcumples.databinding.FragmentGalleryBinding;
 import com.example.appcumples.ui.gallery.GalleryViewModel;
+import com.example.appcumples.ui.home.HomeViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +38,7 @@ public class GalleryFragment extends Fragment {
 
     private FragmentGalleryBinding binding;
     GalleryViewModel galleryViewModel;
+    HomeViewModel homeViewModel;
     ArrayList<Contacto> listaContactosTelefono = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -44,7 +47,6 @@ public class GalleryFragment extends Fragment {
 
         binding = FragmentGalleryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
 
         //datos de los contactos del telefono almacenados en viewModel set añade los datos
         galleryViewModel = new ViewModelProvider(requireActivity()).get(GalleryViewModel.class);
@@ -269,8 +271,11 @@ public class GalleryFragment extends Fragment {
         adapter.setOnItemClickListener(new AdaptadorContactos.OnItemClickListener() {
             @Override
             public void onItemClick(Contacto contacto) {
-//                contactosViewModel.setContacto(contacto);
-//                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_nav_contactos_to_detallesFragment);
+                System.out.println(contacto.getNombre());
+                //datos de los contactos del telefono almacenados en viewModel set añade los datos
+                homeViewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
+                homeViewModel.setContactoMutableLiveData(contacto);
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_nav_gallery_to_nav_home);
             }
         });
     }
