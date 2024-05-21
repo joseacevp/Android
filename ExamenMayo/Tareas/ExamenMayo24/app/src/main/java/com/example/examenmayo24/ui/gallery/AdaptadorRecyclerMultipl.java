@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.examenmayo24.R;
@@ -17,10 +19,11 @@ import java.util.List;
 
 public class AdaptadorRecyclerMultipl extends RecyclerView.Adapter<AdaptadorRecyclerMultipl.AdaptadorViewHolder> {
     private List<Jugador> listaJugadores;
-
+    private OnItemClickListener onItemClickListener;
     public List<Jugador> getListaJugadores() {
         return listaJugadores;
     }
+    private GalleryViewModel galleryViewModel;
 
     public AdaptadorRecyclerMultipl(List<Jugador> listaJugadores) {
         this.listaJugadores = listaJugadores;
@@ -55,6 +58,12 @@ public class AdaptadorRecyclerMultipl extends RecyclerView.Adapter<AdaptadorRecy
             }
         }
         return listaJudadoresSelect;
+    }
+    public interface OnItemClickListener {
+        void onItemClick(Jugador jugador);
+    }
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.onItemClickListener = listener;
     }
 
     public void setListaJugadores(List<Jugador> jugadores) {
@@ -97,7 +106,15 @@ public class AdaptadorRecyclerMultipl extends RecyclerView.Adapter<AdaptadorRecy
                     }
                 }
             });
-
+            cardjudador.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                   
+                    if (onItemClickListener != null) {
+                        onItemClickListener.onItemClick(jugador);
+                    }
+                }
+            });
         }
     }
 }

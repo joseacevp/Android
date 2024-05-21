@@ -17,5 +17,18 @@ public class GalleryViewModel extends ViewModel {
 
     public void setJugadoresSeleccionados(List<Jugador> jugadores) {
         jugadoresSeleccionados.setValue(jugadores);
+
+    }
+    //////////////////jugador
+    private MutableLiveData<Jugador> jugadorSeleccionado = new MutableLiveData<>();
+
+
+    public LiveData<Jugador> getJugadorSeleccionado() {
+        return jugadorSeleccionado;
+    }
+
+    public void setJugadorSeleccionado(Jugador jugador) {
+        jugadorSeleccionado.setValue(jugador);
+
     }
 }

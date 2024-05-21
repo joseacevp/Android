@@ -25,7 +25,8 @@ public class AdaptadorContactos extends RecyclerView.Adapter<AdaptadorContactos.
     private ArrayList<Contacto> listaContactos;
 
     private Context context;
-    public static final int SELECCIONA_TIPO_NOTIFICACION = 1; private OnItemClickListener onItemClickListener;
+    public static final int SELECCIONA_TIPO_NOTIFICACION = 1;
+    private OnItemClickListener onItemClickListener;
 
     public interface OnItemClickListener {
         void onItemClick(Contacto contacto);

@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -58,6 +59,13 @@ public class GalleryFragment extends Fragment {
     private void iniciarRecyclerJugadorMulti() {
         adaptadorRecyclerMultipl = new AdaptadorRecyclerMultipl(lista);
         recyclerView.setAdapter(adaptadorRecyclerMultipl);
+        adaptadorRecyclerMultipl.setOnItemClickListener(new AdaptadorRecyclerMultipl.OnItemClickListener() {
+            @Override
+            public void onItemClick(Jugador jugador) {
+                galleryViewModel.setJugadorSeleccionado(jugador);
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_nav_gallery_to_nav_formul);
+            }
+        });
 
     }
 
