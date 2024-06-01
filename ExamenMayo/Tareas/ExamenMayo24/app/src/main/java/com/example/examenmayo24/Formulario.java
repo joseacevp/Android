@@ -25,6 +25,8 @@ public class Formulario extends Fragment {
 
     private FormularioViewModel mViewModel;
     GalleryViewModel galleryViewModel;
+    Jugador jugadorDB;
+    int totolActuacion = 0;
 
     private FragmentFormularioBinding binding;
 
@@ -37,29 +39,53 @@ public class Formulario extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentFormularioBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
-        galleryViewModel =
-                new ViewModelProvider(this).get(GalleryViewModel.class);
+
+        galleryViewModel = new ViewModelProvider(requireActivity()).get(GalleryViewModel.class);
+
         galleryViewModel.getJugadorSeleccionado().observe(getViewLifecycleOwner(), new Observer<Jugador>() {
             @Override
             public void onChanged(Jugador jugador) {
                 System.out.println(jugador.getNombre());
-
+                jugadorDB = jugador;
             }
         });
         binding.botonGuardarDes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                calcualarDesempe();
                 Toast.makeText(getContext(), "guadada base datos", Toast.LENGTH_SHORT).show();
-                Jugador jugadorDB = new  Jugador("Enrrique Similo", "Delantero Centro", R.drawable.carita01, R.drawable.imagen_estrella);
-
-
                 crearTablaBaseDatos(jugadorDB);
+                limpiar();
             }
         });
 
-      
+
         return view;
+    }
+
+    private void limpiar() {
+
+    }
+
+    private void calcualarDesempe() {
+        String pases, compa, control, tiro, rabieta;
+        pases = binding.ediPase.getText().toString();
+        compa = binding.editcompa.getText().toString();
+        control = binding.editcontrol.getText().toString();
+        tiro = binding.edittiro.getText().toString();
+        rabieta = binding.editrabie.getText().toString();
+
+        int nPase, nCompa, nContro, nTiro, nRabieta;
+        nPase = Integer.parseInt(pases);
+        nCompa = Integer.parseInt(compa);
+        nContro = Integer.parseInt(control);
+        nTiro = Integer.parseInt(tiro);
+        nRabieta = Integer.parseInt(rabieta);
+
+        totolActuacion = nPase + nCompa + nContro + nTiro - nRabieta;
+        jugadorDB.setDesempe(String.valueOf(totolActuacion));
+
+
     }
 
 
@@ -78,21 +104,18 @@ public class Formulario extends Fragment {
             // Si el cursor está vacío, el contacto no existe en la base de datos, por lo que se puede insertar
             try {
                 String insert = "INSERT INTO " + Utilidades.TABLA_ACTUACION + " ( " +
-                        Utilidades.NOMBRE + ", " +
-                        Utilidades.NOMBRE + ", " +
-                        Utilidades.NOMBRE + ", " +
-                        Utilidades.NOMBRE + ", " +
+
+                        Utilidades.DESENPENO + ", " +
+
                         Utilidades.NOMBRE +
                         ") VALUES ( '" +
-                        contacto.getNombre() + "', '" +
-                        contacto.getNombre() + "', '" +
-                        contacto.getNombre() + "', '" +
-                        contacto.getNombre() + "', '" +
+                        contacto.getDesempe() + "', '" +
+
                         contacto.getNombre() + "')";
                 db.execSQL(insert);
                 // Cerrar el cursor
                 cursor.close();
-//                Toast.makeText(getContext(), "Contacto insertado correctamente en la base de datos", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Contacto insertado correctamente en la base de datos", Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
                 Toast.makeText(getContext().getApplicationContext(), "Fallo al registrar el contacto", Toast.LENGTH_SHORT).show();
             }
@@ -100,6 +123,7 @@ public class Formulario extends Fragment {
             conn.close();
         }
     }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);

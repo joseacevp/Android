@@ -31,8 +31,7 @@ public class GalleryFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
-                new ViewModelProvider(this).get(GalleryViewModel.class);
+
 
         binding = FragmentGalleryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -62,6 +61,8 @@ public class GalleryFragment extends Fragment {
         adaptadorRecyclerMultipl.setOnItemClickListener(new AdaptadorRecyclerMultipl.OnItemClickListener() {
             @Override
             public void onItemClick(Jugador jugador) {
+                galleryViewModel =
+                        new ViewModelProvider(requireActivity()).get(GalleryViewModel.class);
                 galleryViewModel.setJugadorSeleccionado(jugador);
                 Navigation.findNavController(binding.getRoot()).navigate(R.id.action_nav_gallery_to_nav_formul);
             }
@@ -98,7 +99,7 @@ public class GalleryFragment extends Fragment {
         super.onPause();
 //        grabarListaSeleccionados();
         // Guardar el estado de los jugadores seleccionados en el ViewModel
-        galleryViewModel.setJugadoresSeleccionados(adaptadorRecyclerMultipl.getListaJugadores());
+//        galleryViewModel.setJugadoresSeleccionados(adaptadorRecyclerMultipl.getListaJugadores());
     }
 
 }

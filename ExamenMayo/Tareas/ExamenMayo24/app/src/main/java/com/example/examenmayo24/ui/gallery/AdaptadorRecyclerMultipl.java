@@ -74,7 +74,7 @@ public class AdaptadorRecyclerMultipl extends RecyclerView.Adapter<AdaptadorRecy
 
     class AdaptadorViewHolder extends RecyclerView.ViewHolder {
 
-        TextView etiNombre, etiPosicion;
+        TextView etiNombre, etDes;
         ImageView foto, favorito;
         CardView cardjudador;
         View view;
@@ -83,14 +83,14 @@ public class AdaptadorRecyclerMultipl extends RecyclerView.Adapter<AdaptadorRecy
             super(itemView);
             cardjudador = itemView.findViewById(R.id.carJugador);
             etiNombre = itemView.findViewById(R.id.textNombre);
-            etiPosicion = itemView.findViewById(R.id.textDescripcion);
+            etDes = itemView.findViewById(R.id.textDesempe);
             foto = itemView.findViewById(R.id.imageView);
             favorito = itemView.findViewById(R.id.imageViewFavorito);
         }
 
         void bindAdaptador(final Jugador jugador) {
             etiNombre.setText(jugador.getNombre());
-            etiPosicion.setText(jugador.getPosicion());
+            etDes.setText(jugador.getDesempe());
             foto.setImageResource(jugador.getFoto());
             if (jugador.isSelected) {
                 favorito.setImageResource(R.drawable.imagen_estrella);

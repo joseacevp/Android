@@ -1,16 +1,16 @@
 package com.example.examenmayo24.ui.gallery;
 
 public class Jugador {
-    private String nombre,posicion;
+    private String nombre,desempe;
     private int foto,favorito;
     Boolean isSelected = false;
 
     public Jugador() {
     }
 
-    public Jugador(String nombre, String posicion, int foto, int favorito) {
+    public Jugador(String nombre, String desempe, int foto, int favorito) {
         this.nombre = nombre;
-        this.posicion = posicion;
+        this.desempe = desempe;
         this.foto = foto;
         this.favorito = favorito;
     }
@@ -23,12 +23,12 @@ public class Jugador {
         this.nombre = nombre;
     }
 
-    public String getPosicion() {
-        return posicion;
+    public String getDesempe() {
+        return desempe;
     }
 
-    public void setPosicion(String posicion) {
-        this.posicion = posicion;
+    public void setDesempe(String posicion) {
+        this.desempe = posicion;
     }
 
     public int getFoto() {
