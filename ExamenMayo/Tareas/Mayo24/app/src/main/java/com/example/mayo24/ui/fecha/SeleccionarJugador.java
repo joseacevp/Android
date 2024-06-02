@@ -13,10 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.mayo24.R;
+import com.example.mayo24.databinding.FragmentSeleccionarJugadorBinding;
 
 public class SeleccionarJugador extends Fragment {
 
     private SeleccionarJugadorViewModel mViewModel;
+    private FragmentSeleccionarJugadorBinding binding;
 
     public static SeleccionarJugador newInstance() {
         return new SeleccionarJugador();
@@ -25,7 +27,13 @@ public class SeleccionarJugador extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_seleccionar_jugador, container, false);
+
+        binding = FragmentSeleccionarJugadorBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+
+
+
+        return root;
     }
 
     @Override

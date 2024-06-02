@@ -3,14 +3,12 @@ package com.example.mayo24;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Menu;
-import android.widget.Toast;
 
-import com.example.mayo24.ui.home.DialogoFecha;
-import com.example.mayo24.ui.home.DialogoFechaViewModel;
+import com.example.mayo24.ui.fecha.DialogoFecha;
+import com.example.mayo24.ui.fecha.DialogoFechaViewModel;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -91,5 +89,6 @@ public class MainActivity extends AppCompatActivity implements DialogoFecha.OnFe
         //resultado de la fecha seleccionada
         String fechaString = fecha.get(Calendar.DAY_OF_MONTH) + " del " + fecha.get(Calendar.MONTH) + " del " + fecha.get(Calendar.YEAR);
         dialogoFechaViewModel.setSelecFechaData(fechaString);
+
     }
 }
