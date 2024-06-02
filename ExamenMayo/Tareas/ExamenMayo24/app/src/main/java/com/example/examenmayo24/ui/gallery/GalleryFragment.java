@@ -72,26 +72,26 @@ public class GalleryFragment extends Fragment {
 
     private void llenarPersonajes() {
 
-        lista.add(new Jugador("Enrrique Similo", "Delantero Centro", R.drawable.carita01, R.drawable.imagen_estrella));
-        lista.add(new Jugador("Juan Bueno", "Delantero Centro", R.drawable.carita02, R.drawable.imagen_estrella));
-        lista.add(new Jugador("Lucas Disorio", "Delantero Centro", R.drawable.carita03, R.drawable.imagen_estrella));
-        lista.add(new Jugador("Ernesto Zifuentes", "Delantero Derecho", R.drawable.carita04, R.drawable.imagen_estrella));
-        lista.add(new Jugador("Lolo Anoeta", "Delantero Derecho", R.drawable.carita05, R.drawable.imagen_estrella));
-        lista.add(new Jugador("Lucas Jacinto", "Delantero Derecho", R.drawable.carita06, R.drawable.imagen_estrella));
-        lista.add(new Jugador("Luis Paulino", "Delantero Izquierdo", R.drawable.carita07, R.drawable.imagen_estrella));
-        lista.add(new Jugador("Gregorio Antuano", "Delantero Izquierdo", R.drawable.carita08, R.drawable.imagen_estrella));
-        lista.add(new Jugador("Daviz Salinas", "Central", R.drawable.carita09, R.drawable.imagen_estrella));
-        lista.add(new Jugador("Eustaquio Loindiuo", "Portero", R.drawable.carita10, R.drawable.imagen_estrella));
-        lista.add(new Jugador("Felipa Garcia", "Central Derecho", R.drawable.carita12, R.drawable.imagen_estrella));
-        lista.add(new Jugador("Noel Sal", "Cetral Derechio", R.drawable.carita13, R.drawable.imagen_estrella));
-        lista.add(new Jugador("Laureano Andujar", "Central Izquierdo", R.drawable.carita14, R.drawable.imagen_estrella));
-        lista.add(new Jugador("Santiago Robledano", "Cetral Izquierdo", R.drawable.carita15, R.drawable.imagen_estrella));
-        lista.add(new Jugador("Raul Luisiana", "Defensa Cetral", R.drawable.carita11, R.drawable.imagen_estrella));
-        lista.add(new Jugador("Tote Litunia", "Defensa Derecha", R.drawable.carita16, R.drawable.imagen_estrella));
-        lista.add(new Jugador("Fran Frances", "Defensa Derecha", R.drawable.carita17, R.drawable.imagen_estrella));
-        lista.add(new Jugador("Koke Ponpidu", "Defensa Izquierda", R.drawable.carita18, R.drawable.imagen_estrella));
-        lista.add(new Jugador("Rick Whilson", "Defensa Izquierda", R.drawable.carita19, R.drawable.imagen_estrella));
-        lista.add(new Jugador("Chipian Lilione", "Protero", R.drawable.carita20, R.drawable.imagen_estrella));
+        lista.add(new Jugador("Enrrique Similo", "Delantero Centro"," ", R.drawable.carita01, R.drawable.imagen_estrella));
+        lista.add(new Jugador("Juan Bueno", "Delantero Centro"," ", R.drawable.carita02, R.drawable.imagen_estrella));
+        lista.add(new Jugador("Lucas Disorio", "Delantero Centro", " ",R.drawable.carita03, R.drawable.imagen_estrella));
+        lista.add(new Jugador("Ernesto Zifuentes", "Delantero Derecho"," ", R.drawable.carita04, R.drawable.imagen_estrella));
+        lista.add(new Jugador("Lolo Anoeta", "Delantero Derecho", " ",R.drawable.carita05, R.drawable.imagen_estrella));
+        lista.add(new Jugador("Lucas Jacinto", "Delantero Derecho"," ", R.drawable.carita06, R.drawable.imagen_estrella));
+        lista.add(new Jugador("Luis Paulino", "Delantero Izquierdo"," ",R.drawable.carita07, R.drawable.imagen_estrella));
+        lista.add(new Jugador("Gregorio Antuano", "Delantero Izquierdo"," ", R.drawable.carita08, R.drawable.imagen_estrella));
+        lista.add(new Jugador("Daviz Salinas", "Central", " ",R.drawable.carita09, R.drawable.imagen_estrella));
+        lista.add(new Jugador("Eustaquio Loindiuo", "Portero"," ", R.drawable.carita10, R.drawable.imagen_estrella));
+        lista.add(new Jugador("Felipa Garcia", "Central Derecho"," ", R.drawable.carita12, R.drawable.imagen_estrella));
+        lista.add(new Jugador("Noel Sal", "Cetral Derechio"," ", R.drawable.carita13, R.drawable.imagen_estrella));
+        lista.add(new Jugador("Laureano Andujar", "Central Izquierdo", " ",R.drawable.carita14, R.drawable.imagen_estrella));
+        lista.add(new Jugador("Santiago Robledano", "Cetral Izquierdo"," ", R.drawable.carita15, R.drawable.imagen_estrella));
+        lista.add(new Jugador("Raul Luisiana", "Defensa Cetral", " ",R.drawable.carita11, R.drawable.imagen_estrella));
+        lista.add(new Jugador("Tote Litunia", "Defensa Derecha", " ",R.drawable.carita16, R.drawable.imagen_estrella));
+        lista.add(new Jugador("Fran Frances", "Defensa Derecha", " ",R.drawable.carita17, R.drawable.imagen_estrella));
+        lista.add(new Jugador("Koke Ponpidu", "Defensa Izquierda"," ", R.drawable.carita18, R.drawable.imagen_estrella));
+        lista.add(new Jugador("Rick Whilson", "Defensa Izquierda"," ", R.drawable.carita19, R.drawable.imagen_estrella));
+        lista.add(new Jugador("Chipian Lilione", "Protero"," ", R.drawable.carita20, R.drawable.imagen_estrella));
     }
 
     @Override

@@ -7,6 +7,7 @@ public class Utilidades {
     public static final String NOMBRE = "nombre";
     public static final String ASISTENCIA = "asistencia";
     public static final String DESENPENO = "desempeno";
+    public static final String FECHA = "fecha";
 
 
     public static final String CREAR_TABLA_MISCUMPLES = "CREATE TABLE "
@@ -15,6 +16,8 @@ public class Utilidades {
             + NOMBRE
             + " TEXT,"
             + ASISTENCIA
+            + "  TEXT,"
+            + FECHA
             + "  TEXT,"
             + DESENPENO
             + "  TEXT )";

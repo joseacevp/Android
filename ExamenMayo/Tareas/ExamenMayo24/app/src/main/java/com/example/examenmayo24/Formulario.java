@@ -19,12 +19,14 @@ import android.widget.Toast;
 import com.example.examenmayo24.databinding.FragmentFormularioBinding;
 import com.example.examenmayo24.ui.gallery.GalleryViewModel;
 import com.example.examenmayo24.ui.gallery.Jugador;
+import com.example.examenmayo24.ui.home.HomeViewModel;
 
 
 public class Formulario extends Fragment {
 
     private FormularioViewModel mViewModel;
     GalleryViewModel galleryViewModel;
+    HomeViewModel homeViewModel;
     Jugador jugadorDB;
     int totolActuacion = 0;
 
@@ -47,6 +49,13 @@ public class Formulario extends Fragment {
             public void onChanged(Jugador jugador) {
                 System.out.println(jugador.getNombre());
                 jugadorDB = jugador;
+            }
+        });
+        homeViewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
+        homeViewModel.getSelectedDateString().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                jugadorDB.setFecha(s);
             }
         });
         binding.botonGuardarDes.setOnClickListener(new View.OnClickListener() {
@@ -104,14 +113,13 @@ public class Formulario extends Fragment {
             // Si el cursor está vacío, el contacto no existe en la base de datos, por lo que se puede insertar
             try {
                 String insert = "INSERT INTO " + Utilidades.TABLA_ACTUACION + " ( " +
-
                         Utilidades.DESENPENO + ", " +
-
-                        Utilidades.NOMBRE +
+                        Utilidades.NOMBRE + ", " +
+                        Utilidades.FECHA +
                         ") VALUES ( '" +
                         contacto.getDesempe() + "', '" +
-
-                        contacto.getNombre() + "')";
+                        contacto.getNombre() + "', '" +
+                        contacto.getFecha() + "')";
                 db.execSQL(insert);
                 // Cerrar el cursor
                 cursor.close();
