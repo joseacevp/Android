@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SelectorFechaHora</string>
+    <string name="nombre">nombre</string>
+    <string name="fecha_nacimiento">Fecha Nacimiento</string>
+    <string name="hora">Hora</string>
+    <string name="fecha">Fecha</string>
+</resources>

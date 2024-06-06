@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_equipo"
+            android:icon="@drawable/equipo_icono"
+            android:title="@string/menu_equipo" />
+        <item
+            android:id="@+id/nav_convocados"
+            android:icon="@drawable/seleccion"
+            android:title="@string/menu_convocados" />
+
+        <item
+            android:id="@+id/nav_borrar_convocados"
+            android:icon="@drawable/goma_de_borrar"
+            android:title="@string/menu_borrar_convocados" />
+        <item
+            android:id="@+id/nav_seleccionar_fecha"
+            android:icon="@drawable/calendario"
+            android:title="@string/menu_seleccionar_fecha" />
+        <item
+            android:id="@+id/nav_guardar"
+            android:icon="@drawable/disco_flexible"
+            android:title="@string/menu_guardar" />
+        <item
+            android:id="@+id/nav_historico"
+            android:icon="@drawable/memoria"
+            android:title="@string/menu_historico" />
+    </group>
+</menu>

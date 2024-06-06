@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="deploymentTargetDropDown">
+    <value>
+      <entry key="app">
+        <State>
+          <targetSelectedWithDropDown>
+            <Target>
+              <type value="BOOT_WITH_SNAPSHOT_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\josea\.android\avd\TVPixel_2.avd" />
+                </Key>
+              </deviceKey>
+              <snapshotKey value="C:\Users\josea\.android\avd\TVPixel_2.avd\snapshots\snap_2024-04-28_18-20-58" />
+            </Target>
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-06-06T19:36:29.171691700Z" />
+        </State>
+      </entry>
+    </value>
+  </component>
+</project>

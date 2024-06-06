@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">ScrollView</string>
+    <string name="textoCabecera">Esto es un Prueba para el curso Android Studio desde Cero
+        <p>
+            Donde practicamos con el uso de la utilidad ScrollView, utilizando un formulario de ejemplo.
+        </p>
+        <p>
+            Para esto es creado un formulario con tantos campos que no es posible visualizarlos en una
+        sola ventana por lo que es necesario poder desaplazar esta.
+        </p>
+        <p>
+            Donde practicamos con el uso de la utilidad ScrollView, utilizando un formulario de ejemplo.
+        </p>
+        <p>
+            Para esto es creado un formulario con tantos campos que no es posible visualizarlos en una
+        sola ventana por lo que es necesario poder desaplazar esta.
+        </p>
+
+
+    </string>
+</resources>

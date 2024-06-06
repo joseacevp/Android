@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="¿Como jugar?" android:id="@+id/menu_pregunta"/>
+    <item android:title="Nueva Partida " android:id="@+id/menu_nueva_partida"/>
+    <item android:title="Seleccionar Dificultad" android:id="@+id/menu_dificultad"/>
+</menu>

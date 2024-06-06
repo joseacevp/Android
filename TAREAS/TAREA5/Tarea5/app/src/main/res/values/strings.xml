@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Tarea5</string>
+    <string name="title_activity_app_principal">AppPrincipal</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Futbol Manager</string>
+    <string name="nav_header_subtitle">Selecciona los Jugadores y la Fecha del Partido y
+    Grabarlos en la Base de Datos.</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_convocados">Convocados</string>
+    <string name="menu_equipo">Equipo</string>
+    <string name="menu_borrar_convocados">Borrar Convocados</string>
+    <string name="menu_seleccionar_fecha">Seleccionar Fecha</string>
+    <string name="menu_guardar">Guardar</string>
+    <string name="menu_historico">Histórico</string>
+</resources>

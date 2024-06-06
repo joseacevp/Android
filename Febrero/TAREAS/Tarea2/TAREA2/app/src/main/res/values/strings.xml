@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Sudoku</string>
+    <string name="info">
+        Cada fila, columna y cadrado (9 espacios cada uno) debe completarse con los números
+        del 1 al 9,sin repetir ningún número dentro de la fila, columna o cuadrado.</string>
+    <string name="Facil">Facil</string>
+    <string name="Normal">Normal</string>
+    <string name="Dificil">Dificil</string>
+    <string name="volver">volver</string>
+    <string name="titulo_dificultad">Elija la Dificultad del Nivel</string>
+    <string name="titulo_como">¿Como se Juega?</string>
+    <string name="ganaste">Ganaste Enhorabuena</string>
+    <string name="perdiste">Intentalo de Nuevo El numero de numeros acertados es:</string>
+
+
+</resources>
