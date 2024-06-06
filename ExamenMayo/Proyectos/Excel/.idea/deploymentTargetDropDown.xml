@@ -6,16 +6,17 @@
         <State>
           <targetSelectedWithDropDown>
             <Target>
-              <type value="QUICK_BOOT_TARGET" />
+              <type value="BOOT_WITH_SNAPSHOT_TARGET" />
               <deviceKey>
                 <Key>
                   <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\josea\.android\avd\Pixel_8_Pro_API_30.avd" />
+                  <value value="C:\Users\josea\.android\avd\TVPixel_2.avd" />
                 </Key>
               </deviceKey>
+              <snapshotKey value="C:\Users\josea\.android\avd\TVPixel_2.avd\snapshots\snap_2024-04-28_18-20-58" />
             </Target>
           </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-06-06T17:36:08.369125Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-06-05T18:21:40.109569300Z" />
         </State>
       </entry>
     </value>
