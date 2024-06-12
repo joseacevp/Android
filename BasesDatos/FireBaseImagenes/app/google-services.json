@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "675403399721",
+    "project_id": "fir-imagenes-d5cdf",
+    "storage_bucket": "fir-imagenes-d5cdf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:675403399721:android:7979d9f230d0c01fa25238",
+        "android_client_info": {
+          "package_name": "com.example.firebaseimagenes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2P1k2arZYhfE9twFxvWwR-6jKs_qeAF0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
