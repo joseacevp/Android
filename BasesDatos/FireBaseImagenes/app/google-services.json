@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "293998314875",
+    "firebase_url": "https://fir-imagenes-5b27a-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "fir-imagenes-5b27a",
+    "storage_bucket": "fir-imagenes-5b27a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:293998314875:android:ac712cc97031b7149fe9de",
+        "android_client_info": {
+          "package_name": "com.example.firebaseimagenes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTcuoZvFngyyvLaR_5Z_ZfFbaGgRZcITk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
