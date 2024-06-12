@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "777016137346",
+    "firebase_url": "https://fir-tiemporeal-f3cd8-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "fir-tiemporeal-f3cd8",
+    "storage_bucket": "fir-tiemporeal-f3cd8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:777016137346:android:93041ba5872543a51a469b",
+        "android_client_info": {
+          "package_name": "com.example.firebasetiemporeal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5w0NAh-ns6nJ_OAkO9P1kpvYQVQgHVQM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
