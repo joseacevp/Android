@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "74799887808",
+    "firebase_url": "https://fir-recyclerviewfotos-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "fir-recyclerviewfotos",
+    "storage_bucket": "fir-recyclerviewfotos.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:74799887808:android:3f33548a0a6b1a8c8fc425",
+        "android_client_info": {
+          "package_name": "com.example.firebaserecyclerviewfotos"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJ_rFIiqQgKtF9FIcexPX1FRBSsm967VQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
