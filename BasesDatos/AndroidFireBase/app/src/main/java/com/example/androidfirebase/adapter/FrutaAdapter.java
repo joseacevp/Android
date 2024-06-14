@@ -48,9 +48,9 @@ public class FrutaAdapter extends RecyclerView.Adapter<FrutaAdapter.FrutaHolder>
     @Override
     public void onBindViewHolder(@NonNull FrutaHolder holder, int position) {
         Fruta fruta = lista.get(position);
-        holder.txtId.setText(fruta.getId());
-        holder.txtNombre.setText(fruta.getNombre());
-        holder.txtPrecio.setText(String.valueOf(fruta.getPrecio()));
+        holder.txtId.setText("ID: "+fruta.getId());
+        holder.txtNombre.setText("Nombre: "+fruta.getNombre());
+        holder.txtPrecio.setText("Precio: "+String.valueOf(fruta.getPrecio()));
 
     }
 
