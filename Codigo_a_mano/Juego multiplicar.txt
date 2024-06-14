@@ -1,0 +1,51 @@
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
+import java.util.Random;
+
+public class MainActivity extends AppCompatActivity {
+
+    private TextView questionTextView;
+    private EditText answerEditText;
+    private int correctAnswer;
+    private int score = 0;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        questionTextView = findViewById(R.id.questionTextView);
+        answerEditText = findViewById(R.id.answerEditText);
+
+        askQuestion();
+    }
+
+    private void askQuestion() {
+        Random random = new Random();
+        int num1 = random.nextInt(10) + 1;
+        int num2 = random.nextInt(10) + 1;
+
+        correctAnswer = num1 * num2;
+
+        questionTextView.setText(String.format("¿Cuánto es %d x %d?", num1, num2));
+        answerEditText.getText().clear();
+    }
+
+    public void checkAnswer(View view) {
+        String userAnswerString = answerEditText.getText().toString();
+        
+        if (!userAnswerString.isEmpty()) {
+            int userAnswer = Integer.parseInt(userAnswerString);
+
+            if (userAnswer == correctAnswer) {
+                score++;
+            }
+
+            askQuestion();
+        }
+    }
+}
