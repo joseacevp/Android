@@ -52,28 +52,7 @@ public class InicioGestionUsuarios extends AppCompatActivity {
 
         lista.add(new Jugadores("Admin", R.drawable.adimin, true));
         lista.add(new Jugadores("Nuevo", R.drawable.anadir, true));
-        lista.add(new Jugadores("nombre", R.drawable.carita01, true));
-        lista.add(new Jugadores("nombre", R.drawable.carita01, true));
-        lista.add(new Jugadores("nombre", R.drawable.carita01, true));
-        lista.add(new Jugadores("nombre", R.drawable.carita01, true));
-        lista.add(new Jugadores("nombre", R.drawable.carita01, true));
-        lista.add(new Jugadores("nombre", R.drawable.carita01, true));
-        lista.add(new Jugadores("nombre", R.drawable.carita01, true));
-        lista.add(new Jugadores("nombre", R.drawable.carita01, true));
-        lista.add(new Jugadores("nombre", R.drawable.carita01, true));
-        lista.add(new Jugadores("nombre", R.drawable.carita01, true));
-        lista.add(new Jugadores("nombre", R.drawable.carita01, true));
-        lista.add(new Jugadores("nombre", R.drawable.carita01, true));
-        lista.add(new Jugadores("nombre", R.drawable.carita01, true));
-        lista.add(new Jugadores("nombre", R.drawable.carita01, true));
-        lista.add(new Jugadores("nombre", R.drawable.carita01, true));
-        lista.add(new Jugadores("nombre", R.drawable.carita01, true));
-        lista.add(new Jugadores("nombre", R.drawable.carita01, true));
-        lista.add(new Jugadores("nombre", R.drawable.carita01, true));
-        lista.add(new Jugadores("nombre", R.drawable.carita01, true));
-        lista.add(new Jugadores("nombre", R.drawable.carita01, true));
-        lista.add(new Jugadores("nombre", R.drawable.carita01, true));
-        lista.add(new Jugadores("nombre", R.drawable.carita01, true));
+
         return lista;
     }
 }
