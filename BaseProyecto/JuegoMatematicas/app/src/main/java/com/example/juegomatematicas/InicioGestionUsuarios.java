@@ -42,7 +42,7 @@ public class InicioGestionUsuarios extends AppCompatActivity {
     private void iniciarRecycler() {
         recyclerView = binding.recyclerInicioJugadores;
         // Configurar el RecyclerView con GridLayoutManager para la rejilla
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 3));  // 3 columnas
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));  // 3 columnas
         adaptadorRecyclerMultipl = new AdaptadroJugadoresInicio(llenarListaJugadores());
         recyclerView.setAdapter(adaptadorRecyclerMultipl);
     }
@@ -50,8 +50,8 @@ public class InicioGestionUsuarios extends AppCompatActivity {
     private List<Jugadores> llenarListaJugadores() {
         List<Jugadores> lista = new ArrayList<>();
 
-        lista.add(new Jugadores("nombre", R.drawable.carita01, true));
-        lista.add(new Jugadores("nombre", R.drawable.carita01, true));
+        lista.add(new Jugadores("Admin", R.drawable.adimin, true));
+        lista.add(new Jugadores("Nuevo", R.drawable.anadir, true));
         lista.add(new Jugadores("nombre", R.drawable.carita01, true));
         lista.add(new Jugadores("nombre", R.drawable.carita01, true));
         lista.add(new Jugadores("nombre", R.drawable.carita01, true));

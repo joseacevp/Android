@@ -7,14 +7,16 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_jugador_inicio"
-        android:layout_width="100dp"
-        android:layout_height="120dp"
-
+        android:layout_width="160dp"
+        android:layout_height="160dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:foregroundGravity="center"
+        android:textAlignment="center"
+        app:cardBackgroundColor="#656363"
+        app:cardCornerRadius="90dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,6 +26,7 @@
             android:id="@+id/imageView_jugador_inicio"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:scaleType="centerCrop"
             tools:srcCompat="@tools:sample/avatars" />
@@ -32,9 +35,12 @@
             android:id="@+id/textView_nombreJugadorInicio"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
             android:text="Jugador"
-
-            android:textAlignment="center" />
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:textColor="@color/white" />
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
