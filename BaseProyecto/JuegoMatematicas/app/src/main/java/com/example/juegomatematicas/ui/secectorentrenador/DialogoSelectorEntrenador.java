@@ -49,16 +49,12 @@ public class DialogoSelectorEntrenador extends DialogFragment {
     private List<Entrenador> llenarListaEntrenadores() {
         List<Entrenador> lista = new ArrayList<>();
 
-        lista.add(new Entrenador(R.drawable.admin));
-        lista.add(new Entrenador(R.drawable.anadir));
-        lista.add(new Entrenador(R.drawable.admin));
-        lista.add(new Entrenador(R.drawable.anadir));
-        lista.add(new Entrenador(R.drawable.admin));
-        lista.add(new Entrenador(R.drawable.anadir));
-        lista.add(new Entrenador(R.drawable.admin));
-        lista.add(new Entrenador(R.drawable.anadir));
-        lista.add(new Entrenador(R.drawable.admin));
-        lista.add(new Entrenador(R.drawable.anadir));
+        lista.add(new Entrenador(R.drawable.uno));
+        lista.add(new Entrenador(R.drawable.dos));
+        lista.add(new Entrenador(R.drawable.tres));
+        lista.add(new Entrenador(R.drawable.cuatro));
+        lista.add(new Entrenador(R.drawable.cinco));
+        lista.add(new Entrenador(R.drawable.seis));
         return lista;
     }
 
