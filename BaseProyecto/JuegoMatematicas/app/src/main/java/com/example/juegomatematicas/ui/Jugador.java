@@ -1,14 +1,14 @@
 package com.example.juegomatematicas.ui;
 
-public class Jugadores {
+public class Jugador {
     private String nombre;
     private int foto;
     private Boolean isSelected = false;
 
-    public Jugadores() {
+    public Jugador() {
     }
 
-    public Jugadores(String nombre, int foto, Boolean isSelected) {
+    public Jugador(String nombre, int foto, Boolean isSelected) {
         this.nombre = nombre;
         this.foto = foto;
         this.isSelected = isSelected;

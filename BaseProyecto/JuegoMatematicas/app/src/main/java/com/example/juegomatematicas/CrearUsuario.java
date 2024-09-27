@@ -1,24 +1,17 @@
 package com.example.juegomatematicas;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
-import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.juegomatematicas.databinding.ActivityCrearUsuarioBinding;
-import com.example.juegomatematicas.databinding.ActivityInicioGestionUsuariosBinding;
+import com.example.juegomatematicas.ui.secectorentrenador.DialogoSelectorEntrenador;
 
 public class CrearUsuario extends AppCompatActivity {
     private ActivityCrearUsuarioBinding binding;
-
+   private DialogoSelectorEntrenador selectorEntrenador = new DialogoSelectorEntrenador();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +29,13 @@ public class CrearUsuario extends AppCompatActivity {
                     Toast.makeText(CrearUsuario.this, "Necesitas un Nombre para Jugar", Toast.LENGTH_SHORT).show();
                 } else {
                     // Si el nombre es válido, iniciar la actividad
-                    Intent volver = new Intent(getApplicationContext(), InicioGestionUsuarios.class);
-                    startActivity(volver);
-
-                    // Finalizar la actividad actual
-                    finish(); // Cierra la actividad actual después de lanzar la nueva
+//                    Intent volver = new Intent(getApplicationContext(), InicioGestionUsuarios.class);
+//                    startActivity(volver);
+//
+//                    // Finalizar la actividad actual
+//                    finish(); // Cierra la actividad actual después de lanzar la nueva
+                    selectorEntrenador.show(getSupportFragmentManager(),"entrenador");
+//                    finish();
                 }
 
             }

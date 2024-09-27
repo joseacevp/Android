@@ -1,7 +1,5 @@
 package com.example.juegomatematicas.ui;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -20,13 +18,13 @@ import com.example.juegomatematicas.R;
 import java.util.List;
 
 public class AdaptadroJugadoresInicio extends RecyclerView.Adapter<AdaptadroJugadoresInicio.AdaptadorViewHolder> {
-    private List<Jugadores> listaJugadores;
+    private List<Jugador> listaJugadores;
 
-    public List<Jugadores> getListaJugadores() {
+    public List<Jugador> getListaJugadores() {
         return listaJugadores;
     }
 
-    public AdaptadroJugadoresInicio(List<Jugadores> listaJugadores) {
+    public AdaptadroJugadoresInicio(List<Jugador> listaJugadores) {
         this.listaJugadores = listaJugadores;
 
     }
@@ -66,7 +64,7 @@ public class AdaptadroJugadoresInicio extends RecyclerView.Adapter<AdaptadroJuga
 
         }
 
-        public void bindAdaptador(Jugadores jugadores) {
+        public void bindAdaptador(Jugador jugadores) {
             nombre.setText(jugadores.getNombre());
             foto.setImageResource(jugadores.getFoto());
             cardViewJugador.setOnClickListener(new View.OnClickListener() {
