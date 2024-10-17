@@ -13,6 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.entrenadormultiplicar.R;
 import com.example.entrenadormultiplicar.databinding.ActivityInicioBinding;
+import com.example.entrenadormultiplicar.gestionentrenador.AdaptadorEntrenadores;
+import com.example.entrenadormultiplicar.gestionentrenador.DialogoEntrenadorViewModel;
+import com.example.entrenadormultiplicar.gestionentrenador.Entrenador;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +23,10 @@ import java.util.List;
 public class Inicio extends AppCompatActivity {
     private ActivityInicioBinding binding;
     InicioViewModel inicioViewModel;
+    private DialogoEntrenadorViewModel dialogoEntrenadorViewModel;
     private RecyclerView recyclerView;
     private AdaptadorJugadoresInicio adaptadorJugadoresInicio;
     private List<Jugador> lista ;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,12 @@ public class Inicio extends AppCompatActivity {
             }
         });
         lista =  new ArrayList<>();
+        dialogoEntrenadorViewModel.getEntrenador().observe(this, new Observer<Entrenador>() {
+            @Override
+            public void onChanged(Entrenador entrenador) {
+                lista.add(entrenador)
+            }
+        });
         iniciarRecycler();
 
     }

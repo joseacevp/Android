@@ -21,6 +21,7 @@ public class AdaptadorEntrenadores extends RecyclerView.Adapter<AdaptadorEntrena
     private List<Entrenador> listaEntrenadores;
 //    EntrenadorViewModel entrenadorViewModel = new EntrenadorViewModel();
 
+    private Entrenador entrenadorSelecionado;
 
     public List<Entrenador> getListaEntrenadores() {
         return listaEntrenadores;
@@ -30,6 +31,11 @@ public class AdaptadorEntrenadores extends RecyclerView.Adapter<AdaptadorEntrena
         this.listaEntrenadores = entrenadores;
     }
 
+    public Entrenador getEntrenadorSeleccionado() {
+        Entrenador entrenadorSelect = new Entrenador();
+        entrenadorSelect = entrenadorSelecionado;
+        return entrenadorSelect;
+    }
 
     public AdaptadorEntrenadores(List<Entrenador> listaEntrenadores) {
         this.listaEntrenadores = listaEntrenadores;
@@ -70,9 +76,14 @@ public class AdaptadorEntrenadores extends RecyclerView.Adapter<AdaptadorEntrena
                 @Override
                 public void onClick(View v) {
                     Context context = v.getContext();
-
+                    entrenadorSelecionado.setFoto(entrenador.getFoto());
+                    entrenadorSelecionado.setNombre(entrenador.getNombre());
                     Toast.makeText(context, "SELECCIONADO " + entrenador.getFoto(), Toast.LENGTH_SHORT).show();
-
+                    try {
+                        finalize();
+                    } catch (Throwable e) {
+                        Toast.makeText(context, "FALLO AL CERRAR", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         }

@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.entrenadormultiplicar.R;
+import com.example.entrenadormultiplicar.gestionentrenador.Entrenador;
 
 import java.util.List;
 
@@ -28,6 +29,7 @@ public class AdaptadorJugadoresInicio extends RecyclerView.Adapter<AdaptadorJuga
     public void setListaJugadores(List<Jugador> jugadores) {
         this.listaJugadores = jugadores;
     }
+
 
     public AdaptadorJugadoresInicio(List<Jugador> listaJugadores) {
         this.listaJugadores = listaJugadores;

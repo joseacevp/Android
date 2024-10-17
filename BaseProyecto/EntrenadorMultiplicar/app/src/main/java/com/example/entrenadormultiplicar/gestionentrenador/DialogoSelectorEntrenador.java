@@ -1,12 +1,15 @@
 package com.example.entrenadormultiplicar.gestionentrenador;
+
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,6 +23,7 @@ public class DialogoSelectorEntrenador extends DialogFragment {
 
     private RecyclerView recyclerView;
     private AdaptadorEntrenadores adaptadorEntrenadores;
+    private DialogoEntrenadorViewModel dialogoEntrenadorViewModel;
 
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
 
@@ -34,8 +38,12 @@ public class DialogoSelectorEntrenador extends DialogFragment {
         AlertDialog dialog = construptor.create();
 
         iniciarRecycler();
+        dialogoEntrenadorViewModel = new ViewModelProvider(requireActivity()).get(DialogoEntrenadorViewModel.class);
+        dialogoEntrenadorViewModel.setEntrenador(adaptadorEntrenadores.getEntrenadorSeleccionado());
+
         //
         return dialog;
+
     }
 
     private void iniciarRecycler() {
@@ -49,12 +57,12 @@ public class DialogoSelectorEntrenador extends DialogFragment {
     private List<Entrenador> llenarListaEntrenadores() {
         List<Entrenador> lista = new ArrayList<>();
 
-        lista.add(new Entrenador(R.drawable.uno,""));
-        lista.add(new Entrenador(R.drawable.dos,""));
-        lista.add(new Entrenador(R.drawable.tres,""));
-        lista.add(new Entrenador(R.drawable.cuatro,""));
-        lista.add(new Entrenador(R.drawable.cinco,""));
-        lista.add(new Entrenador(R.drawable.seis,""));
+        lista.add(new Entrenador(R.drawable.uno, ""));
+        lista.add(new Entrenador(R.drawable.dos, ""));
+        lista.add(new Entrenador(R.drawable.tres, ""));
+        lista.add(new Entrenador(R.drawable.cuatro, ""));
+        lista.add(new Entrenador(R.drawable.cinco, ""));
+        lista.add(new Entrenador(R.drawable.seis, ""));
         return lista;
     }
 
