@@ -21,11 +21,10 @@ public class InicioGestionUsuarios extends AppCompatActivity {
     private ActivityInicioGestionUsuariosBinding binding;
     private RecyclerView recyclerView;
     private boolean hayNuevoFotoEntrenador = false;
-    private   String nombreNuevo,fotoNuev;
+    private String nombreNuevo, fotoNuev;
     private boolean hayNuevoNombreEntrenador = false;
-//    EntrenadorViewModel entrenadorViewModel = new EntrenadorViewModel();
-    JugadoresViewModel jugadoresViewModel =
-            new ViewModelProvider(this).get(JugadoresViewModel.class);
+    //    EntrenadorViewModel entrenadorViewModel = new EntrenadorViewModel();
+    JugadoresViewModel jugadoresViewModel;
     private AdaptadroJugadoresInicio adaptadorRecyclerMultipl;
 
     @Override
@@ -37,7 +36,8 @@ public class InicioGestionUsuarios extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         // Quita el titulo en esta actividad
         getSupportActionBar().hide();
-
+        jugadoresViewModel =
+                new ViewModelProvider(this).get(JugadoresViewModel.class);
         iniciarRecycler();
 
     }
@@ -79,10 +79,9 @@ public class InicioGestionUsuarios extends AppCompatActivity {
                 }
             }
         });
-    if (hayNuevoFotoEntrenador && hayNuevoNombreEntrenador){
-        lista.add(new Jugador(nombreNuevo,  (String)fotoNuev, true));
-    }
-
+        if (hayNuevoFotoEntrenador && hayNuevoNombreEntrenador) {
+            lista.add(new Jugador(nombreNuevo, Integer.parseInt(fotoNuev), true));
+        }
 
 
         return lista;

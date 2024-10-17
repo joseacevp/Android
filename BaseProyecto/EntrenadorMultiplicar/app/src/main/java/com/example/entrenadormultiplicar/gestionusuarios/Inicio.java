@@ -22,6 +22,7 @@ public class Inicio extends AppCompatActivity {
     InicioViewModel inicioViewModel;
     private RecyclerView recyclerView;
     private AdaptadorJugadoresInicio adaptadorJugadoresInicio;
+    private List<Jugador> lista ;
 
 
     @Override
@@ -33,16 +34,16 @@ public class Inicio extends AppCompatActivity {
         // Quita el titulo en esta actividad
         getSupportActionBar().hide();
 
-
         inicioViewModel = new ViewModelProvider(this).get(InicioViewModel.class);
         inicioViewModel.getJugadoresInicio().observe(this, new Observer<List<Jugador>>() {
             @Override
             public void onChanged(List<Jugador> jugadores) {
                 // Actualizar el RecyclerView con la lista de jugadores seleccionados
-                inicioViewModel.setJugadoresInicio(jugadores);
-                recyclerView.onScreenStateChanged(0);
+                adaptadorJugadoresInicio.setListaJugadores(jugadores);
+                adaptadorJugadoresInicio.notifyDataSetChanged();
             }
         });
+        lista =  new ArrayList<>();
         iniciarRecycler();
 
     }
@@ -57,7 +58,7 @@ public class Inicio extends AppCompatActivity {
     }
 
     private List<Jugador> llenarListaJugadores() {
-        List<Jugador> lista = new ArrayList<>();
+
         lista.add(new Jugador("Admin", R.drawable.admin, true));
         lista.add(new Jugador("Nuevo", R.drawable.anadir, true));
         return lista;

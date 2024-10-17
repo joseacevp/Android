@@ -22,9 +22,11 @@ import java.util.List;
 
 public class AdaptadorJugadoresInicio extends RecyclerView.Adapter<AdaptadorJugadoresInicio.AdaptadorViewHolder> {
     private List<Jugador> listaJugadores;
-
     public List<Jugador> getListaJugadores() {
         return listaJugadores;
+    }
+    public void setListaJugadores(List<Jugador> jugadores) {
+        this.listaJugadores = jugadores;
     }
 
     public AdaptadorJugadoresInicio(List<Jugador> listaJugadores) {
