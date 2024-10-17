@@ -28,9 +28,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdaptadorEntrenadores extends RecyclerView.Adapter<AdaptadorEntrenadores.AdaptadorViewHolder> {
-    private DatabaseReference mDatabaseReference = FirebaseDatabase.getInstance().getReference();
-    private DatabaseReference mRooChild = mDatabaseReference.child("texto");
+
     private List<Entrenador> listaEntrenadores;
+//    EntrenadorViewModel entrenadorViewModel = new EntrenadorViewModel();
+    JugadoresViewModel jugadoresViewModel = new JugadoresViewModel();
+
+    public List<Entrenador> getListaEntrenadores() {
+        return listaEntrenadores;
+    }
+
+    public void setListaEntrenadores(List<Entrenador> entrenadores) {
+        this.listaEntrenadores = entrenadores;
+    }
 
 
     public AdaptadorEntrenadores(List<Entrenador> listaEntrenadores) {
@@ -63,7 +72,7 @@ public class AdaptadorEntrenadores extends RecyclerView.Adapter<AdaptadorEntrena
         public AdaptadorViewHolder(@NonNull View itemView) {
             super(itemView);
             foto = itemView.findViewById(R.id.imagen_entrenador);
-         
+
         }
 
         public void bindAdaptador(Entrenador entrenador) {
@@ -71,12 +80,13 @@ public class AdaptadorEntrenadores extends RecyclerView.Adapter<AdaptadorEntrena
             foto.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    jugadoresViewModel.setFoto(String.valueOf(entrenador.getFoto()));
                     Context context = v.getContext();
                     Intent miIntent = new Intent(context, InicioGestionUsuarios.class);
                     // Lanzamos la intención para abrir la nueva actividad
                     context.startActivity(miIntent);
-                    Toast.makeText(context, "SELECCIONADO ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "SELECCIONADO "+entrenador.getFoto(), Toast.LENGTH_SHORT).show();
+
                 }
             });
         }
