@@ -76,8 +76,7 @@ public class AdaptadorEntrenadores extends RecyclerView.Adapter<AdaptadorEntrena
                 @Override
                 public void onClick(View v) {
                     Context context = v.getContext();
-                    entrenadorSelecionado.setFoto(entrenador.getFoto());
-                    entrenadorSelecionado.setNombre(entrenador.getNombre());
+                    entrenadorSelecionado= entrenador;
                     Toast.makeText(context, "SELECCIONADO " + entrenador.getFoto(), Toast.LENGTH_SHORT).show();
                     try {
                         finalize();

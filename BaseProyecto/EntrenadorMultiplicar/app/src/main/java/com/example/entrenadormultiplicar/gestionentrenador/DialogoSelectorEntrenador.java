@@ -40,7 +40,7 @@ public class DialogoSelectorEntrenador extends DialogFragment {
         iniciarRecycler();
         dialogoEntrenadorViewModel = new ViewModelProvider(requireActivity()).get(DialogoEntrenadorViewModel.class);
         dialogoEntrenadorViewModel.setEntrenador(adaptadorEntrenadores.getEntrenadorSeleccionado());
-
+//        System.out.println(dialogoEntrenadorViewModel.getEntrenador().getValue().getFoto());
         //
         return dialog;
 

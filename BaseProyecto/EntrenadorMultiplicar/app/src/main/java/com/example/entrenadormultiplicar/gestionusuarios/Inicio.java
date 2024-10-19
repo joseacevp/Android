@@ -47,12 +47,12 @@ public class Inicio extends AppCompatActivity {
             }
         });
         lista =  new ArrayList<>();
-        dialogoEntrenadorViewModel.getEntrenador().observe(this, new Observer<Entrenador>() {
-            @Override
-            public void onChanged(Entrenador entrenador) {
-                lista.add(entrenador)
-            }
-        });
+//        dialogoEntrenadorViewModel.getEntrenador().observe(this, new Observer<Entrenador>() {
+//            @Override
+//            public void onChanged(Entrenador entrenador) {
+////                lista.add(entrenador)
+//            }
+//        });
         iniciarRecycler();
 
     }
