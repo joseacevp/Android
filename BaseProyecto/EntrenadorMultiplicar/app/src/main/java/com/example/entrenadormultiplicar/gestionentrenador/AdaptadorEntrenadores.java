@@ -13,31 +13,32 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.entrenadormultiplicar.R;
+import com.example.entrenadormultiplicar.gestionusuarios.Jugador;
 
 import java.util.List;
 
 public class AdaptadorEntrenadores extends RecyclerView.Adapter<AdaptadorEntrenadores.AdaptadorViewHolder> {
 
-    private List<Entrenador> listaEntrenadores;
+    private List<Jugador>  listaEntrenadores;
 //    EntrenadorViewModel entrenadorViewModel = new EntrenadorViewModel();
 
-    private Entrenador entrenadorSelecionado;
+    private Jugador entrenadorSelecionado;
 
-    public List<Entrenador> getListaEntrenadores() {
+    public List<Jugador> getListaEntrenadores() {
         return listaEntrenadores;
     }
 
-    public void setListaEntrenadores(List<Entrenador> entrenadores) {
+    public void setListaEntrenadores(List<Jugador> entrenadores) {
         this.listaEntrenadores = entrenadores;
     }
 
-    public Entrenador getEntrenadorSeleccionado() {
-        Entrenador entrenadorSelect = new Entrenador();
+    public Jugador getEntrenadorSeleccionado() {
+        Jugador entrenadorSelect = new Jugador();
         entrenadorSelect = entrenadorSelecionado;
         return entrenadorSelect;
     }
 
-    public AdaptadorEntrenadores(List<Entrenador> listaEntrenadores) {
+    public AdaptadorEntrenadores(List<Jugador> listaEntrenadores) {
         this.listaEntrenadores = listaEntrenadores;
     }
 
@@ -70,7 +71,7 @@ public class AdaptadorEntrenadores extends RecyclerView.Adapter<AdaptadorEntrena
 
         }
 
-        public void bindAdaptador(Entrenador entrenador) {
+        public void bindAdaptador(Jugador entrenador) {
             foto.setImageResource(entrenador.getFoto());
             foto.setOnClickListener(new View.OnClickListener() {
                 @Override

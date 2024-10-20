@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.entrenadormultiplicar.R;
+import com.example.entrenadormultiplicar.gestionusuarios.Jugador;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,15 +55,16 @@ public class DialogoSelectorEntrenador extends DialogFragment {
         recyclerView.setAdapter(adaptadorEntrenadores);
     }
 
-    private List<Entrenador> llenarListaEntrenadores() {
-        List<Entrenador> lista = new ArrayList<>();
+    private List<Jugador>  llenarListaEntrenadores() {
+        List<Jugador> lista = new ArrayList<>();
 
-        lista.add(new Entrenador(R.drawable.uno, ""));
-        lista.add(new Entrenador(R.drawable.dos, ""));
-        lista.add(new Entrenador(R.drawable.tres, ""));
-        lista.add(new Entrenador(R.drawable.cuatro, ""));
-        lista.add(new Entrenador(R.drawable.cinco, ""));
-        lista.add(new Entrenador(R.drawable.seis, ""));
+        lista.add(new Jugador("",R.drawable.uno, true));
+        lista.add(new Jugador("",R.drawable.dos, true));
+        lista.add(new Jugador("",R.drawable.tres, true));
+        lista.add(new Jugador("",R.drawable.cuatro, true));
+        lista.add(new Jugador("",R.drawable.cinco, true));
+        lista.add(new Jugador("",R.drawable.seis, true));
+
         return lista;
     }
 
