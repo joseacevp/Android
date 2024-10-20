@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.entrenadormultiplicar.R;
 import com.example.entrenadormultiplicar.firebase.AccesoFirebase;
 import com.example.entrenadormultiplicar.firebase.AccesoFirebaseImpl;
+import com.example.entrenadormultiplicar.gestionusuarios.Inicio;
 import com.example.entrenadormultiplicar.gestionusuarios.Jugador;
 
 import java.util.List;
@@ -91,7 +92,11 @@ public class AdaptadorEntrenadores extends RecyclerView.Adapter<AdaptadorEntrena
                     Toast.makeText(context, "SELECCIONADO " + entrenador.getFoto() + entrenador.getNombre(), Toast.LENGTH_SHORT).show();
                     dialogoEntrenadorViewModel.setEntrenador(entrenadorSelecionado);
                     accesoFirebase.guardarDato(entrenadorSelecionado);
-
+                    // Volver a la actividad de inicio
+                    Intent intent = new Intent(context, Inicio.class);
+                    // Si quieres enviar datos a la actividad de inicio, puedes añadir extras al Intent
+                    intent.putExtra("entrenadorSeleccionado", entrenador.getNombre());
+                    context.startActivity(intent);
                 }
             });
         }
