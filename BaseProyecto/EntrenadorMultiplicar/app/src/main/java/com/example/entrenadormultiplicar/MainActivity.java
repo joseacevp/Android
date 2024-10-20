@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
         setSupportActionBar(binding.appBarMain.toolbar);
         binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,5 +63,14 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    public void onBackPressed() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        // Si hay más fragmentos en la pila de retroceso, navega hacia atrás
+        navController.popBackStack();
+        // No llamamos a super.onBackPressed() para evitar que la actividad se cierre
+
     }
 }

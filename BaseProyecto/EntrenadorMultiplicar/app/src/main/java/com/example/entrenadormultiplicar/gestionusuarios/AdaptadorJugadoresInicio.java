@@ -16,6 +16,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.entrenadormultiplicar.MainActivity;
 import com.example.entrenadormultiplicar.R;
 import com.example.entrenadormultiplicar.gestionentrenador.SelectorEntrenador;
 
@@ -79,13 +80,15 @@ public class AdaptadorJugadoresInicio extends RecyclerView.Adapter<AdaptadorJuga
                 public void onClick(View v) {
                     System.out.println("selecciono"+jugadores.getNombre());
                     if (jugadores.getNombre().equals("Nuevo")){
-
                         Context context = v.getContext();
                         Intent intent = new Intent(context, SelectorEntrenador.class);
                         context.startActivity(intent);
 
-                    }else {
-                        Toast.makeText(itemView.getContext(), jugadores.getNombre(), Toast.LENGTH_SHORT).show();
+                    }else if(!jugadores.getNombre().equals("Nuevo")){
+                        Context context = v.getContext();
+                        Intent intent = new Intent(context, MainActivity.class);
+                        context.startActivity(intent);
+
                     }
                 }
             });
