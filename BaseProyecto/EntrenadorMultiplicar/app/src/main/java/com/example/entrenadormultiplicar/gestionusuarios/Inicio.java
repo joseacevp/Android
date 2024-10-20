@@ -1,10 +1,10 @@
 package com.example.entrenadormultiplicar.gestionusuarios;
 
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.widget.Toast;
 
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -13,20 +13,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.entrenadormultiplicar.R;
 import com.example.entrenadormultiplicar.databinding.ActivityInicioBinding;
-import com.example.entrenadormultiplicar.gestionentrenador.AdaptadorEntrenadores;
+import com.example.entrenadormultiplicar.firebase.AccesoFirebase;
+import com.example.entrenadormultiplicar.firebase.AccesoFirebaseImpl;
 import com.example.entrenadormultiplicar.gestionentrenador.DialogoEntrenadorViewModel;
-import com.example.entrenadormultiplicar.gestionentrenador.Entrenador;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Inicio extends AppCompatActivity {
     private ActivityInicioBinding binding;
-    InicioViewModel inicioViewModel;
-    private DialogoEntrenadorViewModel dialogoEntrenadorViewModel;
+    private AccesoFirebase accesoFirebase;
     private RecyclerView recyclerView;
     private AdaptadorJugadoresInicio adaptadorJugadoresInicio;
-    private List<Jugador> lista ;
+    private List<Jugador> listaRecu = new ArrayList<>();
+    private InicioViewModel inicioViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,43 +36,51 @@ public class Inicio extends AppCompatActivity {
         binding = ActivityInicioBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        // Quita el titulo en esta actividad
         getSupportActionBar().hide();
 
-        inicioViewModel = new ViewModelProvider(this).get(InicioViewModel.class);
-        inicioViewModel.getJugadoresInicio().observe(this, new Observer<List<Jugador>>() {
-            @Override
-            public void onChanged(List<Jugador> jugadores) {
-                // Actualizar el RecyclerView con la lista de jugadores seleccionados
-                adaptadorJugadoresInicio.setListaJugadores(jugadores);
-                adaptadorJugadoresInicio.notifyDataSetChanged();
-            }
-        });
-        lista =  new ArrayList<>();
-//        dialogoEntrenadorViewModel.getEntrenador().observe(this, new Observer<Entrenador>() {
+        // Instanciar la clase que implementa la interfaz
+        accesoFirebase = new AccesoFirebaseImpl();
+
+//        // Configurar el ViewModel para observar los jugadores
+//        inicioViewModel = new ViewModelProvider(this).get(InicioViewModel.class);
+//        inicioViewModel.getJugadoresInicio().observe(this, new Observer<List<Jugador>>() {
 //            @Override
-//            public void onChanged(Entrenador entrenador) {
-////                lista.add(entrenador)
+//            public void onChanged(List<Jugador> jugadores) {
+//                adaptadorJugadoresInicio.setListaJugadores(jugadores);
+//                adaptadorJugadoresInicio.notifyDataSetChanged();
 //            }
 //        });
-        iniciarRecycler();
 
+        // Cargar datos desde Firebase y actualizar la lista
+        accesoFirebase.cargarDatos(new AccesoFirebase.OnDataLoadedCallback() {
+            @Override
+            public void onDataLoaded(List<Jugador> jugadores) {
+                if (jugadores.isEmpty()){
+                    llenarListaJugadores();
+                }
+                listaRecu.clear();
+                listaRecu.addAll(jugadores);
+                adaptadorJugadoresInicio.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onError(String error) {
+                Toast.makeText(Inicio.this, "Fallo al cargar datos de Firebase: " + error, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        iniciarRecycler();
     }
 
     private void iniciarRecycler() {
         recyclerView = binding.recyclerInicioJugadores;
-        // Configurar el RecyclerView con GridLayoutManager para la rejilla
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));  // 3 columnas
-        adaptadorJugadoresInicio = new AdaptadorJugadoresInicio(llenarListaJugadores());
+        recyclerView.setLayoutManager(new GridLayoutManager(Inicio.this, 2));
+        adaptadorJugadoresInicio = new AdaptadorJugadoresInicio(listaRecu);
         recyclerView.setAdapter(adaptadorJugadoresInicio);
-
     }
 
-    private List<Jugador> llenarListaJugadores() {
-
-        lista.add(new Jugador("Admin", R.drawable.admin, true));
-        lista.add(new Jugador("Nuevo", R.drawable.anadir, true));
-        return lista;
+    private void llenarListaJugadores() {
+        accesoFirebase.guardarDato(new Jugador("Admin", R.drawable.admin, true));
+        accesoFirebase.guardarDato(new Jugador("Nuevo", R.drawable.anadir, true));
     }
-
 }

@@ -9,15 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.entrenadormultiplicar.R;
-import com.example.entrenadormultiplicar.gestionentrenador.Entrenador;
+import com.example.entrenadormultiplicar.gestionentrenador.SelectorEntrenador;
 
 import java.util.List;
 
@@ -78,10 +78,13 @@ public class AdaptadorJugadoresInicio extends RecyclerView.Adapter<AdaptadorJuga
                 @Override
                 public void onClick(View v) {
                     System.out.println("selecciono"+jugadores.getNombre());
-                    if (jugadores.getNombre()=="Nuevo"){
+                    if (jugadores.getNombre().equals("Nuevo")){
+
                         Context context = v.getContext();
                         Intent intent = new Intent(context, SelectorEntrenador.class);
                         context.startActivity(intent);
+                    }else {
+                        Toast.makeText(itemView.getContext(), jugadores.getNombre(), Toast.LENGTH_SHORT).show();
                     }
                 }
             });
