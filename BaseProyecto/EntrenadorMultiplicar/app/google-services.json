@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "290474322888",
+    "firebase_url": "https://entrenadormultiplicar-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "entrenadormultiplicar",
+    "storage_bucket": "entrenadormultiplicar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:290474322888:android:34e406af4f026503082efd",
+        "android_client_info": {
+          "package_name": "com.example.entrenadormultiplicar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpzcbKmKNFMRLLLUyaKGkVxNNTzb-iYIc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
