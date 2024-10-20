@@ -61,6 +61,7 @@ public class Inicio extends AppCompatActivity {
                 listaRecu.clear();
                 listaRecu.addAll(jugadores);
                 adaptadorJugadoresInicio.notifyDataSetChanged();
+
             }
 
             @Override

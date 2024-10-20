@@ -1,5 +1,7 @@
 package com.example.entrenadormultiplicar.gestionentrenador;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +22,7 @@ public class SelectorEntrenador extends AppCompatActivity {
 
     private AccesoFirebase accesoFirebase;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +30,7 @@ public class SelectorEntrenador extends AppCompatActivity {
         setContentView(binding.getRoot());
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         getSupportActionBar().hide();
+
 
         // Instanciar la clase que implementa la interfaz
         accesoFirebase = new AccesoFirebaseImpl();
@@ -38,8 +42,10 @@ public class SelectorEntrenador extends AppCompatActivity {
                 if (nombreJugador.isEmpty()) {
                     Toast.makeText(SelectorEntrenador.this, "Necesitas un Nombre para Jugar", Toast.LENGTH_SHORT).show();
                 } else {
+                    DialogoSelectorEntrenador dialogo = new DialogoSelectorEntrenador();
+                    dialogo.show(getSupportFragmentManager(), "selector_entrenador");
 
-                    accesoFirebase.guardarDato(new Jugador(nombreJugador, R.drawable.cinco, true));
+//                    accesoFirebase.guardarDato(new Jugador(nombreJugador, R.drawable.cinco, true));
                     // Lógica adicional después de guardar el jugador
                 }
             }

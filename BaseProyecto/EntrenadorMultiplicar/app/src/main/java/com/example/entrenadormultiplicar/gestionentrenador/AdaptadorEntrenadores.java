@@ -79,11 +79,7 @@ public class AdaptadorEntrenadores extends RecyclerView.Adapter<AdaptadorEntrena
                     Context context = v.getContext();
                     entrenadorSelecionado= entrenador;
                     Toast.makeText(context, "SELECCIONADO " + entrenador.getFoto(), Toast.LENGTH_SHORT).show();
-                    try {
-                        finalize();
-                    } catch (Throwable e) {
-                        Toast.makeText(context, "FALLO AL CERRAR", Toast.LENGTH_SHORT).show();
-                    }
+
                 }
             });
         }

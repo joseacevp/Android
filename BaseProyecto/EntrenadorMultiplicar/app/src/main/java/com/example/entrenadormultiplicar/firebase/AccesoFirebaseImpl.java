@@ -28,6 +28,7 @@ public class AccesoFirebaseImpl implements AccesoFirebase{
                 databaseReference.child(id).setValue(jugador);
             }
         }
+
     }
 
     @Override

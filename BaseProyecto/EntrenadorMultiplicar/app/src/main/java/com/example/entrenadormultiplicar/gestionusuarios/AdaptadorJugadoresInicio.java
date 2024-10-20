@@ -83,6 +83,7 @@ public class AdaptadorJugadoresInicio extends RecyclerView.Adapter<AdaptadorJuga
                         Context context = v.getContext();
                         Intent intent = new Intent(context, SelectorEntrenador.class);
                         context.startActivity(intent);
+
                     }else {
                         Toast.makeText(itemView.getContext(), jugadores.getNombre(), Toast.LENGTH_SHORT).show();
                     }

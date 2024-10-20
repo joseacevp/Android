@@ -39,8 +39,8 @@ public class DialogoSelectorEntrenador extends DialogFragment {
         AlertDialog dialog = construptor.create();
 
         iniciarRecycler();
-        dialogoEntrenadorViewModel = new ViewModelProvider(requireActivity()).get(DialogoEntrenadorViewModel.class);
-        dialogoEntrenadorViewModel.setEntrenador(adaptadorEntrenadores.getEntrenadorSeleccionado());
+//        dialogoEntrenadorViewModel = new ViewModelProvider(requireActivity()).get(DialogoEntrenadorViewModel.class);
+//        dialogoEntrenadorViewModel.setEntrenador(adaptadorEntrenadores.getEntrenadorSeleccionado());
 //        System.out.println(dialogoEntrenadorViewModel.getEntrenador().getValue().getFoto());
         //
         return dialog;
