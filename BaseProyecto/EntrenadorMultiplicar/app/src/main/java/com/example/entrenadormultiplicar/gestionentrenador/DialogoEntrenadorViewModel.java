@@ -9,7 +9,7 @@ import com.example.entrenadormultiplicar.gestionusuarios.Jugador;
 import java.util.List;
 
 public class DialogoEntrenadorViewModel extends ViewModel {
-    private MutableLiveData<Jugador> entrenador = new MutableLiveData<>();
+    private final MutableLiveData<Jugador> entrenador = new MutableLiveData<>();
 
     public LiveData<Jugador> getEntrenador() {
         return entrenador;

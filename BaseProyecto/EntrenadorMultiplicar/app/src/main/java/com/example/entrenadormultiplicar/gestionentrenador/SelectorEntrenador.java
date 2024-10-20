@@ -42,11 +42,14 @@ public class SelectorEntrenador extends AppCompatActivity {
                 if (nombreJugador.isEmpty()) {
                     Toast.makeText(SelectorEntrenador.this, "Necesitas un Nombre para Jugar", Toast.LENGTH_SHORT).show();
                 } else {
-                    DialogoSelectorEntrenador dialogo = new DialogoSelectorEntrenador();
+                    DialogoSelectorEntrenador dialogo = new DialogoSelectorEntrenador(); // Crear el Bundle y poner el dato
+                    Bundle bundle = new Bundle();
+                    bundle.putString("nombre_jugador", nombreJugador);
+                    dialogo.setArguments(bundle);
+
+                    // Mostrar el DialogFragment
                     dialogo.show(getSupportFragmentManager(), "selector_entrenador");
 
-//                    accesoFirebase.guardarDato(new Jugador(nombreJugador, R.drawable.cinco, true));
-                    // Lógica adicional después de guardar el jugador
                 }
             }
         });

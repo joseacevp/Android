@@ -9,17 +9,23 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.entrenadormultiplicar.R;
+import com.example.entrenadormultiplicar.firebase.AccesoFirebase;
+import com.example.entrenadormultiplicar.firebase.AccesoFirebaseImpl;
 import com.example.entrenadormultiplicar.gestionusuarios.Jugador;
 
 import java.util.List;
 
 public class AdaptadorEntrenadores extends RecyclerView.Adapter<AdaptadorEntrenadores.AdaptadorViewHolder> {
+    private DialogoEntrenadorViewModel dialogoEntrenadorViewModel;
 
-    private List<Jugador>  listaEntrenadores;
+    private AccesoFirebase accesoFirebase;
+
+    private List<Jugador> listaEntrenadores;
 //    EntrenadorViewModel entrenadorViewModel = new EntrenadorViewModel();
 
     private Jugador entrenadorSelecionado;
@@ -38,9 +44,11 @@ public class AdaptadorEntrenadores extends RecyclerView.Adapter<AdaptadorEntrena
         return entrenadorSelect;
     }
 
-    public AdaptadorEntrenadores(List<Jugador> listaEntrenadores) {
+    public AdaptadorEntrenadores(List<Jugador> listaEntrenadores, DialogoEntrenadorViewModel viewModel) {
         this.listaEntrenadores = listaEntrenadores;
+        this.dialogoEntrenadorViewModel = viewModel;
     }
+
 
     @NonNull
     @Override
@@ -72,13 +80,17 @@ public class AdaptadorEntrenadores extends RecyclerView.Adapter<AdaptadorEntrena
         }
 
         public void bindAdaptador(Jugador entrenador) {
+            // Instanciar la clase que implementa la interfaz
+            accesoFirebase = new AccesoFirebaseImpl();
             foto.setImageResource(entrenador.getFoto());
             foto.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Context context = v.getContext();
-                    entrenadorSelecionado= entrenador;
-                    Toast.makeText(context, "SELECCIONADO " + entrenador.getFoto(), Toast.LENGTH_SHORT).show();
+                    entrenadorSelecionado = entrenador;
+                    Toast.makeText(context, "SELECCIONADO " + entrenador.getFoto() + entrenador.getNombre(), Toast.LENGTH_SHORT).show();
+                    dialogoEntrenadorViewModel.setEntrenador(entrenadorSelecionado);
+                    accesoFirebase.guardarDato(entrenadorSelecionado);
 
                 }
             });
