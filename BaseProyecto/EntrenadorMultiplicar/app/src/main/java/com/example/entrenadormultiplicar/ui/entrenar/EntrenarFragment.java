@@ -29,15 +29,17 @@ public class EntrenarFragment extends Fragment {
     private int indiceActualBarra = 1;
     int[] imagen;
     Random random = new Random();
-    private int[] imagen_pokecuatro = {R.drawable.pokecuatro};
+    private int[] imagen_pokecuatro = {R.drawable.unopokeuno,R.drawable.dospokeuno
+    ,R.drawable.trespokeuno,R.drawable.cuatropokeuno,R.drawable.cincopokeuno
+    ,R.drawable.seispokeuno,R.drawable.sietepokeuno,R.drawable.ochopokeuno
+    ,R.drawable.nuevepokeuno,R.drawable.diezpokeuno};
     private int[] imagen_pokecinco = {R.drawable.pokecinco};
     private int[] imagen_poketres = {R.drawable.poketres};
     private int[] imagen_pokedos = {R.drawable.pokedos};
-    private int[] imagen_pokeuno = {R.drawable.pokeuno};
 
     private int primer, respuestaEsperada;
     private String tabla, dificultad, heroe, fecha, aleatorio, usuario;
-
+    private boolean finTabla = false;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         EntrenarViewModel homeViewModel =
@@ -47,6 +49,7 @@ public class EntrenarFragment extends Fragment {
         View root = binding.getRoot();
         cargarPreferencias();
         iniciarTablaDificil(dificultad, tabla);
+
         binding.botonUno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,7 +80,7 @@ public class EntrenarFragment extends Fragment {
                 }
             }
         });
-        binding.botonCinco.setOnClickListener(new View.OnClickListener() {
+        binding.botonCuatro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String respuestaString = binding.areaRespuestaUsuario.getText().toString();
@@ -146,7 +149,8 @@ public class EntrenarFragment extends Fragment {
                     binding.areaRespuestaUsuario.setText(respuestaString + binding.botonDiez.getText().toString());
                 }
             }
-        }); binding.botonBorrar.setOnClickListener(new View.OnClickListener() {
+        });
+        binding.botonBorrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String respuestaString = binding.areaRespuestaUsuario.getText().toString();
@@ -199,6 +203,7 @@ public class EntrenarFragment extends Fragment {
             case "Facil"://tabla de multiplicar en orden ascendente
 //                primer = numeroTablaAleter(tabla);
                 // Muestra la pregunta en el formato "número X número"
+
                 binding.areaPregunta.setText(primer + " x " + i + " = ");
                 // Establece la respuesta esperada para la multiplicación de los dos números
                 respuestaEsperada = primer * i;
@@ -220,6 +225,7 @@ public class EntrenarFragment extends Fragment {
                 // Limpia el área de respuesta del usuario
                 binding.areaRespuestaUsuario.setText("");
                 e--;
+             
                 break;
             case "Dificil"://tabla de multiplicar en orden aleatorio
                 // Genera dos números aleatorios para la pregunta
@@ -255,7 +261,7 @@ public class EntrenarFragment extends Fragment {
                 imagen = imagen_pokedos;
                 break;
             case "poke4":
-                imagen = imagen_pokeuno;
+                imagen = imagen_pokecinco;
                 break;
         }
 
@@ -295,14 +301,11 @@ public class EntrenarFragment extends Fragment {
                 System.out.println(fallos);
 //                fallos.add(respuestaIncorecta.getText().toString());
             }
+
             mostrarBarra();
-        } else {
-            // Agrega esta lógica para manejar el caso cuando la respuesta del usuario está vacía
-            binding.areaRespuestaCorrecta2.setTextColor(Color.RED);
-            binding.areaRespuestaCorrecta2.setText("Debes ingresar una respuesta");
+
         }
     }
-
 
 
     //    metodo que carga los datos previamente almacenados en un XML de preferencias
