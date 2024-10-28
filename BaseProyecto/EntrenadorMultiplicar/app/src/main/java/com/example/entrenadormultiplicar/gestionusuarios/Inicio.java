@@ -41,16 +41,6 @@ public class Inicio extends AppCompatActivity {
         // Instanciar la clase que implementa la interfaz
         accesoFirebase = new AccesoFirebaseImpl();
 
-//        // Configurar el ViewModel para observar los jugadores
-//        inicioViewModel = new ViewModelProvider(this).get(InicioViewModel.class);
-//        inicioViewModel.getJugadoresInicio().observe(this, new Observer<List<Jugador>>() {
-//            @Override
-//            public void onChanged(List<Jugador> jugadores) {
-//                adaptadorJugadoresInicio.setListaJugadores(jugadores);
-//                adaptadorJugadoresInicio.notifyDataSetChanged();
-//            }
-//        });
-
         // Cargar datos desde Firebase y actualizar la lista
         accesoFirebase.cargarDatos(new AccesoFirebase.OnDataLoadedCallback() {
             @Override

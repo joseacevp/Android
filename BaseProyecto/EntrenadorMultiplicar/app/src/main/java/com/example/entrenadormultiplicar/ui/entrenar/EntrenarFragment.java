@@ -15,13 +15,13 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.entrenadormultiplicar.R;
-import com.example.entrenadormultiplicar.databinding.FragmentHomeBinding;
+import com.example.entrenadormultiplicar.databinding.FragmentEntrenarBinding;
 
 import java.util.Random;
 
 public class EntrenarFragment extends Fragment {
 
-    private FragmentHomeBinding binding;
+    private FragmentEntrenarBinding binding;
     private String fallos = "";
     private int i = 1;
     private int e = 10;
@@ -35,14 +35,6 @@ public class EntrenarFragment extends Fragment {
     private int[] imagen_pokedos = {R.drawable.pokedos};
     private int[] imagen_pokeuno = {R.drawable.pokeuno};
 
-//    private int[] imagen_iron = {R.drawable.ironuno
-//            , R.drawable.irondos, R.drawable.irontres
-//            , R.drawable.ironcuatro, R.drawable.ironcinco, R.drawable.ironseis
-//            , R.drawable.ironsiete, R.drawable.ironocho
-//            , R.drawable.ironnueve, R.drawable.iron};
-
-
-
     private int primer, respuestaEsperada;
     private String tabla, dificultad, heroe, fecha, aleatorio, usuario;
 
@@ -51,19 +43,147 @@ public class EntrenarFragment extends Fragment {
         EntrenarViewModel homeViewModel =
                 new ViewModelProvider(this).get(EntrenarViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentEntrenarBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        iniciarTablaDificil("normal", "1");
-
+        cargarPreferencias();
+        iniciarTablaDificil(dificultad, tabla);
+        binding.botonUno.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String respuestaString = binding.areaRespuestaUsuario.getText().toString();
+                // Limita la longitud de la respuesta a dos dígitos
+                if (respuestaString.length() < 2) {
+                    binding.areaRespuestaUsuario.setText(respuestaString + binding.botonUno.getText().toString());
+                }
+            }
+        });
+        binding.botonDos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String respuestaString = binding.areaRespuestaUsuario.getText().toString();
+                // Limita la longitud de la respuesta a dos dígitos
+                if (respuestaString.length() < 2) {
+                    binding.areaRespuestaUsuario.setText(respuestaString + binding.botonDos.getText().toString());
+                }
+            }
+        });
+        binding.botonTres.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String respuestaString = binding.areaRespuestaUsuario.getText().toString();
+                // Limita la longitud de la respuesta a dos dígitos
+                if (respuestaString.length() < 2) {
+                    binding.areaRespuestaUsuario.setText(respuestaString + binding.botonTres.getText().toString());
+                }
+            }
+        });
+        binding.botonCinco.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String respuestaString = binding.areaRespuestaUsuario.getText().toString();
+                // Limita la longitud de la respuesta a dos dígitos
+                if (respuestaString.length() < 2) {
+                    binding.areaRespuestaUsuario.setText(respuestaString + binding.botonCuatro.getText().toString());
+                }
+            }
+        });
+        binding.botonCinco.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String respuestaString = binding.areaRespuestaUsuario.getText().toString();
+                // Limita la longitud de la respuesta a dos dígitos
+                if (respuestaString.length() < 2) {
+                    binding.areaRespuestaUsuario.setText(respuestaString + binding.botonCinco.getText().toString());
+                }
+            }
+        });
+        binding.botonSeis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String respuestaString = binding.areaRespuestaUsuario.getText().toString();
+                // Limita la longitud de la respuesta a dos dígitos
+                if (respuestaString.length() < 2) {
+                    binding.areaRespuestaUsuario.setText(respuestaString + binding.botonSeis.getText().toString());
+                }
+            }
+        });
+        binding.botonSiete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String respuestaString = binding.areaRespuestaUsuario.getText().toString();
+                // Limita la longitud de la respuesta a dos dígitos
+                if (respuestaString.length() < 2) {
+                    binding.areaRespuestaUsuario.setText(respuestaString + binding.botonSiete.getText().toString());
+                }
+            }
+        });
+        binding.botonOcho.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String respuestaString = binding.areaRespuestaUsuario.getText().toString();
+                // Limita la longitud de la respuesta a dos dígitos
+                if (respuestaString.length() < 2) {
+                    binding.areaRespuestaUsuario.setText(respuestaString + binding.botonOcho.getText().toString());
+                }
+            }
+        });
+        binding.botonNueve.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String respuestaString = binding.areaRespuestaUsuario.getText().toString();
+                // Limita la longitud de la respuesta a dos dígitos
+                if (respuestaString.length() < 2) {
+                    binding.areaRespuestaUsuario.setText(respuestaString + binding.botonNueve.getText().toString());
+                }
+            }
+        });
+        binding.botonDiez.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String respuestaString = binding.areaRespuestaUsuario.getText().toString();
+                // Limita la longitud de la respuesta a dos dígitos
+                if (respuestaString.length() < 2) {
+                    binding.areaRespuestaUsuario.setText(respuestaString + binding.botonDiez.getText().toString());
+                }
+            }
+        }); binding.botonBorrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String respuestaString = binding.areaRespuestaUsuario.getText().toString();
+                // Verifica si hay al menos un dígito antes de intentar borrar
+                if (!respuestaString.isEmpty()) {
+                    binding.areaRespuestaUsuario.setText(respuestaString.substring(0, respuestaString.length() - 1));
+                }
+            }
+        });
+        binding.botonOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!binding.areaRespuestaUsuario.getText().toString().equals("")) {//si la respuesta del usuario no esta vacia
+                    if (indiceActualBarra < 10) {//si no a respondido 10 veces
+                        chekearRespuesta();
+                        binding.areaRespuestaUsuario.setText("");
+                        iniciarTablaDificil(dificultad, tabla);
+                    } else {
+                        chekearRespuesta();
+                        binding.areaRespuestaUsuario.setText("");
+                        //finalizada la tabla llama al fragmento estadisticas
+                        //llamarFragmentoEsta();
+                    }
+                }
+            }
+        });
 
         return root;
     }
+
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
     }
+
     private void iniciarTablaDificil(String dificultad, String tabla) {
         if (tabla.equals("aleatorio")) {
             primer = Integer.parseInt(aleatorio);
@@ -125,16 +245,16 @@ public class EntrenarFragment extends Fragment {
 
     private void mostrarImagen(String heroe) {
         switch (heroe) {
-            case "Batman":
+            case "poke1":
                 imagen = imagen_pokecuatro;
                 break;
-            case "Hulk":
+            case "poke2":
                 imagen = imagen_poketres;
                 break;
-            case "Iron Man":
+            case "poke3":
                 imagen = imagen_pokedos;
                 break;
-            case "Capitan America":
+            case "poke4":
                 imagen = imagen_pokeuno;
                 break;
         }
@@ -145,6 +265,7 @@ public class EntrenarFragment extends Fragment {
         }
         binding.imageViewHeroe.setImageResource(imagen[indiceActualImagen]);
     }
+
     private void chekearRespuesta() {
 
         // Obtén la respuesta del usuario como una cadena
@@ -166,7 +287,7 @@ public class EntrenarFragment extends Fragment {
             } else {
                 // La respuesta es incorrecta
                 binding.areaRespuestaCorrecta2.setTextColor(Color.RED);
-                binding.areaRespuestaCorrecta2.setText(binding.areaPregunta.getText()+binding.areaRespuestaUsuario.getText().toString());
+                binding.areaRespuestaCorrecta2.setText(binding.areaPregunta.getText() + binding.areaRespuestaUsuario.getText().toString());
 //                fallos.add(pregunta.getText() + respuestaUsuario.getText().toString());
                 binding.areaRespuestaCorrecta.setTextColor(Color.GREEN);
                 binding.areaRespuestaCorrecta.setText(binding.areaPregunta.getText().toString() + respuestaEsperada);
@@ -182,25 +303,10 @@ public class EntrenarFragment extends Fragment {
         }
     }
 
-    private void addNumeroRespuesta(View view) {
-        Button button = (Button) view;
-        String respuestaString = binding.areaRespuestaUsuario.getText().toString();
-        // Limita la longitud de la respuesta a dos dígitos
-        if (respuestaString.length() < 2) {
-            binding.areaRespuestaUsuario.setText(respuestaString + button.getText().toString());
-        }
-    }
 
-    private void borrarNumeroRespuesta() {
-        String respuestaString = binding.areaRespuestaUsuario.getText().toString();
-        // Verifica si hay al menos un dígito antes de intentar borrar
-        if (!respuestaString.isEmpty()) {
-            binding.areaRespuestaUsuario.setText(respuestaString.substring(0, respuestaString.length() - 1));
-        }
-    }
 
-    //metodo que carga los datos previamente almacenados en un XML de preferencias
-//    private void cargarPreferencias() {
+    //    metodo que carga los datos previamente almacenados en un XML de preferencias
+    private void cargarPreferencias() {
 //        SharedPreferences preferencias = getActivity().getSharedPreferences
 //                ("credenciales", Context.MODE_PRIVATE);
 //
@@ -210,8 +316,13 @@ public class EntrenarFragment extends Fragment {
 //        fecha = preferencias.getString("fecha", "Sin información");
 //        aleatorio = preferencias.getString("aleatorio", "Sin información");
 //        usuario = preferencias.getString("usuario", "sin informacion");
-//
-//    }
+        tabla = "1";
+        dificultad = "Normal";
+        heroe = "poke1";
+        fecha = "fecha";
+        aleatorio = "";
+        usuario = "";
+    }
 //    private void guardarEstadisticasPartida() {
 //
 //        //crea la base de datos
