@@ -19,6 +19,7 @@ import com.example.entrenadormultiplicar.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private NavigationView navigationView;
     private ActivityMainBinding binding;
 
     @Override
@@ -38,6 +39,11 @@ public class MainActivity extends AppCompatActivity {
                         .setAnchorView(R.id.fab).show();
             }
         });
+        navigationView = binding.navView;
+        //para que respete los colores del los iconos
+        navigationView.setItemIconTintList(null);
+        //cambia el tamaño de los iconos
+        navigationView.setItemIconSize(150);
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each

@@ -1,4 +1,4 @@
-package com.example.entrenadormultiplicar.ui.gallery;
+package com.example.entrenadormultiplicar.ui.configurar;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,20 +12,19 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.entrenadormultiplicar.databinding.FragmentGalleryBinding;
 
-public class GalleryFragment extends Fragment {
+public class ConfigurarFragment extends Fragment {
 
     private FragmentGalleryBinding binding;
 
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        GalleryViewModel galleryViewModel =
-                new ViewModelProvider(this).get(GalleryViewModel.class);
+        ConfigurarViewModel galleryViewModel =
+                new ViewModelProvider(this).get(ConfigurarViewModel.class);
 
         binding = FragmentGalleryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textGallery;
-        galleryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

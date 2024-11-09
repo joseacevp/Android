@@ -1,14 +1,14 @@
-package com.example.entrenadormultiplicar.ui.gallery;
+package com.example.entrenadormultiplicar.ui.configurar;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class GalleryViewModel extends ViewModel {
+public class ConfigurarViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public GalleryViewModel() {
+    public ConfigurarViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is gallery fragment");
     }

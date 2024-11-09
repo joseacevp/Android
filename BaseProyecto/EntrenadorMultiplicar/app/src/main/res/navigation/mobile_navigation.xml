@@ -8,13 +8,13 @@
     <fragment
         android:id="@+id/nav_home"
         android:name="com.example.entrenadormultiplicar.ui.entrenar.EntrenarFragment"
-        android:label="@string/menu_home"
+        android:label="@string/menu_entrenar"
         tools:layout="@layout/fragment_entrenar" />
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.example.entrenadormultiplicar.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
+        android:name="com.example.entrenadormultiplicar.ui.configurar.ConfigurarFragment"
+        android:label="@string/menu_configurar"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
