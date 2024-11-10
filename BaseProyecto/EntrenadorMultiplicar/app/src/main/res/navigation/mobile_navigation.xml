@@ -15,7 +15,7 @@
         android:id="@+id/nav_gallery"
         android:name="com.example.entrenadormultiplicar.ui.configurar.ConfigurarFragment"
         android:label="@string/menu_configurar"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_configurar" />
 
     <fragment
         android:id="@+id/nav_slideshow"

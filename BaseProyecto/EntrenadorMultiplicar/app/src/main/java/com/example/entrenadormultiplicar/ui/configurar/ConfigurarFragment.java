@@ -10,20 +10,24 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.entrenadormultiplicar.databinding.FragmentGalleryBinding;
+import com.example.entrenadormultiplicar.databinding.FragmentConfigurarBinding;
 
 public class ConfigurarFragment extends Fragment {
 
-    private FragmentGalleryBinding binding;
+    private FragmentConfigurarBinding binding;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ConfigurarViewModel galleryViewModel =
+        ConfigurarViewModel configurarViewModel=
                 new ViewModelProvider(this).get(ConfigurarViewModel.class);
 
-        binding = FragmentGalleryBinding.inflate(inflater, container, false);
+        binding = FragmentConfigurarBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+
+
+
 
         return root;
     }
