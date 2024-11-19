@@ -1,4 +1,4 @@
-package com.example.gestiondeinventario.ui.home;
+package com.example.gestiondeinventario.ui.inventario;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
