@@ -138,7 +138,7 @@
         android:layout_marginTop="32dp"
         android:backgroundTint="#E8C692"
         android:shadowColor="#0B0909"
-        android:text="Elige Avatar"
+        android:text="Elige Personaje"
         android:textColor="@color/black"
         android:textSize="24sp"
         app:cornerRadius="50dp"
