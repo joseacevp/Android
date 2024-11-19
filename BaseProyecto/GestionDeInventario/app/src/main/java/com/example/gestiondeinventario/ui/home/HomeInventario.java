@@ -10,18 +10,18 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.gestiondeinventario.databinding.FragmentHomeBinding;
+import com.example.gestiondeinventario.databinding.FragmentInventarioBinding;
 
-public class HomeFragment extends Fragment {
+public class HomeInventario extends Fragment {
 
-    private FragmentHomeBinding binding;
+    private FragmentInventarioBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        InventarioViewModel homeViewModel =
+                new ViewModelProvider(this).get(InventarioViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentInventarioBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textHome;
