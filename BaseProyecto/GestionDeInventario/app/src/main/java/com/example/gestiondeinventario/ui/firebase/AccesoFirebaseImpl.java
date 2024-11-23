@@ -16,7 +16,7 @@ public class AccesoFirebaseImpl implements AccesoFirebase{
 
     public AccesoFirebaseImpl() {
         // Inicializar la referencia a la base de datos de Firebase
-        databaseReference = FirebaseDatabase.getInstance().getReference("Jugadores");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Materiales");
     }
 
     @Override

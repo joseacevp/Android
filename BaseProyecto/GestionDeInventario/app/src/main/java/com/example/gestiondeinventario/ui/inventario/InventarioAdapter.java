@@ -23,7 +23,7 @@ public class InventarioAdapter extends RecyclerView.Adapter<InventarioAdapter.Ad
     //variables
     private InventarioViewModel inventarioViewModel;
 
-//    private AccesoFirebase accesoFirebase;
+    private AccesoFirebase accesoFirebase;
     private Materiales materialSeleccionado;
 
 

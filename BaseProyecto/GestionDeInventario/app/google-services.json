@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1048903263472",
+    "firebase_url": "https://gestiondeinventario-176f2-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "gestiondeinventario-176f2",
+    "storage_bucket": "gestiondeinventario-176f2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1048903263472:android:7111b5d41bc2d6eca84e35",
+        "android_client_info": {
+          "package_name": "com.example.gestiondeinventario"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1048903263472-oovr5tjnles1cthfi3d05a7emu551atf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAUDQ2yW5NX3-V6JsUWQGRHI4QCw2oKPM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1048903263472-oovr5tjnles1cthfi3d05a7emu551atf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
