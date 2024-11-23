@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_inventario">
 
     <fragment
-        android:id="@+id/navigation_home"
+        android:id="@+id/navigation_inventario"
         android:name="com.example.gestiondeinventario.ui.inventario.InventarioFragment"
         android:label="@string/title_inventario"
         tools:layout="@layout/fragment_inventario" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.gestiondeinventario.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_alta_material"
+        android:name="com.example.gestiondeinventario.ui.altaMaterial.AltaMaterialFragment"
+        android:label="@string/title_alta_material"
+        tools:layout="@layout/fragment_alta_material" />
 
     <fragment
         android:id="@+id/navigation_notifications"
