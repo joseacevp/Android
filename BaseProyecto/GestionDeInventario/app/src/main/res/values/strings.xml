@@ -2,5 +2,5 @@
     <string name="app_name">GestionDeInventario</string>
     <string name="title_inventario">Inventario</string>
     <string name="title_alta_material">Alta Material</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_trabajo">Trabajo</string>
 </resources>
