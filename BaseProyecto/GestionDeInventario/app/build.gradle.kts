@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     id("com.google.gms.google-services")
+
 }
 
 android {
@@ -51,7 +52,8 @@ dependencies {
     implementation(libs.con.github)
 //    kapt(com.github.bumptech.glide)
     implementation(libs.services.auth) // Añade esta línea
-
+    implementation(platform("com.google.firebase:firebase-bom:33.6.0"))
+    implementation("com.google.firebase:firebase-analytics")
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

@@ -1,34 +1,42 @@
 {
   "project_info": {
-    "project_number": "1048903263472",
-    "firebase_url": "https://gestiondeinventario-176f2-default-rtdb.europe-west1.firebasedatabase.app",
-    "project_id": "gestiondeinventario-176f2",
-    "storage_bucket": "gestiondeinventario-176f2.firebasestorage.app"
+    "project_number": "962929591011",
+    "firebase_url": "https://gestioninventario-368f6-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "gestioninventario-368f6",
+    "storage_bucket": "gestioninventario-368f6.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1048903263472:android:7111b5d41bc2d6eca84e35",
+        "mobilesdk_app_id": "1:962929591011:android:44e63e964a9ac0a0a83bd6",
         "android_client_info": {
           "package_name": "com.example.gestiondeinventario"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1048903263472-oovr5tjnles1cthfi3d05a7emu551atf.apps.googleusercontent.com",
+          "client_id": "962929591011-nk3lh8f54g2qtif2v8vkh653b82r73gg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gestiondeinventario",
+            "certificate_hash": "1976f84fc75572b8b69463eb1c10f8463637dd0d"
+          }
+        },
+        {
+          "client_id": "962929591011-r2eunkhfod83ighe3h69q3556c0nd56b.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAAUDQ2yW5NX3-V6JsUWQGRHI4QCw2oKPM"
+          "current_key": "AIzaSyAaE8o8iMpvBbOPs3gIZX1tj42EiyKXivo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1048903263472-oovr5tjnles1cthfi3d05a7emu551atf.apps.googleusercontent.com",
+              "client_id": "962929591011-r2eunkhfod83ighe3h69q3556c0nd56b.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
