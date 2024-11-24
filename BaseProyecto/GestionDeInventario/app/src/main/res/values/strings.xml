@@ -3,4 +3,6 @@
     <string name="title_inventario">Inventario</string>
     <string name="title_alta_material">Alta Material</string>
     <string name="title_trabajo">Trabajo</string>
+    <string name="default_web_client_id">YOUR_CLIENT_ID.apps.googleusercontent.com</string>
 </resources>
+

@@ -1,7 +1,5 @@
 package com.example.gestiondeinventario.ui.firebase;
 
-
-
 import java.util.List;
 
 public interface AccesoFirebase {

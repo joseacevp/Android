@@ -36,7 +36,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.constraintlayout)
@@ -48,7 +47,15 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.auth)
     implementation(libs.firebase.storage)
+    implementation(libs.firebase.firestore)
+    implementation(libs.con.github)
+//    kapt(com.github.bumptech.glide)
+    implementation(libs.services.auth) // Añade esta línea
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 }
+
+// Añadir al final del archivo
+apply(plugin = "com.google.gms.google-services")
