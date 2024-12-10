@@ -71,11 +71,13 @@ public class TrabajoFragment extends Fragment {
         return root;
     }
 
+    //llama al gestor de usuarios de google del dispositivo
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
+    //gestiona el resultado de la llamada al gestor de usuarios de google del dispositivo
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -96,6 +98,7 @@ public class TrabajoFragment extends Fragment {
         }
     }
 
+    //gestiona el usuario devuelto por el metodo sing in
     private void firebaseAuthWithGoogle(String idToken) {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         mAuth.signInWithCredential(credential)
@@ -108,7 +111,9 @@ public class TrabajoFragment extends Fragment {
                             FirebaseUser user = mAuth.getCurrentUser();
                             // Mensaje bienvenida
                             userName = user.getDisplayName();
-                            textViewCodigoUsuarioTrabajo.setText(userName);
+                            textViewCodigoUsuarioTrabajo.setText(userName);//Imprime en pantalla el nombre del usario de google
+                            //graba el dato del usuario de google
+                            
                             Toast.makeText(requireContext(), "Bienvenido " + userName, Toast.LENGTH_SHORT).show();
                         } else {
                             // Identificación incorrecta
