@@ -18,6 +18,11 @@ import com.example.gestiondeinventario.databinding.FragmentInventarioBinding;
 import com.example.gestiondeinventario.ui.firebase.AccesoFirebase;
 import com.example.gestiondeinventario.ui.firebase.AccesoFirebaseImpl;
 import com.example.gestiondeinventario.ui.firebase.Materiales;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,14 +34,16 @@ public class InventarioFragment extends Fragment {
     private RecyclerView recyclerView;
     private InventarioViewModel  inventarioViewModel ;
     private InventarioAdapter inventarioAdapter;
-    private  List<Materiales> lista;
 
+    private ArrayList<Materiales> listaMateriales;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentInventarioBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         accesoFirebase = new AccesoFirebaseImpl();
+        listaMateriales = new ArrayList<>();
+
         inventarioViewModel = new ViewModelProvider(this).get(InventarioViewModel.class);
         //fireBase
         // Cargar datos desde Firebase y actualizar la lista
@@ -44,10 +51,11 @@ public class InventarioFragment extends Fragment {
             @Override
             public void onDataLoaded(List<Materiales> materiales) {
                 if (materiales.isEmpty()){
-                    llenarListaMateriales();
+                    cargarMaterialesDesdeFirebase();
                 }
-                lista.clear();
-                lista.addAll(materiales);
+                listaMateriales.addAll(cargarMaterialesDesdeFirebase());
+                //lista.clear();
+                //lista.addAll(materiales);
                 inventarioAdapter.notifyDataSetChanged();
 
             }
@@ -62,27 +70,54 @@ public class InventarioFragment extends Fragment {
         return root;
     }
 
+    private List<Materiales> cargarMaterialesDesdeFirebase() {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Materiales");
+        List<Materiales> listaMateriales = new ArrayList<>();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                listaMateriales.clear(); // Limpia la lista antes de agregar nuevos datos
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Materiales material = dataSnapshot.getValue(Materiales.class);
+                    listaMateriales.add(material);
 
+                }
+                // Actualiza el adaptador con los nuevos datos
+                inventarioAdapter.setListaMateriales(listaMateriales);
+                inventarioAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), "Error al cargar datos", Toast.LENGTH_SHORT).show();
+            }
+        });
+        return listaMateriales;
+    }
     private void iniciarRecycler() {
         recyclerView = binding.recyclerInventario;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
-        inventarioAdapter = new InventarioAdapter(llenarListaMateriales(),inventarioViewModel);
+
+        inventarioAdapter = new InventarioAdapter(listaMateriales, inventarioViewModel);
         recyclerView.setAdapter(inventarioAdapter);
+
+        cargarMaterialesDesdeFirebase(); // Carga los datos después de configurar el adaptador
     }
+
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
     }
-    private List<Materiales> llenarListaMateriales() {
-        lista = new ArrayList<>();
-
-        lista.add(new Materiales("SIN DATOS","0000","SIN DATOS DE LOCALIZACION","SIN DATOS DE USO ",R.drawable.ic_home_black_24dp,true));
-        //ublic Materiales(String nombre, String codigo, String localizacion, String uso, int foto, Boolean isSelected) {
-
-        return lista;
-    }
+//    private List<Materiales> llenarListaMateriales() {
+//        lista = new ArrayList<>();
+//
+//        lista.add(new Materiales("SIN DATOS","0000","SIN DATOS DE LOCALIZACION","SIN DATOS DE USO ",R.drawable.ic_home_black_24dp,true));
+//        //ublic Materiales(String nombre, String codigo, String localizacion, String uso, int foto, Boolean isSelected) {
+//
+//        return lista;
+//    }
 
 }
