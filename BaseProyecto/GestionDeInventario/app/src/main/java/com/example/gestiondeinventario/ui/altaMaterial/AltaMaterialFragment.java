@@ -75,7 +75,7 @@ public class AltaMaterialFragment extends Fragment {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri imageUri = data.getData();
             nombre = binding.ediTextNombreAltaMaterial.getText().toString();
-            codigo = "0000";
+            codigo = binding.editTextCodigoAlta.getText().toString();
             localizacion = binding.ediTextLocalizacionAltaMaterial.getText().toString();
             uso = binding.ediTextUsoAltaMaterial.getText().toString();
             // Subir imagen a Firebase Storage
