@@ -55,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="23dp"
-            android:hint="Indique el Uso del Material" />
+            android:hint="Indique Cantidad" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/relativeLayout"

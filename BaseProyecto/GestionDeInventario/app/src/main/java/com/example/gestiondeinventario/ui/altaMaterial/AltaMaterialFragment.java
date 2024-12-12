@@ -48,10 +48,8 @@ public class AltaMaterialFragment extends Fragment {
         binding.imageViewAltaMaterial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 // Aquí implementamos la selección de una imagen (puedes usar un Intent para abrir la galería)
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
                 startActivityForResult(intent, PICK_IMAGE_REQUEST);
             }
         });
@@ -80,7 +78,6 @@ public class AltaMaterialFragment extends Fragment {
             codigo = "0000";
             localizacion = binding.ediTextLocalizacionAltaMaterial.getText().toString();
             uso = binding.ediTextUsoAltaMaterial.getText().toString();
-
             // Subir imagen a Firebase Storage
             StorageReference storageReference = FirebaseStorage.getInstance().getReference("materiales/" + System.currentTimeMillis() + ".jpg");
             storageReference.putFile(imageUri).addOnSuccessListener(taskSnapshot -> {

@@ -13,12 +13,10 @@ import java.util.List;
 
 public class AccesoFirebaseImpl implements AccesoFirebase{
     private final DatabaseReference databaseReference;
-
     public AccesoFirebaseImpl() {
         // Inicializar la referencia a la base de datos de Firebase
         databaseReference = FirebaseDatabase.getInstance().getReference("Materiales");
     }
-
     @Override
     public void guardarDato(Materiales materiales) {
         if (materiales != null) {
@@ -27,9 +25,7 @@ public class AccesoFirebaseImpl implements AccesoFirebase{
                 databaseReference.child(id).setValue(materiales);
             }
         }
-
     }
-
     @Override
     public void cargarDatos(OnDataLoadedCallback callback) {
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -42,7 +38,6 @@ public class AccesoFirebaseImpl implements AccesoFirebase{
                 }
                 callback.onDataLoaded(lista);
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 callback.onError("Error al cargar datos: " + error.getMessage());
