@@ -11,21 +11,48 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AccesoFirebaseImpl implements AccesoFirebase{
+public class AccesoFirebaseImpl implements AccesoFirebase {
     private final DatabaseReference databaseReference;
+
     public AccesoFirebaseImpl() {
         // Inicializar la referencia a la base de datos de Firebase
         databaseReference = FirebaseDatabase.getInstance().getReference("Materiales");
     }
+
     @Override
     public void guardarDato(Materiales materiales) {
         if (materiales != null) {
-            String id = databaseReference.push().getKey();
-            if (id != null) {
-                databaseReference.child(id).setValue(materiales);
-            }
+            cargarDatos(new OnDataLoadedCallback() {
+                @Override
+                public void onDataLoaded(List<Materiales> lista) {
+                    boolean existe = false;
+                    for (Materiales mate : lista) {
+                        // Supongamos que tienes un método getId() en la clase Materiales
+                        if (mate.getCodigo().equals(materiales.getCodigo())) {
+                            existe = true;
+                            break;
+                        }
+                    }
+                    if (!existe) {
+                        String id = databaseReference.push().getKey();
+                        if (id != null) {
+                            databaseReference.child(id).setValue(materiales);
+                        }
+                    } else {
+                        // Aquí puedes manejar el caso en que el material ya existe
+                        System.out.println("El material ya existe y no se insertará.");
+                    }
+                }
+
+                @Override
+                public void onError(String error) {
+                    // Manejar el error al cargar datos
+                    System.out.println("Error al cargar datos: " + error);
+                }
+            });
         }
     }
+
     @Override
     public void cargarDatos(OnDataLoadedCallback callback) {
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -38,6 +65,7 @@ public class AccesoFirebaseImpl implements AccesoFirebase{
                 }
                 callback.onDataLoaded(lista);
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 callback.onError("Error al cargar datos: " + error.getMessage());

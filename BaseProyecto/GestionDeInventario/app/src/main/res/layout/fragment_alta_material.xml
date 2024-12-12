@@ -18,8 +18,9 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+
             <TextView
-                android:id="@+id/textViewTituloInventario"
+                android:id="@+id/textViewTituloAlta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -28,6 +29,13 @@
                 android:textColor="@color/black"
                 android:textSize="24sp"
                 android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/editTextCodigoAlta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="23dp"
+                android:hint="Indique el Codogo del Producto" />
 
             <EditText
                 android:id="@+id/ediTextNombreAltaMaterial"
