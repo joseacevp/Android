@@ -1,6 +1,7 @@
 package com.example.gestiondeinventario.ui.inventario;
 
 import android.content.Context;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +10,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.gestiondeinventario.MainActivity;
 import com.example.gestiondeinventario.R;
 import com.example.gestiondeinventario.ui.firebase.AccesoFirebase;
 import com.example.gestiondeinventario.ui.firebase.AccesoFirebaseImpl;
@@ -92,6 +95,7 @@ public class InventarioAdapter extends RecyclerView.Adapter<InventarioAdapter.Ad
         }
 
         public void bindAdaptador(Materiales materiales) {
+
             // Cargar imagen desde Firebase Storage usando Glide
             Glide.with(itemView.getContext())
                     .load(materiales.getFotoUri()) // URL de Firebase Storage
@@ -103,9 +107,47 @@ public class InventarioAdapter extends RecyclerView.Adapter<InventarioAdapter.Ad
             localizacion.setText(materiales.getLocalizacion());
             uso.setText(materiales.getUso());
 
+
             cardView.setOnClickListener(v -> {
                 Context context = v.getContext();
                 materialSeleccionado = materiales;
+                LayoutInflater layoutInflater = LayoutInflater.from(context);
+                View dialogoDetalle = layoutInflater.inflate(R.layout.dialog_detalles_material,null);
+                // Crea el diálogo
+                // Encuentra las vistas dentro del diseño personalizado
+                ImageView imageView = dialogoDetalle.findViewById(R.id.imageViewFotoDetalle);
+                TextView dialogNombre = dialogoDetalle.findViewById(R.id.textViewNombreItemDet);
+                TextView dialogCodigo = dialogoDetalle.findViewById(R.id.textViewCodItemDet);
+                TextView dialogLocalizacion = dialogoDetalle.findViewById(R.id.textViewLocaliItemDet);
+                TextView dialogUso = dialogoDetalle.findViewById(R.id.textViewUsoItemDet);
+
+
+                // Establece los valores en las vistas del diálogo
+                // Cargar imagen desde Firebase Storage usando Glide
+                Glide.with(itemView.getContext())
+                        .load(materiales.getFotoUri()) // URL de Firebase Storage
+                        .placeholder(R.drawable.ic_dashboard_black_24dp) // Imagen de carga
+                        .into(imageView);
+                dialogNombre.setText("Nombre: " + materiales.getNombre());
+                dialogCodigo.setText("Código: " + materiales.getCodigo());
+                dialogLocalizacion.setText("Localización: " + materiales.getLocalizacion());
+                dialogUso.setText("Uso: " + materiales.getUso());
+
+                // Configura y muestra el diálogo
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setView(dialogoDetalle)
+                        .setPositiveButton("Aceptar", (dialog, which) -> {
+                            // Acción al presionar "Aceptar"
+                            dialog.dismiss();
+                        })
+                        .setNegativeButton("Cancelar", (dialog, which) -> {
+                            // Acción al presionar "Cancelar"
+                            dialog.dismiss();
+                        });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
                 Toast.makeText(context, "SELECCIONADO: " + materiales.getNombre(), Toast.LENGTH_SHORT).show();
             });
         }
