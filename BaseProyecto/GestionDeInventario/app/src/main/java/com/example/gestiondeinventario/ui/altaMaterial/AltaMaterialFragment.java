@@ -32,7 +32,7 @@ public class AltaMaterialFragment extends Fragment {
 
     private FragmentAltaMaterialBinding binding;
 
-    private String nombre, codigo, localizacion, uso, foto;
+    private String nombre, codigo, localizacion, uso, foto, cantidad;
     private Materiales materiales;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -61,6 +61,8 @@ public class AltaMaterialFragment extends Fragment {
         binding.ediTextLocalizacionAltaMaterial.setText("");
         binding.ediTextNombreAltaMaterial.setText("");
         binding.ediTextUsoAltaMaterial.setText("");
+        binding.ediTextCantidadAltaMaterial.setText("");
+        binding.editTextCodigoAlta.setText("");
     }
 
     @Override
@@ -78,13 +80,14 @@ public class AltaMaterialFragment extends Fragment {
             codigo = binding.editTextCodigoAlta.getText().toString();
             localizacion = binding.ediTextLocalizacionAltaMaterial.getText().toString();
             uso = binding.ediTextUsoAltaMaterial.getText().toString();
+            cantidad = binding.ediTextCantidadAltaMaterial.getText().toString();
             // Subir imagen a Firebase Storage
             StorageReference storageReference = FirebaseStorage.getInstance().getReference("materiales/" + System.currentTimeMillis() + ".jpg");
             storageReference.putFile(imageUri).addOnSuccessListener(taskSnapshot -> {
                 storageReference.getDownloadUrl().addOnSuccessListener(uri -> {
                     foto = uri.toString(); // Guardar la URL en el campo foto
                     // Crear y guardar el material en Firebase Database
-                    materiales = new Materiales(nombre, codigo, localizacion, uso, foto, true);
+                    materiales = new Materiales(nombre, codigo, localizacion, uso, foto, cantidad,true);
                     accesoFirebase.guardarDato(materiales);
                     limpiarFormulario();
                 }).addOnFailureListener(e -> {

@@ -27,16 +27,16 @@ public class AccesoFirebaseImpl implements AccesoFirebase {
                 public void onDataLoaded(List<Materiales> lista) {
                     boolean existe = false;
                     for (Materiales mate : lista) {
-                        // Supongamos que tienes un método getId() en la clase Materiales
+                        // Comprobamos si existe
                         if (mate.getCodigo().equals(materiales.getCodigo())) {
                             existe = true;
                             break;
                         }
                     }
-                    if (!existe) {
+                    if (!existe) {//si existe
                         String id = databaseReference.push().getKey();
                         if (id != null) {
-                            databaseReference.child(id).setValue(materiales);
+                            databaseReference.child(materiales.getCodigo()).setValue(materiales);
                         }
                     } else {
                         // Aquí puedes manejar el caso en que el material ya existe

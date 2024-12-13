@@ -34,29 +34,38 @@
                 android:id="@+id/editTextCodigoAlta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="23dp"
+                android:layout_margin="13dp"
+                android:inputType="number|numberSigned"
                 android:hint="Indique el Codogo del Producto" />
 
             <EditText
                 android:id="@+id/ediTextNombreAltaMaterial"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="23dp"
+                android:layout_margin="13dp"
                 android:hint="Indique el Nombre del Material" />
 
             <EditText
                 android:id="@+id/ediTextLocalizacionAltaMaterial"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="23dp"
+                android:layout_margin="13dp"
                 android:hint="Indique el Localizacion del Material" />
 
             <EditText
                 android:id="@+id/ediTextUsoAltaMaterial"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="23dp"
+                android:layout_margin="13dp"
                 android:hint="Indique el Uso del Material" />
+
+            <EditText
+                android:id="@+id/ediTextCantidadAltaMaterial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="13dp"
+                android:hint="Indique Cantidad"
+                android:inputType="number|numberSigned" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/relativeLayout"

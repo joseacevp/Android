@@ -1,18 +1,19 @@
 package com.example.gestiondeinventario.ui.firebase;
 
 public class Materiales {
-    private String nombre, codigo, localizacion, uso, fotoUri;
+    private String nombre, codigo, localizacion, uso, fotoUri,cantidad;
     private Boolean isSelected = false;
 
     public Materiales() {
     }
 
-    public Materiales(String nombre, String codigo, String localizacion, String uso, String fotoUri, Boolean isSelected) {
+    public Materiales(String nombre, String codigo, String localizacion, String uso, String fotoUri, String cantidad, Boolean isSelected) {
         this.nombre = nombre;
         this.codigo = codigo;
         this.localizacion = localizacion;
         this.uso = uso;
         this.fotoUri = fotoUri;
+        this.cantidad = cantidad;
         this.isSelected = isSelected;
     }
 
@@ -54,6 +55,14 @@ public class Materiales {
 
     public void setFotoUri(String fotoUri) {
         this.fotoUri = fotoUri;
+    }
+
+    public String getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(String cantidad) {
+        this.cantidad = cantidad;
     }
 
     public Boolean getSelected() {
