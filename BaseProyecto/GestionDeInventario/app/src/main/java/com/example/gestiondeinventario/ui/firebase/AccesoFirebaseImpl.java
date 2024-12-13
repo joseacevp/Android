@@ -1,6 +1,12 @@
 package com.example.gestiondeinventario.ui.firebase;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,7 +26,7 @@ public class AccesoFirebaseImpl implements AccesoFirebase {
     }
 
     @Override
-    public void guardarDato(Materiales materiales) {
+    public void guardarDato(Materiales materiales,Context context) {
         if (materiales != null) {
             cargarDatos(new OnDataLoadedCallback() {
                 @Override
@@ -30,24 +36,24 @@ public class AccesoFirebaseImpl implements AccesoFirebase {
                         // Comprobamos si existe
                         if (mate.getCodigo().equals(materiales.getCodigo())) {
                             existe = true;
+
                             break;
                         }
                     }
-                    if (!existe) {//si existe
+                    if (existe==false) {//si no existe se inserta en la base de datos
                         String id = databaseReference.push().getKey();
                         if (id != null) {
                             databaseReference.child(materiales.getCodigo()).setValue(materiales);
                         }
                     } else {
-                        // Aquí puedes manejar el caso en que el material ya existe
-                        System.out.println("El material ya existe y no se insertará.");
+                        mostrarDialogo("ERROR ","El Codigo Utilizado Ya Existe",context);
                     }
                 }
 
                 @Override
                 public void onError(String error) {
-                    // Manejar el error al cargar datos
-                    System.out.println("Error al cargar datos: " + error);
+                    // En el caso error al cargar datos
+                    mostrarDialogo("ERROR ","Fallo la carga de datos",context);
                 }
             });
         }
@@ -55,7 +61,7 @@ public class AccesoFirebaseImpl implements AccesoFirebase {
 
     @Override
     public void cargarDatos(OnDataLoadedCallback callback) {
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 List<Materiales> lista = new ArrayList<>();
@@ -71,5 +77,26 @@ public class AccesoFirebaseImpl implements AccesoFirebase {
                 callback.onError("Error al cargar datos: " + error.getMessage());
             }
         });
+    }
+    private void mostrarDialogo(String titulo, String mensaje, Context context) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+        // Configurar el título y el mensaje
+        builder.setTitle(titulo);
+        builder.setMessage(mensaje);
+
+        // Configurar botón positivo (Aceptar)
+        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Acción al presionar "Aceptar"
+                dialog.dismiss(); // Cerrar el diálogo
+            }
+        });
+
+        // Mostrar el diálogo
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

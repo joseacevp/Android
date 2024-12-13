@@ -88,7 +88,7 @@ public class AltaMaterialFragment extends Fragment {
                     foto = uri.toString(); // Guardar la URL en el campo foto
                     // Crear y guardar el material en Firebase Database
                     materiales = new Materiales(nombre, codigo, localizacion, uso, foto, cantidad,true);
-                    accesoFirebase.guardarDato(materiales);
+                    accesoFirebase.guardarDato(materiales,getContext());
                     limpiarFormulario();
                 }).addOnFailureListener(e -> {
                     Toast.makeText(getContext(), "Error al obtener URL", Toast.LENGTH_SHORT).show();

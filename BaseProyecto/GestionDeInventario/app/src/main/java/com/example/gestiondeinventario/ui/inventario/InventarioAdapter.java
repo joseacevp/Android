@@ -1,6 +1,8 @@
 package com.example.gestiondeinventario.ui.inventario;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -120,6 +122,7 @@ public class InventarioAdapter extends RecyclerView.Adapter<InventarioAdapter.Ad
                 TextView dialogCodigo = dialogoDetalle.findViewById(R.id.textViewCodItemDet);
                 TextView dialogLocalizacion = dialogoDetalle.findViewById(R.id.textViewLocaliItemDet);
                 TextView dialogUso = dialogoDetalle.findViewById(R.id.textViewUsoItemDet);
+                TextView dialogCantidad = dialogoDetalle.findViewById(R.id.textViewCantItemDet);
 
 
                 // Establece los valores en las vistas del diálogo
@@ -132,16 +135,14 @@ public class InventarioAdapter extends RecyclerView.Adapter<InventarioAdapter.Ad
                 dialogCodigo.setText("Código: " + materiales.getCodigo());
                 dialogLocalizacion.setText("Localización: " + materiales.getLocalizacion());
                 dialogUso.setText("Uso: " + materiales.getUso());
+                dialogCantidad.setText("Cantidad disponible: " + materiales.getCantidad());
+
 
                 // Configura y muestra el diálogo
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setView(dialogoDetalle)
                         .setPositiveButton("Aceptar", (dialog, which) -> {
                             // Acción al presionar "Aceptar"
-                            dialog.dismiss();
-                        })
-                        .setNegativeButton("Cancelar", (dialog, which) -> {
-                            // Acción al presionar "Cancelar"
                             dialog.dismiss();
                         });
 
@@ -152,4 +153,5 @@ public class InventarioAdapter extends RecyclerView.Adapter<InventarioAdapter.Ad
             });
         }
     }
+
 }

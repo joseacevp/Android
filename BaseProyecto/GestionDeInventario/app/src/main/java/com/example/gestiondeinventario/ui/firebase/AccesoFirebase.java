@@ -1,9 +1,11 @@
 package com.example.gestiondeinventario.ui.firebase;
 
+import android.content.Context;
+
 import java.util.List;
 
 public interface AccesoFirebase {
-    void guardarDato(Materiales materiales);
+    void guardarDato(Materiales materiales, Context context);
     void cargarDatos(OnDataLoadedCallback callback);
 
     // Definir una interfaz de callback para manejar los datos cargados
