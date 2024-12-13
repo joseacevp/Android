@@ -63,6 +63,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Cantidad Material" />
+
+                <EditText
+                    android:id="@+id/editTextIncreCantDet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Añadir Cantidad:"
+                    android:inputType="number|numberSigned" />
+
             </LinearLayout>
 
         </LinearLayout>

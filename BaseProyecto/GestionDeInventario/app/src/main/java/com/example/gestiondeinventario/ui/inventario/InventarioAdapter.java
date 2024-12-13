@@ -7,6 +7,7 @@ import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -85,6 +86,7 @@ public class InventarioAdapter extends RecyclerView.Adapter<InventarioAdapter.Ad
         ImageView foto;
         TextView nombre, codigo, localizacion, uso;
         CardView cardView;
+        private AccesoFirebase accesoFirebase;
 
         public AdaptadorViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -94,6 +96,7 @@ public class InventarioAdapter extends RecyclerView.Adapter<InventarioAdapter.Ad
             localizacion = itemView.findViewById(R.id.textViewLocaliItemInv);
             uso = itemView.findViewById(R.id.textViewUsoItemInv);
             cardView = itemView.findViewById(R.id.cardViewInventario);
+            accesoFirebase = new AccesoFirebaseImpl();
         }
 
         public void bindAdaptador(Materiales materiales) {
@@ -123,6 +126,7 @@ public class InventarioAdapter extends RecyclerView.Adapter<InventarioAdapter.Ad
                 TextView dialogLocalizacion = dialogoDetalle.findViewById(R.id.textViewLocaliItemDet);
                 TextView dialogUso = dialogoDetalle.findViewById(R.id.textViewUsoItemDet);
                 TextView dialogCantidad = dialogoDetalle.findViewById(R.id.textViewCantItemDet);
+                EditText ediIncreCantidad = dialogoDetalle.findViewById(R.id.editTextIncreCantDet);
 
 
                 // Establece los valores en las vistas del diálogo
@@ -142,7 +146,12 @@ public class InventarioAdapter extends RecyclerView.Adapter<InventarioAdapter.Ad
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setView(dialogoDetalle)
                         .setPositiveButton("Aceptar", (dialog, which) -> {
-                            // Acción al presionar "Aceptar"
+                            // Acción al presionar "Aceptar" añade la cantidad de material a la base de datos
+                            if(ediIncreCantidad.getText().length()!=0){
+                                accesoFirebase.actualizarCantidad(ediIncreCantidad.getText().toString(),materiales.getCodigo(),context);
+                            }
+
+
                             dialog.dismiss();
                         });
 

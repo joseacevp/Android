@@ -26,7 +26,7 @@ public class AccesoFirebaseImpl implements AccesoFirebase {
     }
 
     @Override
-    public void guardarDato(Materiales materiales,Context context) {
+    public void guardarDato(Materiales materiales, Context context) {
         if (materiales != null) {
             cargarDatos(new OnDataLoadedCallback() {
                 @Override
@@ -40,20 +40,20 @@ public class AccesoFirebaseImpl implements AccesoFirebase {
                             break;
                         }
                     }
-                    if (existe==false) {//si no existe se inserta en la base de datos
+                    if (existe == false) {//si no existe se inserta en la base de datos
                         String id = databaseReference.push().getKey();
                         if (id != null) {
                             databaseReference.child(materiales.getCodigo()).setValue(materiales);
                         }
                     } else {
-                        mostrarDialogo("ERROR ","El Codigo Utilizado Ya Existe",context);
+                        mostrarDialogo("ERROR ", "El Codigo Utilizado Ya Existe", context);
                     }
                 }
 
                 @Override
                 public void onError(String error) {
                     // En el caso error al cargar datos
-                    mostrarDialogo("ERROR ","Fallo la carga de datos",context);
+                    mostrarDialogo("ERROR ", "Fallo la carga de datos", context);
                 }
             });
         }
@@ -78,6 +78,39 @@ public class AccesoFirebaseImpl implements AccesoFirebase {
             }
         });
     }
+
+    @Override
+    public void actualizarCantidad(String cantidad,String codigo, Context context) {
+    // Buscar el material en Firebase por su código
+        databaseReference.child(codigo).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    // Obtener el material actual
+                    Materiales material = snapshot.getValue(Materiales.class);
+                    if (material != null) {
+                        // Actualizar la cantidad
+                        String cantidadActual = material.getCantidad();
+                        material.setCantidad(String.valueOf(Integer.parseInt(cantidadActual)+Integer.parseInt(cantidad))); //
+                        databaseReference.child(codigo).setValue(material)
+                                .addOnSuccessListener(aVoid ->
+                                        Toast.makeText(context, "Cantidad actualizada exitosamente.", Toast.LENGTH_SHORT).show())
+                                .addOnFailureListener(e ->
+                                        mostrarDialogo("ERROR", "No se pudo actualizar la cantidad: " + e.getMessage(), context));
+                    }
+                } else {
+                    // Si el material no existe
+                    mostrarDialogo("ERROR", "El material con el código especificado no existe.", context);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                mostrarDialogo("ERROR", "Error al buscar el material: " + error.getMessage(), context);
+            }
+        });
+    }
+
     private void mostrarDialogo(String titulo, String mensaje, Context context) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
