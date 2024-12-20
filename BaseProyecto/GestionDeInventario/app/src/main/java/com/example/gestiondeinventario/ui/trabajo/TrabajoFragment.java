@@ -19,6 +19,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
+import com.example.gestiondeinventario.R;
 import com.example.gestiondeinventario.databinding.FragmentTrabajoBinding;
 import com.example.gestiondeinventario.ui.firebase.AccesoFirebaseMateriales;
 import com.example.gestiondeinventario.ui.firebase.AccesoFirebaseImpl;
@@ -37,9 +39,18 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TrabajoFragment extends Fragment {
     private FragmentTrabajoBinding binding;
+    private Materiales material;
     private AccesoFirebaseMateriales accesoFirebaseMateriales;
     private AccesoFirebaseTrabajos accesoFirebaseTrabajos;
     private FirebaseAuth mAuth;
@@ -81,6 +92,17 @@ public class TrabajoFragment extends Fragment {
         unidades = binding.ediTextCantidadMaterialTrabajo.getText().toString();
         codigo = binding.ediTextCodigoMaterialTrabajo.getText().toString();
         orden = binding.ediTextOrdenTrabajoTrabajo.getText().toString();
+        binding.ediTextCodigoMaterialTrabajo.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            //si indica un codigo de materia valido muestra la imagen del material al salir del campo
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    if (!binding.ediTextCodigoMaterialTrabajo.getText().toString().equals("")) {
+                        mostrarImagenMaterial();
+                    }
+                }
+            }
+        });
 
         binding.bottonGrabarTrabajo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,7 +115,7 @@ public class TrabajoFragment extends Fragment {
                         //Trabajos(String ordenTrabajo, String nombreOperario, String codigoMaterial, String unidades)
                         trabajos = new Trabajos(binding.ediTextOrdenTrabajoTrabajo.getText().toString(), userName,
                                 binding.ediTextCodigoMaterialTrabajo.getText().toString(), binding.ediTextCantidadMaterialTrabajo.getText().toString());
-                        accesoFirebaseTrabajos.guardarDatoTrabajos(trabajos,getContext());
+                        accesoFirebaseTrabajos.guardarDatoTrabajos(trabajos, getContext());
                         limpiarCampos();
                     } else {
                         mostrarDialogo("ERROR AL INDICAR DATOS", "Indique la cantidad correctamente", getContext());
@@ -105,6 +127,60 @@ public class TrabajoFragment extends Fragment {
         });
 
         return root;
+    }
+
+    private void mostrarImagenMaterial() {
+        accesoFirebaseMateriales.cargarDatosMateriales(new AccesoFirebaseMateriales.OnDataLoadedCallbackMateriales() {
+            @Override
+            public void onDataLoaded(List<Materiales> materiales) {
+                boolean materialEncontrado = false; // Bandera para verificar si el material fue encontrado
+                for (Materiales material : materiales) {
+                    // Comparamos correctamente las cadenas
+                    if (material.getCodigo().equals(binding.ediTextCodigoMaterialTrabajo.getText().toString())) {
+                        // Si encuentra el material, carga la imagen
+                        Glide.with(requireContext())
+                                .load(material.getFotoUri()) // URL de Firebase Storage
+                                .placeholder(R.drawable.ic_dashboard_black_24dp) // Imagen de carga
+                                .error(R.drawable.ic_dashboard_black_24dp) // Imagen de error
+                                .into(binding.imageViewTrabajo);
+                        materialEncontrado = true; // Cambiamos la bandera
+                        break; // Salimos del bucle una vez encontrado
+                    }
+                }
+                // Si no se encontró el material, muestra un mensaje
+                if (!materialEncontrado) {
+                    mostrarDialogo("Error", "No se encontró el material con el código indicado.", getContext());
+                }
+            }
+
+            @Override
+            public void onError(String error) {
+                Toast.makeText(getContext(), "Fallo al cargar datos de Firebase: " + error, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+    private List<Materiales> cargarMaterialesDesdeFirebase() {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Materiales");
+        List<Materiales> listaMateriales = new ArrayList<>();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                listaMateriales.clear(); // Limpia la lista antes de agregar nuevos datos
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Materiales material = dataSnapshot.getValue(Materiales.class);
+                    listaMateriales.add(material);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), "Error al cargar datos", Toast.LENGTH_SHORT).show();
+            }
+        });
+        return listaMateriales;
     }
 
     private void limpiarCampos() {

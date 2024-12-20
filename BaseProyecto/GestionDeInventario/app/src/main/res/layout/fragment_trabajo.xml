@@ -24,8 +24,8 @@
                 android:id="@+id/textViewTituloTrabajo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="8dp"
                 android:text="FORMULARIO TRABAJO"
                 android:textColor="@color/black"
                 android:textSize="24sp"
@@ -41,26 +41,29 @@
                 android:textSize="19dp" />
 
             <EditText
-                android:id="@+id/ediTextOrdenTrabajoTrabajo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="23dp"
-                android:hint="Indice el Numero de Orden de Trabajo" />
-
-            <EditText
                 android:id="@+id/ediTextCodigoMaterialTrabajo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="23dp"
-                android:hint="Indique el Codigo del Material" />
+                android:hint="Indique el Codigo del Material"
+                android:inputType="numberSigned" />
+
+            <EditText
+                android:id="@+id/ediTextOrdenTrabajoTrabajo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="23dp"
+                android:hint="Indice el Numero de Orden de Trabajo"
+                android:inputType="numberSigned" />
+
 
             <EditText
                 android:id="@+id/ediTextCantidadMaterialTrabajo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="23dp"
-                android:inputType="numberSigned"
-                android:hint="Indique Cantidad" />
+                android:hint="Indique Cantidad"
+                android:inputType="numberSigned" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/relativeLayout"

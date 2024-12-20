@@ -53,7 +53,7 @@ public class AccesoFirebaseImpl implements AccesoFirebaseMateriales, AccesoFireb
                 @Override
                 public void onError(String error) {
                     // En el caso error al cargar datos
-                    mostrarDialogo("ERROR ", "Fallo la carga de datos", context);
+                    mostrarDialogo("ERROR ", "Falló la carga de datos", context);
                 }
             });
         }
