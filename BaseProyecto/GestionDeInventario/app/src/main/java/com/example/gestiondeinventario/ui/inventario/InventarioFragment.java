@@ -9,13 +9,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.gestiondeinventario.R;
 import com.example.gestiondeinventario.databinding.FragmentInventarioBinding;
-import com.example.gestiondeinventario.ui.firebase.AccesoFirebase;
+import com.example.gestiondeinventario.ui.firebase.AccesoFirebaseMateriales;
 import com.example.gestiondeinventario.ui.firebase.AccesoFirebaseImpl;
 import com.example.gestiondeinventario.ui.firebase.Materiales;
 import com.google.firebase.database.DataSnapshot;
@@ -30,7 +28,7 @@ import java.util.List;
 public class InventarioFragment extends Fragment {
 
     private FragmentInventarioBinding binding;
-    private AccesoFirebase accesoFirebase;
+    private AccesoFirebaseMateriales accesoFirebaseMateriales;
     private RecyclerView recyclerView;
     private InventarioViewModel inventarioViewModel;
     private InventarioAdapter inventarioAdapter;
@@ -43,12 +41,12 @@ public class InventarioFragment extends Fragment {
         binding = FragmentInventarioBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        accesoFirebase = new AccesoFirebaseImpl();
+        accesoFirebaseMateriales = new AccesoFirebaseImpl();
         listaMateriales = new ArrayList<>();
         inventarioViewModel = new ViewModelProvider(this).get(InventarioViewModel.class);
         //fireBase
         // Cargar datos desde Firebase y actualizar la lista
-        accesoFirebase.cargarDatos(new AccesoFirebase.OnDataLoadedCallback() {
+        accesoFirebaseMateriales.cargarDatosMateriales(new AccesoFirebaseMateriales.OnDataLoadedCallbackMateriales() {
             @Override
             public void onDataLoaded(List<Materiales> materiales) {
                 if (materiales.isEmpty()) {

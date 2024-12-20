@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,8 +20,11 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.gestiondeinventario.databinding.FragmentTrabajoBinding;
-import com.example.gestiondeinventario.ui.firebase.AccesoFirebase;
+import com.example.gestiondeinventario.ui.firebase.AccesoFirebaseMateriales;
 import com.example.gestiondeinventario.ui.firebase.AccesoFirebaseImpl;
+import com.example.gestiondeinventario.ui.firebase.AccesoFirebaseTrabajos;
+import com.example.gestiondeinventario.ui.firebase.Materiales;
+import com.example.gestiondeinventario.ui.firebase.Trabajos;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -38,13 +40,15 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 public class TrabajoFragment extends Fragment {
     private FragmentTrabajoBinding binding;
-    private AccesoFirebase accesoFirebase;
+    private AccesoFirebaseMateriales accesoFirebaseMateriales;
+    private AccesoFirebaseTrabajos accesoFirebaseTrabajos;
     private FirebaseAuth mAuth;
     private TextView textViewCodigoUsuarioTrabajo;
 
     private GoogleSignInClient mGoogleSignInClient;
     private static final int RC_SIGN_IN = 9001;
     private String userName, unidades, codigo, orden;
+    private Trabajos trabajos;
 
 
     @Override
@@ -54,7 +58,8 @@ public class TrabajoFragment extends Fragment {
                 new ViewModelProvider(this).get(TrabajoViewModel.class);
         binding = FragmentTrabajoBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        accesoFirebase = new AccesoFirebaseImpl();
+        accesoFirebaseMateriales = new AccesoFirebaseImpl();
+        accesoFirebaseTrabajos = new AccesoFirebaseImpl();
         // Inicializa Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -82,8 +87,13 @@ public class TrabajoFragment extends Fragment {
             public void onClick(View v) {
                 try {
                     if (Integer.parseInt(binding.ediTextCantidadMaterialTrabajo.getText().toString()) > 0) {
-                        accesoFirebase.actualizarCantidad("-" + binding.ediTextCantidadMaterialTrabajo.getText().toString()
+                        accesoFirebaseMateriales.actualizarCantidadMateriales("-" + binding.ediTextCantidadMaterialTrabajo.getText().toString()
                                 , binding.ediTextCodigoMaterialTrabajo.getText().toString(), getContext());
+                        // Crear y guardar el material en Firebase Database
+                        //Trabajos(String ordenTrabajo, String nombreOperario, String codigoMaterial, String unidades)
+                        trabajos = new Trabajos(binding.ediTextOrdenTrabajoTrabajo.getText().toString(), userName,
+                                binding.ediTextCodigoMaterialTrabajo.getText().toString(), binding.ediTextCantidadMaterialTrabajo.getText().toString());
+                        accesoFirebaseTrabajos.guardarDatoTrabajos(trabajos,getContext());
                         limpiarCampos();
                     } else {
                         mostrarDialogo("ERROR AL INDICAR DATOS", "Indique la cantidad correctamente", getContext());

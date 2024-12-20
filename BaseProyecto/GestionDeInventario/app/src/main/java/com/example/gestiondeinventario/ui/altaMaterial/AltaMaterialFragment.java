@@ -9,7 +9,6 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,9 +16,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.gestiondeinventario.R;
 import com.example.gestiondeinventario.databinding.FragmentAltaMaterialBinding;
-import com.example.gestiondeinventario.ui.firebase.AccesoFirebase;
+import com.example.gestiondeinventario.ui.firebase.AccesoFirebaseMateriales;
 import com.example.gestiondeinventario.ui.firebase.AccesoFirebaseImpl;
 import com.example.gestiondeinventario.ui.firebase.Materiales;
 import com.google.firebase.storage.FirebaseStorage;
@@ -28,7 +26,7 @@ import com.google.firebase.storage.StorageReference;
 public class AltaMaterialFragment extends Fragment {
     private AltaMaterialViewModel altaMaterialViewModel;
     private int PICK_IMAGE_REQUEST = 1000;
-    private AccesoFirebase accesoFirebase;
+    private AccesoFirebaseMateriales accesoFirebaseMateriales;
 
     private FragmentAltaMaterialBinding binding;
 
@@ -43,7 +41,7 @@ public class AltaMaterialFragment extends Fragment {
         binding = FragmentAltaMaterialBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        accesoFirebase = new AccesoFirebaseImpl();
+        accesoFirebaseMateriales = new AccesoFirebaseImpl();
 
         binding.imageViewAltaMaterial.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +86,7 @@ public class AltaMaterialFragment extends Fragment {
                     foto = uri.toString(); // Guardar la URL en el campo foto
                     // Crear y guardar el material en Firebase Database
                     materiales = new Materiales(nombre, codigo, localizacion, uso, foto, cantidad,true);
-                    accesoFirebase.guardarDato(materiales,getContext());
+                    accesoFirebaseMateriales.guardarDatoMateriales(materiales,getContext());
                     limpiarFormulario();
                 }).addOnFailureListener(e -> {
                     Toast.makeText(getContext(), "Error al obtener URL", Toast.LENGTH_SHORT).show();

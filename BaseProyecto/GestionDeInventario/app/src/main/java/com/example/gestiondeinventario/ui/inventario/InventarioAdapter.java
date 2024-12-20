@@ -1,16 +1,12 @@
 package com.example.gestiondeinventario.ui.inventario;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -18,9 +14,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.gestiondeinventario.MainActivity;
 import com.example.gestiondeinventario.R;
-import com.example.gestiondeinventario.ui.firebase.AccesoFirebase;
+import com.example.gestiondeinventario.ui.firebase.AccesoFirebaseMateriales;
 import com.example.gestiondeinventario.ui.firebase.AccesoFirebaseImpl;
 import com.example.gestiondeinventario.ui.firebase.Materiales;
 
@@ -30,7 +25,7 @@ public class InventarioAdapter extends RecyclerView.Adapter<InventarioAdapter.Ad
     //variables
     private InventarioViewModel inventarioViewModel;
 
-    private AccesoFirebase accesoFirebase;
+    private AccesoFirebaseMateriales accesoFirebase;
     private Materiales materialSeleccionado;
 
 
@@ -85,7 +80,7 @@ public class InventarioAdapter extends RecyclerView.Adapter<InventarioAdapter.Ad
         ImageView foto;
         TextView nombre, codigo, localizacion, uso;
         CardView cardView;
-        private AccesoFirebase accesoFirebase;
+        private AccesoFirebaseMateriales accesoFirebase;
 
         public AdaptadorViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -139,7 +134,7 @@ public class InventarioAdapter extends RecyclerView.Adapter<InventarioAdapter.Ad
                         .setPositiveButton("Aceptar", (dialog, which) -> {
                             // Acción al presionar "Aceptar" añade la cantidad de material a la base de datos
                             if (ediIncreCantidad.getText().length() != 0) {
-                                accesoFirebase.actualizarCantidad(ediIncreCantidad.getText().toString(), materiales.getCodigo(), context);
+                                accesoFirebase.actualizarCantidadMateriales(ediIncreCantidad.getText().toString(), materiales.getCodigo(), context);
                             }
                             dialog.dismiss();
                         });

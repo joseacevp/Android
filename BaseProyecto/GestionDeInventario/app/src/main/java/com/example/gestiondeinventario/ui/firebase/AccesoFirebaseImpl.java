@@ -1,6 +1,5 @@
 package com.example.gestiondeinventario.ui.firebase;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.widget.Toast;
@@ -17,18 +16,20 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AccesoFirebaseImpl implements AccesoFirebase {
-    private final DatabaseReference databaseReference;
+public class AccesoFirebaseImpl implements AccesoFirebaseMateriales, AccesoFirebaseTrabajos {
+    private final DatabaseReference databaseReferenceMateriales;
+    private final DatabaseReference databaseReferenceTrabajos;
 
     public AccesoFirebaseImpl() {
         // Inicializar la referencia a la base de datos de Firebase
-        databaseReference = FirebaseDatabase.getInstance().getReference("Materiales");
+        databaseReferenceMateriales = FirebaseDatabase.getInstance().getReference("Materiales");
+        databaseReferenceTrabajos = FirebaseDatabase.getInstance().getReference("Trabajos");
     }
 
     @Override
-    public void guardarDato(Materiales materiales, Context context) {
+    public void guardarDatoMateriales(Materiales materiales, Context context) {
         if (materiales != null) {
-            cargarDatos(new OnDataLoadedCallback() {
+            cargarDatosMateriales(new OnDataLoadedCallbackMateriales() {
                 @Override
                 public void onDataLoaded(List<Materiales> lista) {
                     boolean existe = false;
@@ -40,9 +41,9 @@ public class AccesoFirebaseImpl implements AccesoFirebase {
                         }
                     }
                     if (existe == false) {//si no existe se inserta en la base de datos
-                        String id = databaseReference.push().getKey();
+                        String id = databaseReferenceMateriales.push().getKey();
                         if (id != null) {
-                            databaseReference.child(materiales.getCodigo()).setValue(materiales);
+                            databaseReferenceMateriales.child(materiales.getCodigo()).setValue(materiales);
                         }
                     } else {
                         mostrarDialogo("ERROR ", "El Codigo Utilizado Ya Existe", context);
@@ -59,8 +60,8 @@ public class AccesoFirebaseImpl implements AccesoFirebase {
     }
 
     @Override
-    public void cargarDatos(OnDataLoadedCallback callback) {
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+    public void cargarDatosMateriales(OnDataLoadedCallbackMateriales callback) {
+        databaseReferenceMateriales.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 List<Materiales> lista = new ArrayList<>();
@@ -79,9 +80,9 @@ public class AccesoFirebaseImpl implements AccesoFirebase {
     }
 
     @Override
-    public void actualizarCantidad(String cantidad, String codigo, Context context) {
+    public void actualizarCantidadMateriales(String cantidad, String codigo, Context context) {
         // Buscar el material en Firebase por su código
-        databaseReference.child(codigo).addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReferenceMateriales.child(codigo).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
@@ -92,7 +93,7 @@ public class AccesoFirebaseImpl implements AccesoFirebase {
                         String cantidadActual = material.getCantidad();
                         if (Integer.parseInt(cantidadActual) + Integer.parseInt(cantidad) >= 0) {
                             material.setCantidad(String.valueOf(Integer.parseInt(cantidadActual) + Integer.parseInt(cantidad))); //
-                            databaseReference.child(codigo).setValue(material)
+                            databaseReferenceMateriales.child(codigo).setValue(material)
                                     .addOnSuccessListener(aVoid ->
                                             Toast.makeText(context, "Cantidad actualizada exitosamente.", Toast.LENGTH_SHORT).show())
                                     .addOnFailureListener(e ->
@@ -130,5 +131,58 @@ public class AccesoFirebaseImpl implements AccesoFirebase {
         // Mostrar el diálogo
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    @Override
+    public void guardarDatoTrabajos(Trabajos trabajos, Context context) {
+        if (trabajos != null) {
+            cargarDatosTrabajos(new OnDataLoadedCallbackTrabajos() {
+                @Override
+                public void onDataLoaded(List<Trabajos> lista) {
+                    boolean existe = false;
+                    for (Trabajos trab : lista) {
+                        // Comprobamos si existe
+                        if (trab.getOrdenTrabajo().equals(trabajos.getOrdenTrabajo())) {
+                            existe = true;
+                            break;
+                        }
+                    }
+                    if (existe == false) {//si no existe se inserta en la base de datos
+                        String id = databaseReferenceTrabajos.push().getKey();
+                        if (id != null) {
+                            databaseReferenceTrabajos.child(trabajos.getOrdenTrabajo()).setValue(trabajos);
+                        }
+                    } else {
+                        mostrarDialogo("ERROR ", "El Codigo Utilizado Ya Existe", context);
+                    }
+                }
+
+                @Override
+                public void onError(String error) {
+                    // En el caso error al cargar datos
+                    mostrarDialogo("ERROR ", "Fallo la carga de datos", context);
+                }
+            });
+        }
+    }
+
+    @Override
+    public void cargarDatosTrabajos(OnDataLoadedCallbackTrabajos callback) {
+        databaseReferenceTrabajos.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<Trabajos> lista = new ArrayList<>();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Trabajos dato = dataSnapshot.getValue(Trabajos.class);
+                    lista.add(dato);
+                }
+                callback.onDataLoaded(lista);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                callback.onError("Error al cargar datos: " + error.getMessage());
+            }
+        });
     }
 }
