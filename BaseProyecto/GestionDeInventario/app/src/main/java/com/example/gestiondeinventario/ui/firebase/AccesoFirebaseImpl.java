@@ -80,8 +80,8 @@ public class AccesoFirebaseImpl implements AccesoFirebase {
     }
 
     @Override
-    public void actualizarCantidad(String cantidad,String codigo, Context context) {
-    // Buscar el material en Firebase por su código
+    public void actualizarCantidad(String cantidad, String codigo, Context context) {
+        // Buscar el material en Firebase por su código
         databaseReference.child(codigo).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -91,12 +91,17 @@ public class AccesoFirebaseImpl implements AccesoFirebase {
                     if (material != null) {
                         // Actualizar la cantidad
                         String cantidadActual = material.getCantidad();
-                        material.setCantidad(String.valueOf(Integer.parseInt(cantidadActual)+Integer.parseInt(cantidad))); //
-                        databaseReference.child(codigo).setValue(material)
-                                .addOnSuccessListener(aVoid ->
-                                        Toast.makeText(context, "Cantidad actualizada exitosamente.", Toast.LENGTH_SHORT).show())
-                                .addOnFailureListener(e ->
-                                        mostrarDialogo("ERROR", "No se pudo actualizar la cantidad: " + e.getMessage(), context));
+                        if (Integer.parseInt(cantidadActual) + Integer.parseInt(cantidad) >= 0){
+                            material.setCantidad(String.valueOf(Integer.parseInt(cantidadActual) + Integer.parseInt(cantidad))); //
+                            databaseReference.child(codigo).setValue(material)
+                                    .addOnSuccessListener(aVoid ->
+                                            Toast.makeText(context, "Cantidad actualizada exitosamente.", Toast.LENGTH_SHORT).show())
+                                    .addOnFailureListener(e ->
+                                            mostrarDialogo("ERROR", "No se pudo actualizar la cantidad: " + e.getMessage(), context));
+                        }else {
+                            mostrarDialogo("ERROR EN CANTIDADES INDICADAS","Falte de Stock.La cantidad indicada es ERRONEA", context);
+                        }
+
                     }
                 } else {
                     // Si el material no existe
@@ -112,13 +117,10 @@ public class AccesoFirebaseImpl implements AccesoFirebase {
     }
 
     private void mostrarDialogo(String titulo, String mensaje, Context context) {
-
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-
         // Configurar el título y el mensaje
         builder.setTitle(titulo);
         builder.setMessage(mensaje);
-
         // Configurar botón positivo (Aceptar)
         builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
             @Override
@@ -127,7 +129,6 @@ public class AccesoFirebaseImpl implements AccesoFirebase {
                 dialog.dismiss(); // Cerrar el diálogo
             }
         });
-
         // Mostrar el diálogo
         AlertDialog dialog = builder.create();
         dialog.show();

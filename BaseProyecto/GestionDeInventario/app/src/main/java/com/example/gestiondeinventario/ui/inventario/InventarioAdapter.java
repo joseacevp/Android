@@ -60,7 +60,6 @@ public class InventarioAdapter extends RecyclerView.Adapter<InventarioAdapter.Ad
     }
 
 
-
     @NonNull
     @Override
     public InventarioAdapter.AdaptadorViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -100,24 +99,20 @@ public class InventarioAdapter extends RecyclerView.Adapter<InventarioAdapter.Ad
         }
 
         public void bindAdaptador(Materiales materiales) {
-
             // Cargar imagen desde Firebase Storage usando Glide
             Glide.with(itemView.getContext())
                     .load(materiales.getFotoUri()) // URL de Firebase Storage
                     .placeholder(R.drawable.ic_dashboard_black_24dp) // Imagen de carga
                     .into(foto);
-
             nombre.setText(materiales.getNombre());
             codigo.setText(materiales.getCodigo());
             localizacion.setText(materiales.getLocalizacion());
             uso.setText(materiales.getUso());
-
-
             cardView.setOnClickListener(v -> {
                 Context context = v.getContext();
                 materialSeleccionado = materiales;
                 LayoutInflater layoutInflater = LayoutInflater.from(context);
-                View dialogoDetalle = layoutInflater.inflate(R.layout.dialog_detalles_material,null);
+                View dialogoDetalle = layoutInflater.inflate(R.layout.dialog_detalles_material, null);
                 // Crea el diálogo
                 // Encuentra las vistas dentro del diseño personalizado
                 ImageView imageView = dialogoDetalle.findViewById(R.id.imageViewFotoDetalle);
@@ -127,8 +122,6 @@ public class InventarioAdapter extends RecyclerView.Adapter<InventarioAdapter.Ad
                 TextView dialogUso = dialogoDetalle.findViewById(R.id.textViewUsoItemDet);
                 TextView dialogCantidad = dialogoDetalle.findViewById(R.id.textViewCantItemDet);
                 EditText ediIncreCantidad = dialogoDetalle.findViewById(R.id.editTextIncreCantDet);
-
-
                 // Establece los valores en las vistas del diálogo
                 // Cargar imagen desde Firebase Storage usando Glide
                 Glide.with(itemView.getContext())
@@ -140,25 +133,19 @@ public class InventarioAdapter extends RecyclerView.Adapter<InventarioAdapter.Ad
                 dialogLocalizacion.setText("Localización: " + materiales.getLocalizacion());
                 dialogUso.setText("Uso: " + materiales.getUso());
                 dialogCantidad.setText("Cantidad disponible: " + materiales.getCantidad());
-
-
                 // Configura y muestra el diálogo
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setView(dialogoDetalle)
                         .setPositiveButton("Aceptar", (dialog, which) -> {
                             // Acción al presionar "Aceptar" añade la cantidad de material a la base de datos
-                            if(ediIncreCantidad.getText().length()!=0){
-                                accesoFirebase.actualizarCantidad(ediIncreCantidad.getText().toString(),materiales.getCodigo(),context);
+                            if (ediIncreCantidad.getText().length() != 0) {
+                                accesoFirebase.actualizarCantidad(ediIncreCantidad.getText().toString(), materiales.getCodigo(), context);
                             }
-
-
                             dialog.dismiss();
                         });
-
                 AlertDialog dialog = builder.create();
                 dialog.show();
-
-                Toast.makeText(context, "SELECCIONADO: " + materiales.getNombre(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "SELECCIONADO: " + materiales.getNombre(), Toast.LENGTH_SHORT).show();
             });
         }
     }

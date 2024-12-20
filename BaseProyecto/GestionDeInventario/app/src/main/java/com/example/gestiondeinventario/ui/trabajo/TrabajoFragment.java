@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.gestiondeinventario.databinding.FragmentTrabajoBinding;
+import com.example.gestiondeinventario.ui.firebase.AccesoFirebase;
+import com.example.gestiondeinventario.ui.firebase.AccesoFirebaseImpl;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -32,21 +35,23 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 public class TrabajoFragment extends Fragment {
     private FragmentTrabajoBinding binding;
+    private AccesoFirebase accesoFirebase;
     private FirebaseAuth mAuth;
     private TextView textViewCodigoUsuarioTrabajo;
+
     private GoogleSignInClient mGoogleSignInClient;
     private static final int RC_SIGN_IN = 9001;
-    private String userName;
+    private String userName, unidades, codigo;
+    private int cantidad;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         TrabajoViewModel notificationsViewModel =
                 new ViewModelProvider(this).get(TrabajoViewModel.class);
-
         binding = FragmentTrabajoBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
+        accesoFirebase = new AccesoFirebaseImpl();
         // Inicializa Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -54,19 +59,23 @@ public class TrabajoFragment extends Fragment {
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), gso);
-
         // Encuentra el TextView
         textViewCodigoUsuarioTrabajo = binding.textViewCodigoUsuarioTrabajo;
-
         // Verifica si hay un usuario actual
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             userName = currentUser.getDisplayName();
-            textViewCodigoUsuarioTrabajo.setText(userName);
+            textViewCodigoUsuarioTrabajo.setText("Usuario: " + userName);
         } else {
             textViewCodigoUsuarioTrabajo.setText("Usuario no autenticado");
             signIn();
         }
+        binding.bottonGrabarTrabajo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                accesoFirebase.actualizarCantidad("-"+binding.ediTextCantidadMaterialTrabajo.getText().toString(),binding.ediTextCodigoMaterialTrabajo.getText().toString(),getContext());
+            }
+        });
 
         return root;
     }
@@ -113,7 +122,7 @@ public class TrabajoFragment extends Fragment {
                             userName = user.getDisplayName();
                             textViewCodigoUsuarioTrabajo.setText(userName);//Imprime en pantalla el nombre del usario de google
                             //graba el dato del usuario de google
-                            
+
                             Toast.makeText(requireContext(), "Bienvenido " + userName, Toast.LENGTH_SHORT).show();
                         } else {
                             // Identificación incorrecta

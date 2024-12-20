@@ -1,0 +1,11 @@
+{
+    "0002": {
+      "cantidad": "42",
+      "codigo": "0002",
+      "fotoUri": "https://firebasestorage.googleapis.com/v0/b/gestioninventario-368f6.firebasestorage.app/o/materiales%2F1734086447554.jpg?alt=media&token=59731990-b57b-417a-be6c-47061bfeb748",
+      "localizacion": "Armario 2",
+      "nombre": "Lampara 25W",
+      "selected": true,
+      "uso": "Edificio Sabatini"
+    }
+  }
