@@ -36,7 +36,6 @@ public class AccesoFirebaseImpl implements AccesoFirebase {
                         // Comprobamos si existe
                         if (mate.getCodigo().equals(materiales.getCodigo())) {
                             existe = true;
-
                             break;
                         }
                     }
@@ -91,17 +90,16 @@ public class AccesoFirebaseImpl implements AccesoFirebase {
                     if (material != null) {
                         // Actualizar la cantidad
                         String cantidadActual = material.getCantidad();
-                        if (Integer.parseInt(cantidadActual) + Integer.parseInt(cantidad) >= 0){
+                        if (Integer.parseInt(cantidadActual) + Integer.parseInt(cantidad) >= 0) {
                             material.setCantidad(String.valueOf(Integer.parseInt(cantidadActual) + Integer.parseInt(cantidad))); //
                             databaseReference.child(codigo).setValue(material)
                                     .addOnSuccessListener(aVoid ->
                                             Toast.makeText(context, "Cantidad actualizada exitosamente.", Toast.LENGTH_SHORT).show())
                                     .addOnFailureListener(e ->
                                             mostrarDialogo("ERROR", "No se pudo actualizar la cantidad: " + e.getMessage(), context));
-                        }else {
-                            mostrarDialogo("ERROR EN CANTIDADES INDICADAS","Falte de Stock.La cantidad indicada es ERRONEA", context);
+                        } else {
+                            mostrarDialogo("ERROR EN CANTIDADES INDICADAS", "Falte de Stock.La cantidad indicada es ERRONEA", context);
                         }
-
                     }
                 } else {
                     // Si el material no existe

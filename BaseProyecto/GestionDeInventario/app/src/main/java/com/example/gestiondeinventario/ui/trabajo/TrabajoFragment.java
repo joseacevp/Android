@@ -2,6 +2,8 @@ package com.example.gestiondeinventario.ui.trabajo;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
@@ -14,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -41,8 +44,8 @@ public class TrabajoFragment extends Fragment {
 
     private GoogleSignInClient mGoogleSignInClient;
     private static final int RC_SIGN_IN = 9001;
-    private String userName, unidades, codigo;
-    private int cantidad;
+    private String userName, unidades, codigo, orden;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -70,14 +73,52 @@ public class TrabajoFragment extends Fragment {
             textViewCodigoUsuarioTrabajo.setText("Usuario no autenticado");
             signIn();
         }
+        unidades = binding.ediTextCantidadMaterialTrabajo.getText().toString();
+        codigo = binding.ediTextCodigoMaterialTrabajo.getText().toString();
+        orden = binding.ediTextOrdenTrabajoTrabajo.getText().toString();
+
         binding.bottonGrabarTrabajo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                accesoFirebase.actualizarCantidad("-"+binding.ediTextCantidadMaterialTrabajo.getText().toString(),binding.ediTextCodigoMaterialTrabajo.getText().toString(),getContext());
+                try {
+                    if (Integer.parseInt(binding.ediTextCantidadMaterialTrabajo.getText().toString()) > 0) {
+                        accesoFirebase.actualizarCantidad("-" + binding.ediTextCantidadMaterialTrabajo.getText().toString()
+                                , binding.ediTextCodigoMaterialTrabajo.getText().toString(), getContext());
+                        limpiarCampos();
+                    } else {
+                        mostrarDialogo("ERROR AL INDICAR DATOS", "Indique la cantidad correctamente", getContext());
+                    }
+                } catch (Exception e) {
+                    mostrarDialogo("ERROR", "Faltan datos para poder realizar la grabación del Trabajo", getContext());
+                }
             }
         });
 
         return root;
+    }
+
+    private void limpiarCampos() {
+        binding.ediTextCantidadMaterialTrabajo.setText("");
+        binding.ediTextCodigoMaterialTrabajo.setText("");
+        binding.ediTextOrdenTrabajoTrabajo.setText("");
+    }
+
+    private void mostrarDialogo(String titulo, String mensaje, Context context) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        // Configurar el título y el mensaje
+        builder.setTitle(titulo);
+        builder.setMessage(mensaje);
+        // Configurar botón positivo (Aceptar)
+        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Acción al presionar "Aceptar"
+                dialog.dismiss(); // Cerrar el diálogo
+            }
+        });
+        // Mostrar el diálogo
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     //llama al gestor de usuarios de google del dispositivo

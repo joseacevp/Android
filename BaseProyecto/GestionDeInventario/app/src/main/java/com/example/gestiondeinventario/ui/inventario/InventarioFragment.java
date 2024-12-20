@@ -32,32 +32,32 @@ public class InventarioFragment extends Fragment {
     private FragmentInventarioBinding binding;
     private AccesoFirebase accesoFirebase;
     private RecyclerView recyclerView;
-    private InventarioViewModel  inventarioViewModel ;
+    private InventarioViewModel inventarioViewModel;
     private InventarioAdapter inventarioAdapter;
 
     private ArrayList<Materiales> listaMateriales;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentInventarioBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
         accesoFirebase = new AccesoFirebaseImpl();
         listaMateriales = new ArrayList<>();
-
         inventarioViewModel = new ViewModelProvider(this).get(InventarioViewModel.class);
         //fireBase
         // Cargar datos desde Firebase y actualizar la lista
         accesoFirebase.cargarDatos(new AccesoFirebase.OnDataLoadedCallback() {
             @Override
             public void onDataLoaded(List<Materiales> materiales) {
-                if (materiales.isEmpty()){
+                if (materiales.isEmpty()) {
                     cargarMaterialesDesdeFirebase();
                 }
                 listaMateriales.addAll(cargarMaterialesDesdeFirebase());
                 //lista.clear();
                 //lista.addAll(materiales);
                 inventarioAdapter.notifyDataSetChanged();
-
             }
 
             @Override
@@ -80,7 +80,6 @@ public class InventarioFragment extends Fragment {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Materiales material = dataSnapshot.getValue(Materiales.class);
                     listaMateriales.add(material);
-
                 }
                 // Actualiza el adaptador con los nuevos datos
                 inventarioAdapter.setListaMateriales(listaMateriales);
@@ -94,30 +93,19 @@ public class InventarioFragment extends Fragment {
         });
         return listaMateriales;
     }
+
     private void iniciarRecycler() {
         recyclerView = binding.recyclerInventario;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-
-
         inventarioAdapter = new InventarioAdapter(listaMateriales, inventarioViewModel);
         recyclerView.setAdapter(inventarioAdapter);
-
         cargarMaterialesDesdeFirebase(); // Carga los datos después de configurar el adaptador
     }
-
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
     }
-//    private List<Materiales> llenarListaMateriales() {
-//        lista = new ArrayList<>();
 //
-//        lista.add(new Materiales("SIN DATOS","0000","SIN DATOS DE LOCALIZACION","SIN DATOS DE USO ",R.drawable.ic_home_black_24dp,true));
-//        //ublic Materiales(String nombre, String codigo, String localizacion, String uso, int foto, Boolean isSelected) {
-//
-//        return lista;
-//    }
-
 }
