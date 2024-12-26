@@ -32,7 +32,6 @@ public class InventarioFragment extends Fragment {
     private RecyclerView recyclerView;
     private InventarioViewModel inventarioViewModel;
     private InventarioAdapter inventarioAdapter;
-
     private ArrayList<Materiales> listaMateriales;
 
     @Override
