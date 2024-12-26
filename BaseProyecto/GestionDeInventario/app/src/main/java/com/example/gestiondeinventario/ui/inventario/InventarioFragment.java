@@ -7,6 +7,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,6 +19,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.gestiondeinventario.R;
 import com.example.gestiondeinventario.databinding.FragmentInventarioBinding;
 import com.example.gestiondeinventario.ui.firebase.AccesoFirebaseMateriales;
 import com.example.gestiondeinventario.ui.firebase.AccesoFirebaseImpl;
@@ -74,9 +79,14 @@ public class InventarioFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 buscarMateriales(listaMateriales);
+                limpiarCampo();
             }
         });
         return root;
+    }
+
+    private void limpiarCampo() {
+        binding.editTextBuscarInve.setText("");
     }
 
 
@@ -164,17 +174,50 @@ public class InventarioFragment extends Fragment {
         }
         // Mostrar el resultado
         if (materialEncontrado != null) {
-            // Crear el mensaje con los detalles del material
-            String detalles = "Código: " + materialEncontrado.getCodigo() + "\n" +
-                    "Nombre: " + materialEncontrado.getNombre() + "\n" +
-                    "Cantidad: " + materialEncontrado.getCantidad() + "\n" +
-                    "Descripción: " + materialEncontrado.getLocalizacion();
-            // Mostrar los detalles en un diálogo
-            mostrarDialogo("Detalles del Material", detalles, getContext());
+            mostrarDialogoResultado(getContext(), materialEncontrado);
         } else {
             // Si no se encontró el material, muestra un mensaje de error
             mostrarDialogo("Error", "No se encontró un material con el código: " + codigo, getContext());
         }
+    }
+
+    private void mostrarDialogoResultado(Context context, Materiales matarial) {
+
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
+        View dialogoDetalle = layoutInflater.inflate(R.layout.dialog_detalles_material, null);
+        // Crea el diálogo
+        // Encuentra las vistas dentro del diseño personalizado
+        ImageView imageView = dialogoDetalle.findViewById(R.id.imageViewFotoDetalle);
+        TextView dialogNombre = dialogoDetalle.findViewById(R.id.textViewNombreItemDet);
+        TextView dialogCodigo = dialogoDetalle.findViewById(R.id.textViewCodItemDet);
+        TextView dialogLocalizacion = dialogoDetalle.findViewById(R.id.textViewLocaliItemDet);
+        TextView dialogUso = dialogoDetalle.findViewById(R.id.textViewUsoItemDet);
+        TextView dialogCantidad = dialogoDetalle.findViewById(R.id.textViewCantItemDet);
+        EditText ediIncreCantidad = dialogoDetalle.findViewById(R.id.editTextIncreCantDet);
+        // Establece los valores en las vistas del diálogo
+        // Cargar imagen desde Firebase Storage usando Glide
+        Glide.with(context)
+                .load(matarial.getFotoUri()) // URL de Firebase Storage
+                .placeholder(R.drawable.ic_dashboard_black_24dp) // Imagen de carga
+                .into(imageView);
+        dialogNombre.setText("Nombre: " + matarial.getNombre());
+        dialogCodigo.setText("Código: " + matarial.getCodigo());
+        dialogLocalizacion.setText("Localización: " + matarial.getLocalizacion());
+        dialogUso.setText("Uso: " + matarial.getUso());
+        dialogCantidad.setText("Cantidad disponible: " + matarial.getCantidad());
+        // Configura y muestra el diálogo
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setView(dialogoDetalle)
+                .setPositiveButton("Aceptar", (dialog, which) -> {
+                    // Acción al presionar "Aceptar" añade la cantidad de material a la base de datos
+                    if (ediIncreCantidad.getText().length() != 0) {
+                        accesoFirebaseMateriales.actualizarCantidadMateriales(ediIncreCantidad.getText().toString(), matarial.getCodigo(), context);
+                    }
+                    dialog.dismiss();
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+//                Toast.makeText(context, "SELECCIONADO: " + materiales.getNombre(), Toast.LENGTH_SHORT).show();
     }
 
 
