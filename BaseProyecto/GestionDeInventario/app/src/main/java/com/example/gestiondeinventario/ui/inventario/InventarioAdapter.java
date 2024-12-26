@@ -24,10 +24,8 @@ import java.util.List;
 public class InventarioAdapter extends RecyclerView.Adapter<InventarioAdapter.AdaptadorViewHolder> {
     //variables
     private InventarioViewModel inventarioViewModel;
-
     private AccesoFirebaseMateriales accesoFirebase;
     private Materiales materialSeleccionado;
-
 
     public InventarioAdapter(List<Materiales> listaMateriales, InventarioViewModel inventarioViewModel) {
         this.listaMateriales = listaMateriales;
@@ -38,13 +36,11 @@ public class InventarioAdapter extends RecyclerView.Adapter<InventarioAdapter.Ad
         return materialSeleccionado;
     }
 
-
     public void setMaterialSeleccionado(Materiales materialSeleccionado) {
         this.materialSeleccionado = materialSeleccionado;
     }
 
     private List<Materiales> listaMateriales;
-
 
     public List<Materiales> getListaMateriales() {
         return listaMateriales;
@@ -53,7 +49,6 @@ public class InventarioAdapter extends RecyclerView.Adapter<InventarioAdapter.Ad
     public void setListaMateriales(List<Materiales> listaMateriales) {
         this.listaMateriales = listaMateriales;
     }
-
 
     @NonNull
     @Override
@@ -74,7 +69,6 @@ public class InventarioAdapter extends RecyclerView.Adapter<InventarioAdapter.Ad
     public int getItemCount() {
         return listaMateriales.size();
     }
-
 
     public class AdaptadorViewHolder extends RecyclerView.ViewHolder {
         ImageView foto;

@@ -18,10 +18,8 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.gestiondeinventario.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-
     private ActivityMainBinding binding;
     private static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 12;
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -54,8 +52,7 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setItemIconTintList(null);
         navView.setItemIconSize(130);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+        // menu
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_inventario, R.id.navigation_alta_material, R.id.navigation_notifications)
                 .build();
@@ -70,16 +67,12 @@ public class MainActivity extends AppCompatActivity {
         llamar a requestPermissions(), como se describe en Explica la razón por la cual la necesita
         permisos.
          */
-        // Here, thisActivity is the current activity
         if (ContextCompat.checkSelfPermission(this,
                 android.Manifest.permission.RECEIVE_SMS)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.CAMERA},
                     MY_PERMISSIONS_REQUEST_READ_CONTACTS);
-            // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-            // app-defined int constant. The callback method gets the
-            // result of the request.
         }
 
 
