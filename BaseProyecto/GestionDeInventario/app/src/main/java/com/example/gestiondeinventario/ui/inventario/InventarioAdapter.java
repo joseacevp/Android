@@ -1,19 +1,26 @@
 package com.example.gestiondeinventario.ui.inventario;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.example.gestiondeinventario.R;
 import com.example.gestiondeinventario.ui.firebase.AccesoFirebaseMateriales;
 import com.example.gestiondeinventario.ui.firebase.AccesoFirebaseImpl;
@@ -74,10 +81,12 @@ public class InventarioAdapter extends RecyclerView.Adapter<InventarioAdapter.Ad
         ImageView foto;
         TextView nombre, codigo, localizacion, uso;
         CardView cardView;
+        ProgressBar progressBar;
         private AccesoFirebaseMateriales accesoFirebase;
 
         public AdaptadorViewHolder(@NonNull View itemView) {
             super(itemView);
+            progressBar = itemView.findViewById(R.id.progressBarItemInv);
             foto = itemView.findViewById(R.id.imageViewItemInventario);
             nombre = itemView.findViewById(R.id.textViewNombreItemInv);
             codigo = itemView.findViewById(R.id.textViewCodItemInv);
@@ -89,10 +98,24 @@ public class InventarioAdapter extends RecyclerView.Adapter<InventarioAdapter.Ad
 
         public void bindAdaptador(Materiales materiales) {
             // Cargar imagen desde Firebase Storage usando Glide
+            progressBar.setVisibility(View.VISIBLE);
             Glide.with(itemView.getContext())
                     .load(materiales.getFotoUri()) // URL de Firebase Storage
-                    .placeholder(R.drawable.ic_dashboard_black_24dp) // Imagen de carga
-                    .into(foto);
+                    .placeholder(null) // Imagen de carga
+                    .listener(new RequestListener<Drawable>() {
+                        @Override
+                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                            progressBar.setVisibility(View.GONE);
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                            progressBar.setVisibility(View.GONE);
+                            return false;
+                        }
+                    }).into(foto);
+
             nombre.setText(materiales.getNombre());
             codigo.setText(materiales.getCodigo());
             localizacion.setText(materiales.getLocalizacion());
@@ -111,6 +134,7 @@ public class InventarioAdapter extends RecyclerView.Adapter<InventarioAdapter.Ad
                 TextView dialogUso = dialogoDetalle.findViewById(R.id.textViewUsoItemDet);
                 TextView dialogCantidad = dialogoDetalle.findViewById(R.id.textViewCantItemDet);
                 EditText ediIncreCantidad = dialogoDetalle.findViewById(R.id.editTextIncreCantDet);
+
                 // Establece los valores en las vistas del diálogo
                 // Cargar imagen desde Firebase Storage usando Glide
                 Glide.with(itemView.getContext())

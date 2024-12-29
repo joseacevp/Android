@@ -117,6 +117,7 @@ public class TrabajoFragment extends Fragment {
                                 binding.ediTextCodigoMaterialTrabajo.getText().toString(), binding.ediTextCantidadMaterialTrabajo.getText().toString());
                         accesoFirebaseTrabajos.guardarDatoTrabajos(trabajos, getContext());
                         limpiarCampos();
+
                     } else {
                         mostrarDialogo("ERROR AL INDICAR DATOS", "Indique la cantidad correctamente", getContext());
                     }
@@ -130,6 +131,7 @@ public class TrabajoFragment extends Fragment {
     }
 
     private void mostrarImagenMaterial() {
+        binding.progressBarTrabajo.setVisibility(View.VISIBLE);
         accesoFirebaseMateriales.cargarDatosMateriales(new AccesoFirebaseMateriales.OnDataLoadedCallbackMateriales() {
             @Override
             public void onDataLoaded(List<Materiales> materiales) {
@@ -140,9 +142,10 @@ public class TrabajoFragment extends Fragment {
                         // Si encuentra el material, carga la imagen
                         Glide.with(requireContext())
                                 .load(material.getFotoUri()) // URL de Firebase Storage
-                                .placeholder(R.drawable.ic_dashboard_black_24dp) // Imagen de carga
-                                .error(R.drawable.ic_dashboard_black_24dp) // Imagen de error
+                                .placeholder(null) // Imagen de carga
+                                .error(android.R.drawable.ic_menu_camera) // Imagen de error
                                 .into(binding.imageViewTrabajo);
+                        binding.progressBarTrabajo.setVisibility(View.GONE);
                         materialEncontrado = true; // Cambiamos la bandera
                         break; // Salimos del bucle una vez encontrado
                     }
@@ -187,6 +190,10 @@ public class TrabajoFragment extends Fragment {
         binding.ediTextCantidadMaterialTrabajo.setText("");
         binding.ediTextCodigoMaterialTrabajo.setText("");
         binding.ediTextOrdenTrabajoTrabajo.setText("");
+        // Quitar la imagen cargada estableciendo una imagen predeterminada o dejándola vacía
+        binding.imageViewTrabajo.setImageResource(android.R.drawable.ic_menu_camera); // Imagen predeterminada
+        // O, para dejarla vacía, puedes usar:
+        // binding.imageViewTrabajo.setImageDrawable(null);
     }
 
     private void mostrarDialogo(String titulo, String mensaje, Context context) {
