@@ -109,14 +109,51 @@ public class TrabajoFragment extends Fragment {
             public void onClick(View v) {
                 try {
                     if (Integer.parseInt(binding.ediTextCantidadMaterialTrabajo.getText().toString()) > 0) {
-                        accesoFirebaseMateriales.actualizarCantidadMateriales("-" + binding.ediTextCantidadMaterialTrabajo.getText().toString()
-                                , binding.ediTextCodigoMaterialTrabajo.getText().toString(), getContext());
-                        // Crear y guardar el material en Firebase Database
-                        //Trabajos(String ordenTrabajo, String nombreOperario, String codigoMaterial, String unidades)
-                        trabajos = new Trabajos(binding.ediTextOrdenTrabajoTrabajo.getText().toString(), userName,
-                                binding.ediTextCodigoMaterialTrabajo.getText().toString(), binding.ediTextCantidadMaterialTrabajo.getText().toString());
-                        accesoFirebaseTrabajos.guardarDatoTrabajos(trabajos, getContext());
-                        limpiarCampos();
+                         //implementar error de falta de stock
+                        // Consultar el stock del material
+                        accesoFirebaseMateriales.cargarDatosMateriales(new AccesoFirebaseMateriales.OnDataLoadedCallbackMateriales() {
+                            @Override
+                            public void onDataLoaded(List<Materiales> materiales) {
+                                boolean materialEncontrado = false;
+                                for (Materiales material : materiales) {
+                                    if (material.getCodigo().equals(binding.ediTextCodigoMaterialTrabajo.getText().toString())) {
+                                        materialEncontrado = true;
+                                        int stockDisponible = Integer.parseInt(material.getCantidad()); // Cantidad disponible en Firebase
+
+                                        if (Integer.parseInt(binding.ediTextCantidadMaterialTrabajo.getText().toString()) > stockDisponible) {
+                                            // Si la cantidad solicitada supera el stock, muestra un error
+                                            mostrarDialogo("ERROR DE STOCK", "No hay suficientes unidades disponibles. Stock actual: " + stockDisponible, getContext());
+                                        } else {
+                                            // Grabar el trabajo y actualizar el stock
+                                            accesoFirebaseMateriales.actualizarCantidadMateriales(
+                                                    "-" + binding.ediTextCantidadMaterialTrabajo.getText().toString(),
+                                                    binding.ediTextCodigoMaterialTrabajo.getText().toString(),
+                                                    getContext()
+                                            );
+
+                                            trabajos = new Trabajos(
+                                                    binding.ediTextOrdenTrabajoTrabajo.getText().toString(),
+                                                    userName,
+                                                    binding.ediTextCodigoMaterialTrabajo.getText().toString(),
+                                                    binding.ediTextCantidadMaterialTrabajo.getText().toString()
+                                            );
+
+                                            accesoFirebaseTrabajos.guardarDatoTrabajos(trabajos, getContext());
+                                            limpiarCampos();
+                                        }
+                                        break;
+                                    }
+                                }
+                                if (!materialEncontrado) {
+                                    mostrarDialogo("ERROR", "No se encontró el material con el código indicado.", getContext());
+                                }
+                            }
+
+                            @Override
+                            public void onError(String error) {
+                                Toast.makeText(getContext(), "Error al consultar stock: " + error, Toast.LENGTH_SHORT).show();
+                            }
+                        });
 
                     } else {
                         mostrarDialogo("ERROR AL INDICAR DATOS", "Indique la cantidad correctamente", getContext());
@@ -161,29 +198,6 @@ public class TrabajoFragment extends Fragment {
                 Toast.makeText(getContext(), "Fallo al cargar datos de Firebase: " + error, Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-
-    private List<Materiales> cargarMaterialesDesdeFirebase() {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Materiales");
-        List<Materiales> listaMateriales = new ArrayList<>();
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                listaMateriales.clear(); // Limpia la lista antes de agregar nuevos datos
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    Materiales material = dataSnapshot.getValue(Materiales.class);
-                    listaMateriales.add(material);
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Error al cargar datos", Toast.LENGTH_SHORT).show();
-            }
-        });
-        return listaMateriales;
     }
 
     private void limpiarCampos() {
