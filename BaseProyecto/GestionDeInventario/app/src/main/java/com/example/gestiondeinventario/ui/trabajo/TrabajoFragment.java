@@ -50,7 +50,6 @@ import java.util.List;
 
 public class TrabajoFragment extends Fragment {
     private FragmentTrabajoBinding binding;
-    private Materiales material;
     private AccesoFirebaseMateriales accesoFirebaseMateriales;
     private AccesoFirebaseTrabajos accesoFirebaseTrabajos;
     private FirebaseAuth mAuth;

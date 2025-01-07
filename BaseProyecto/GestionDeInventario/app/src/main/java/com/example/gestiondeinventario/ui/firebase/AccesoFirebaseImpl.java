@@ -14,7 +14,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class AccesoFirebaseImpl implements AccesoFirebaseMateriales, AccesoFirebaseTrabajos {
     private final DatabaseReference databaseReferenceMateriales;
@@ -141,30 +144,53 @@ public class AccesoFirebaseImpl implements AccesoFirebaseMateriales, AccesoFireb
                 public void onDataLoaded(List<Trabajos> lista) {
                     boolean existe = false;
                     for (Trabajos trab : lista) {
-                        // Comprobamos si existe
+                        // Comprobamos si la orden de trabajo ya existe
                         if (trab.getOrdenTrabajo().equals(trabajos.getOrdenTrabajo())) {
                             existe = true;
+
+                            // Obtener los códigos de material actuales y concatenar el nuevo
+                            String materialesExistentes = trab.getCodigoMaterial();
+                            String nuevoMaterial = trabajos.getCodigoMaterial();
+
+                            // Evitar duplicados
+                            Set<String> conjuntoMateriales = new HashSet<>(Arrays.asList(materialesExistentes.split(",")));
+                            conjuntoMateriales.add(nuevoMaterial);
+
+                            // Actualizar el campo codigoMaterial en Firebase
+                            String materialesActualizados = String.join(",", conjuntoMateriales);
+                            trab.setCodigoMaterial(materialesActualizados);
+
+                            databaseReferenceTrabajos.child(trab.getOrdenTrabajo()).setValue(trab)
+                                    .addOnSuccessListener(aVoid ->
+                                            mostrarDialogo("Éxito", "Material añadido correctamente a la orden de trabajo.", context))
+                                    .addOnFailureListener(e ->
+                                            mostrarDialogo("ERROR", "No se pudo actualizar la orden de trabajo: " + e.getMessage(), context));
                             break;
                         }
                     }
-                    if (existe == false) {//si no existe se inserta en la base de datos
+                    if (!existe) { // Si no existe, se inserta en la base de datos como una nueva orden
                         String id = databaseReferenceTrabajos.push().getKey();
                         if (id != null) {
-                            databaseReferenceTrabajos.child(trabajos.getOrdenTrabajo()).setValue(trabajos);
+                            databaseReferenceTrabajos.child(trabajos.getOrdenTrabajo()).setValue(trabajos)
+                                    .addOnSuccessListener(aVoid ->
+                                            mostrarDialogo("Éxito", "Nueva orden de trabajo creada exitosamente.", context))
+                                    .addOnFailureListener(e ->
+                                            mostrarDialogo("ERROR", "No se pudo crear la nueva orden de trabajo: " + e.getMessage(), context));
                         }
-                    } else {
-                        mostrarDialogo("ERROR ", "El Codigo Utilizado Ya Existe", context);
                     }
                 }
 
                 @Override
                 public void onError(String error) {
-                    // En el caso error al cargar datos
-                    mostrarDialogo("ERROR ", "Fallo la carga de datos", context);
+                    mostrarDialogo("ERROR", "Falló la carga de datos: " + error, context);
                 }
             });
         }
     }
+
+
+
+
 
     @Override
     public void cargarDatosTrabajos(OnDataLoadedCallbackTrabajos callback) {
