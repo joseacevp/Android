@@ -188,10 +188,6 @@ public class AccesoFirebaseImpl implements AccesoFirebaseMateriales, AccesoFireb
         }
     }
 
-
-
-
-
     @Override
     public void cargarDatosTrabajos(OnDataLoadedCallbackTrabajos callback) {
         databaseReferenceTrabajos.addListenerForSingleValueEvent(new ValueEventListener() {
