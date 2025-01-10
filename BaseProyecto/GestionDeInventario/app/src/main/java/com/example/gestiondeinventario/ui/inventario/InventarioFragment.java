@@ -39,7 +39,6 @@ public class InventarioFragment extends Fragment {
     private FragmentInventarioBinding binding;
     private AccesoFirebaseMateriales accesoFirebaseMateriales;
     private RecyclerView recyclerView;
-    private InventarioViewModel inventarioViewModel;
     private InventarioAdapter inventarioAdapter;
     private ArrayList<Materiales> listaMateriales = new ArrayList<>();
     private String codigo;
@@ -51,9 +50,7 @@ public class InventarioFragment extends Fragment {
         binding = FragmentInventarioBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         accesoFirebaseMateriales = new AccesoFirebaseImpl();
-
-        inventarioViewModel = new ViewModelProvider(this).get(InventarioViewModel.class);
-        //fireBase
+         //fireBase
         // Cargar datos desde Firebase y actualizar la lista
         accesoFirebaseMateriales.cargarDatosMateriales(new AccesoFirebaseMateriales.OnDataLoadedCallbackMateriales() {
             @Override
@@ -122,7 +119,7 @@ public class InventarioFragment extends Fragment {
     private void iniciarRecycler() {
         recyclerView = binding.recyclerInventario;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-        inventarioAdapter = new InventarioAdapter(listaMateriales, inventarioViewModel);
+        inventarioAdapter = new InventarioAdapter(listaMateriales);
         recyclerView.setAdapter(inventarioAdapter);
         cargarMaterialesDesdeFirebase(); // Carga los datos después de configurar el adaptador
     }

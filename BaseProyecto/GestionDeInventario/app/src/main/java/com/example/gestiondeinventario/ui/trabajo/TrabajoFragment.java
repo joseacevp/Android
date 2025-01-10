@@ -64,8 +64,6 @@ public class TrabajoFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        TrabajoViewModel notificationsViewModel =
-                new ViewModelProvider(this).get(TrabajoViewModel.class);
         binding = FragmentTrabajoBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         accesoFirebaseMateriales = new AccesoFirebaseImpl();

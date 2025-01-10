@@ -30,9 +30,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 public class AltaMaterialFragment extends Fragment {
-    private AltaMaterialViewModel altaMaterialViewModel;
-
-    private int PICK_IMAGE_REQUEST = 1000;
+     private int PICK_IMAGE_REQUEST = 1000;
     private AccesoFirebaseMateriales accesoFirebaseMateriales;
 
     private FragmentAltaMaterialBinding binding;
@@ -42,8 +40,6 @@ public class AltaMaterialFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        AltaMaterialViewModel dashboardViewModel =
-                new ViewModelProvider(this).get(AltaMaterialViewModel.class);
 
         binding = FragmentAltaMaterialBinding.inflate(inflater, container, false);
         View root = binding.getRoot();

@@ -30,13 +30,11 @@ import java.util.List;
 
 public class InventarioAdapter extends RecyclerView.Adapter<InventarioAdapter.AdaptadorViewHolder> {
     //variables
-    private InventarioViewModel inventarioViewModel;
     private AccesoFirebaseMateriales accesoFirebase;
     private Materiales materialSeleccionado;
 
-    public InventarioAdapter(List<Materiales> listaMateriales, InventarioViewModel inventarioViewModel) {
+    public InventarioAdapter(List<Materiales> listaMateriales) {
         this.listaMateriales = listaMateriales;
-        this.inventarioViewModel = inventarioViewModel;
     }
 
     public Materiales getMaterialSeleccionado() {
