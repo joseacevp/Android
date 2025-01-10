@@ -7,6 +7,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -94,15 +96,30 @@ public class AccesoFirebaseImpl implements AccesoFirebaseMateriales, AccesoFireb
                     if (material != null) {
                         // Actualizar la cantidad
                         String cantidadActual = material.getCantidad();
-                        if (Integer.parseInt(cantidadActual) + Integer.parseInt(cantidad) >= 0) {
-                            material.setCantidad(String.valueOf(Integer.parseInt(cantidadActual) + Integer.parseInt(cantidad))); //
-                            databaseReferenceMateriales.child(codigo).setValue(material)
-                                    .addOnSuccessListener(aVoid ->
-                                            Toast.makeText(context, "Cantidad actualizada exitosamente.", Toast.LENGTH_SHORT).show())
-                                    .addOnFailureListener(e ->
-                                            mostrarDialogo("ERROR", "No se pudo actualizar la cantidad: " + e.getMessage(), context));
-                        } else {
-                            mostrarDialogo("ERROR EN CANTIDADES INDICADAS", "Falte de Stock.La cantidad indicada es ERRONEA", context);
+                        try {
+                            int nuevaCantidad = Integer.parseInt(cantidadActual) + Integer.parseInt(cantidad);
+
+                            if (nuevaCantidad >= 0) {
+                                material.setCantidad(String.valueOf(nuevaCantidad)); // Actualizamos la cantidad
+
+                                databaseReferenceMateriales.child(codigo).setValue(material)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+//                                                Toast.makeText(context, "Cantidad actualizada exitosamente.", Toast.LENGTH_SHORT).show();
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                mostrarDialogo("ERROR", "No se pudo actualizar la cantidad: " + e.getMessage(), context);
+                                            }
+                                        });
+                            } else {
+                                mostrarDialogo("ERROR EN CANTIDADES INDICADAS", "Falte de Stock. La cantidad indicada es ERRÓNEA.", context);
+                            }
+                        } catch (NumberFormatException e) {
+                            mostrarDialogo("ERROR", "Formato de cantidad inválido: " + e.getMessage(), context);
                         }
                     }
                 } else {
@@ -110,6 +127,7 @@ public class AccesoFirebaseImpl implements AccesoFirebaseMateriales, AccesoFireb
                     mostrarDialogo("ERROR", "El material con el código especificado no existe.", context);
                 }
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -147,24 +165,7 @@ public class AccesoFirebaseImpl implements AccesoFirebaseMateriales, AccesoFireb
                         // Comprobamos si la orden de trabajo ya existe
                         if (trab.getOrdenTrabajo().equals(trabajos.getOrdenTrabajo())) {
                             existe = true;
-
-                            // Obtener los códigos de material actuales y concatenar el nuevo
-                            String materialesExistentes = trab.getCodigoMaterial();
-                            String nuevoMaterial = trabajos.getCodigoMaterial();
-
-                            // Evitar duplicados
-                            Set<String> conjuntoMateriales = new HashSet<>(Arrays.asList(materialesExistentes.split(",")));
-                            conjuntoMateriales.add(nuevoMaterial);
-
-                            // Actualizar el campo codigoMaterial en Firebase
-                            String materialesActualizados = String.join(",", conjuntoMateriales);
-                            trab.setCodigoMaterial(materialesActualizados);
-
-                            databaseReferenceTrabajos.child(trab.getOrdenTrabajo()).setValue(trab)
-                                    .addOnSuccessListener(aVoid ->
-                                            mostrarDialogo("Éxito", "Material añadido correctamente a la orden de trabajo.", context))
-                                    .addOnFailureListener(e ->
-                                            mostrarDialogo("ERROR", "No se pudo actualizar la orden de trabajo: " + e.getMessage(), context));
+                            mostrarDialogo("ERROR", "La orden de trabajo ya se uso", context);
                             break;
                         }
                     }
