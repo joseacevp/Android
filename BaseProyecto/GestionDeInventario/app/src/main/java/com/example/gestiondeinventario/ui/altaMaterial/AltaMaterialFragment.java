@@ -30,14 +30,11 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 public class AltaMaterialFragment extends Fragment {
-     private int PICK_IMAGE_REQUEST = 1000;
+    private int PICK_IMAGE_REQUEST = 1000;
     private AccesoFirebaseMateriales accesoFirebaseMateriales;
-
     private FragmentAltaMaterialBinding binding;
-
     private String nombre, codigo, localizacion, uso, foto, cantidad;
     private Materiales materiales;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 

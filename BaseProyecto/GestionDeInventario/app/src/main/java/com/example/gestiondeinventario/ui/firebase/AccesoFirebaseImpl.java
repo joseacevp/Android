@@ -158,33 +158,30 @@ public class AccesoFirebaseImpl implements AccesoFirebaseMateriales, AccesoFireb
     public void guardarDatoTrabajos(Trabajos trabajos, Context context) {
         if (trabajos != null) {
             cargarDatosTrabajos(new OnDataLoadedCallbackTrabajos() {
+                // Generar automáticamente una clave única con push()
+                String claveGenerada = databaseReferenceTrabajos.push().getKey();
                 @Override
                 public void onDataLoaded(List<Trabajos> lista) {
-                    boolean existe = false;
-                    for (Trabajos trab : lista) {
-                        // Comprobamos si la orden de trabajo ya existe
-                        if (trab.getOrdenTrabajo().equals(trabajos.getOrdenTrabajo())) {
-                            existe = true;
-                            mostrarDialogo("ERROR", "La orden de trabajo ya se uso", context);
-                            break;
-                        }
-                    }
-                    if (!existe) { // Si no existe, se inserta en la base de datos como una nueva orden
-                        String id = databaseReferenceTrabajos.push().getKey();
-                        if (id != null) {
-                            databaseReferenceTrabajos.child(trabajos.getOrdenTrabajo()).setValue(trabajos)
-                                    .addOnSuccessListener(aVoid ->
-                                            mostrarDialogo("Éxito", "Nueva orden de trabajo creada exitosamente.", context))
-                                    .addOnFailureListener(e ->
-                                            mostrarDialogo("ERROR", "No se pudo crear la nueva orden de trabajo: " + e.getMessage(), context));
-                        }
-                    }
+                    databaseReferenceTrabajos.child(claveGenerada).setValue(trabajos)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    mostrarDialogo("Éxito", "Nueva orden de trabajo creada exitosamente.", context);
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    mostrarDialogo("ERROR", "No se pudo crear la nueva orden de trabajo: " + e.getMessage(), context);
+                                }
+                            });
                 }
 
                 @Override
                 public void onError(String error) {
                     mostrarDialogo("ERROR", "Falló la carga de datos: " + error, context);
                 }
+
             });
         }
     }
