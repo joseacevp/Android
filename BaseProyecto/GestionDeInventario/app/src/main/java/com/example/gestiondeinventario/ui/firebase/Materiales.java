@@ -2,7 +2,7 @@ package com.example.gestiondeinventario.ui.firebase;
 
 public class Materiales {
     private String nombre, codigo,
-            localizacion, uso, fotoUri,cantidad;
+            localizacion, uso, fotoUri, cantidad;
     private Boolean isSelected = false;
 
     public Materiales() {

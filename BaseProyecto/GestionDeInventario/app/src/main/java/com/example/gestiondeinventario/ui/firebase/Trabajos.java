@@ -1,8 +1,8 @@
 package com.example.gestiondeinventario.ui.firebase;
 
 public class Trabajos {
-    private String ordenTrabajo,nombreOperario,
-            codigoMaterial,unidades;
+    private String ordenTrabajo, nombreOperario,
+            codigoMaterial, unidades;
 
     public Trabajos() {
     }

@@ -54,12 +54,10 @@ public class TrabajoFragment extends Fragment {
     private AccesoFirebaseTrabajos accesoFirebaseTrabajos;
     private FirebaseAuth mAuth;
     private TextView textViewCodigoUsuarioTrabajo;
-
     private GoogleSignInClient mGoogleSignInClient;
     private static final int RC_SIGN_IN = 9001;
     private String userName, unidades, codigo, orden;
     private Trabajos trabajos;
-
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -100,13 +98,12 @@ public class TrabajoFragment extends Fragment {
                 }
             }
         });
-
         binding.bottonGrabarTrabajo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
                     if (Integer.parseInt(binding.ediTextCantidadMaterialTrabajo.getText().toString()) > 0) {
-                         //implementar error de falta de stock
+                        //implementar error de falta de stock
                         // Consultar el stock del material
                         accesoFirebaseMateriales.cargarDatosMateriales(new AccesoFirebaseMateriales.OnDataLoadedCallbackMateriales() {
                             @Override
@@ -160,7 +157,6 @@ public class TrabajoFragment extends Fragment {
                 }
             }
         });
-
         return root;
     }
 

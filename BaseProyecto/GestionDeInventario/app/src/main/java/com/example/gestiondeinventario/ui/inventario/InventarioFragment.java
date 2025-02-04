@@ -50,7 +50,7 @@ public class InventarioFragment extends Fragment {
         binding = FragmentInventarioBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         accesoFirebaseMateriales = new AccesoFirebaseImpl();
-         //fireBase
+        //fireBase
         // Cargar datos desde Firebase y actualizar la lista
         accesoFirebaseMateriales.cargarDatosMateriales(new AccesoFirebaseMateriales.OnDataLoadedCallbackMateriales() {
             @Override

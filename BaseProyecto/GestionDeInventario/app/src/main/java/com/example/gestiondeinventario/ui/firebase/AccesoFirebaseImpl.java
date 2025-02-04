@@ -98,10 +98,8 @@ public class AccesoFirebaseImpl implements AccesoFirebaseMateriales, AccesoFireb
                         String cantidadActual = material.getCantidad();
                         try {
                             int nuevaCantidad = Integer.parseInt(cantidadActual) + Integer.parseInt(cantidad);
-
                             if (nuevaCantidad >= 0) {
                                 material.setCantidad(String.valueOf(nuevaCantidad)); // Actualizamos la cantidad
-
                                 databaseReferenceMateriales.child(codigo).setValue(material)
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
@@ -127,7 +125,6 @@ public class AccesoFirebaseImpl implements AccesoFirebaseMateriales, AccesoFireb
                     mostrarDialogo("ERROR", "El material con el código especificado no existe.", context);
                 }
             }
-
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -160,6 +157,7 @@ public class AccesoFirebaseImpl implements AccesoFirebaseMateriales, AccesoFireb
             cargarDatosTrabajos(new OnDataLoadedCallbackTrabajos() {
                 // Generar automáticamente una clave única con push()
                 String claveGenerada = databaseReferenceTrabajos.push().getKey();
+
                 @Override
                 public void onDataLoaded(List<Trabajos> lista) {
                     databaseReferenceTrabajos.child(claveGenerada).setValue(trabajos)
@@ -181,7 +179,6 @@ public class AccesoFirebaseImpl implements AccesoFirebaseMateriales, AccesoFireb
                 public void onError(String error) {
                     mostrarDialogo("ERROR", "Falló la carga de datos: " + error, context);
                 }
-
             });
         }
     }

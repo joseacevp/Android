@@ -19,26 +19,22 @@ import com.example.gestiondeinventario.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
-    private static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 12;
+    private static final int MY_PERMISSIONS_CAMARA = 12;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_READ_CONTACTS: {
+            case MY_PERMISSIONS_CAMARA: {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // permission was granted, yay! Do the
-                    // contacts-related task you need to do.
+
                 } else {
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
+
                 }
                 return;
             }
-            // other 'case' lines to check for other
-            // permissions this app might request
         }
     }
 
@@ -60,21 +56,14 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
- /*
-        Nota: Cuando tu app llama a requestPermissions(), el sistema muestra al usuario un cuadro
-        de diálogo estándar.Tu app no puede configurar ni modificar ese cuadro de diálogo. Si
-        necesitas proporcionar información o una explicación al usuario, debes hacerlo antes de
-        llamar a requestPermissions(), como se describe en Explica la razón por la cual la necesita
-        permisos.
-         */
+        //peticion de permisos
         if (ContextCompat.checkSelfPermission(this,
-                android.Manifest.permission.RECEIVE_SMS)
+                android.Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.CAMERA},
-                    MY_PERMISSIONS_REQUEST_READ_CONTACTS);
+                    MY_PERMISSIONS_CAMARA);
         }
-
 
     }
 

@@ -35,14 +35,12 @@ public class AltaMaterialFragment extends Fragment {
     private FragmentAltaMaterialBinding binding;
     private String nombre, codigo, localizacion, uso, foto, cantidad;
     private Materiales materiales;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
         binding = FragmentAltaMaterialBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
         accesoFirebaseMateriales = new AccesoFirebaseImpl();
-
         binding.buttonAlta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,7 +49,6 @@ public class AltaMaterialFragment extends Fragment {
                 startActivityForResult(intent, PICK_IMAGE_REQUEST);
             }
         });
-
         return root;
     }
 
@@ -76,7 +73,6 @@ public class AltaMaterialFragment extends Fragment {
             Uri imageUri = data.getData();
             // Mostrar la ProgressBar
             binding.progressBar.setVisibility(View.VISIBLE);
-
             nombre = binding.ediTextNombreAltaMaterial.getText().toString();
             codigo = binding.editTextCodigoAlta.getText().toString();
             localizacion = binding.ediTextLocalizacionAltaMaterial.getText().toString();
@@ -93,12 +89,11 @@ public class AltaMaterialFragment extends Fragment {
                         accesoFirebaseMateriales.guardarDatoMateriales(materiales, getContext());
                         limpiarFormulario();
                         binding.progressBar.setVisibility(View.GONE);
-                        mostrarDialogo("DATOS GRABADOS","Acepte para continuar",getContext());
+                        mostrarDialogo("DATOS GRABADOS", "Acepte para continuar", getContext());
                     } else {
                         mostrarDialogo("ERROR", "Indique datos en todos los Campos", getContext());
                         binding.progressBar.setVisibility(View.GONE);
                     }
-
                 }).addOnFailureListener(e -> {
                     Toast.makeText(getContext(), "Error al obtener URL", Toast.LENGTH_SHORT).show();
                     binding.progressBar.setVisibility(View.GONE);

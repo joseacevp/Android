@@ -26,6 +26,7 @@ public class Inicio extends AppCompatActivity {
     private ActivityInicioBinding binding;
     private AccesoFirebase accesoFirebase;
     private RecyclerView recyclerView;
+    
     private AdaptadorJugadoresInicio adaptadorJugadoresInicio;
     private List<Jugador> listaRecu = new ArrayList<>();
     private InicioViewModel inicioViewModel;

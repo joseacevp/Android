@@ -11,13 +11,10 @@ public interface AccesoFirebaseMateriales {
 
     void actualizarCantidadMateriales(String cantidad, String codigo, Context context);
 
-
     // Definir una interfaz de callback para manejar los datos cargados
     interface OnDataLoadedCallbackMateriales {
         void onDataLoaded(List<Materiales> materiales);
 
         void onError(String error);
     }
-
-
 }
